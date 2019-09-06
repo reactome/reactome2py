@@ -1,12 +1,9 @@
 from setuptools import setup, find_packages
-"""
 import requests
 
 reqRelease = requests.get("https://github.com/reactome/reactome2py/releases")
 releaseVersion = reqRelease.json()[0]['tag_name']
 __version__ = str(releaseVersion[1:len(releaseVersion)])
-"""
-__version__ = '1.0.0'
 
 setup(
     name='reactome2py',
