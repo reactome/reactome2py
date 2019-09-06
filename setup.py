@@ -15,7 +15,7 @@ setup(
     url='https://github.com/reactome/reactome2py',
     author='Nasim Sanati',
     author_email='nasim@plenary.org',
-    license='MIT',
+    license='Apache',
     packages=find_packages(),
     entry_points={
         'console_scripts': ['reactome2py = reactome2py.__main__:main']
