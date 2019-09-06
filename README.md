@@ -2,7 +2,7 @@
 ### Reactome2py
 CI | Branch  | Build Status
  ---|---------|-------------
- Travis | master  | [![Build Status master branch](https://travis-ci.com/=master)](https://travis-ci.com/=master)
+ Travis | master  | [![Build Status](https://travis-ci.com/reactome/reactome2py.svg?branch=master)](https://travis-ci.com/reactome/reactome2py)
 
 Python client for Reactome content and analysis services API calls. 
 
