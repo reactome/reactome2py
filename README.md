@@ -1,5 +1,5 @@
 
-### Reactome2py
+### Reactome2py 
 CI | Branch  | Build Status
  ---|---------|-------------
  Travis | master  | [![Build Status](https://travis-ci.com/reactome/reactome2py.svg?branch=master)](https://travis-ci.com/reactome/reactome2py)
@@ -8,7 +8,7 @@ Python client for Reactome content and analysis services API calls.
 
 #### Installation 
 
-- PyPI install using pip  
+- PyPI install using pip [![reactome2py from PyPI](https://img.shields.io/pypi/v/reactome2py.svg)](https://pypi.python.org/pypi/reactome2py/)
     ``` 
     (sudo) pip install reactome2py 
     ```
