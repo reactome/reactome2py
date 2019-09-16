@@ -261,7 +261,6 @@ def export_diagram(id='R-HSA-177929', ext='png', quality='5', flag_interactors=F
     :param resource: The analysis resource for which the results will be overlaid on top of the given pathways overview
     :param exp_column: Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay
     :param analysis_profile: Analysis Color Profile: Standard, Strosobar, Copper Plus
-    :param exp_column: Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay
     :param file: Name of file default is 'report'
     :param path: Absolute path to save the file to
     :return: Exports a given pathway diagram to the specified image format (png, jpg, jpeg, svg, gif)
