@@ -18,5 +18,3 @@ COPY . /app/
 WORKDIR /app
 
 RUN python3 setup.py install
-
-ENTRYPOINT ["reactome2py"]
