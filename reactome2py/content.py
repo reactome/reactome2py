@@ -1888,3 +1888,5 @@ def search_suggest(query='platele'):
         return response.json()
     else:
         print('Status code returned a value of %s' % response.status_code)
+
+
