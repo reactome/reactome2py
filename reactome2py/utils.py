@@ -90,6 +90,14 @@ def gene_mappings():
         print(e)
 
     if response.status_code == 200:
-        return _read_ziplines(response)
+        gm = _read_ziplines(response)
+        relations = []
+
+        for i, e in enumerate(gm):
+            gm[i] = [s.strip() for s in gm[i]]
+            d = dict(name=gm[i][0], stId=gm[i][1], genes=gm[i][2:len(gm[i])])
+            relations.append(d)
+
+        return relations
     else:
         print('Status code returned a value of %s' % response.status_code)
