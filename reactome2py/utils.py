@@ -44,11 +44,11 @@ def sbgn_stids():
 
     if response.status_code == 200:
         tar_file = tarfile.open(fileobj=io.BytesIO(response.content))
-        file_names = tarfile.getnames()
-        # helper function
-        # ehlds = ehld_stids()
-        # sbgns = [f.replace('.sbgn', '') for f in file_names]
-        # set(sbgns) - set(ehlds)
+        file_names = tar_file.getnames()
+        ehlds = ehld_stids()
+        sbgns = [f.replace('.sbgn', '') for f in file_names]
+        sbgn_only = list(set(sbgns) - set(ehlds))
+        return sbgn_only
     else:
         print('Status code returned a value of %s' % response.status_code)
 
