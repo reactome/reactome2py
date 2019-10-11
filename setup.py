@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 setup(
     name='reactome2py',
@@ -15,7 +15,9 @@ setup(
         'console_scripts': ['reactome2py = reactome2py.__main__:main']
     },
     install_requires=[
-        'requests'
+        'requests',
+        'zipfile',
+        'tarfile',
     ],
     extras_require={
         'pandas': ["pandas==0.24.2"],
