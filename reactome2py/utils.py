@@ -10,8 +10,9 @@ import zipfile
 
 def ehld_stids():
     """
-
-    :return:
+    retrieves a list of high-level hierarchy pathway with Enhanced High Level Diagrams (EHLD)
+    https://reactome.org/icon-info/ehld-specs-guideline
+    :return: list of pathway stIds
     """
 
     url = "https://reactome.org/download/current/ehld/svgsummary.txt"
@@ -31,8 +32,9 @@ def ehld_stids():
 
 def sbgn_stids():
     """
-
-    :return:
+    retieves a list of lower-level (with hierarchy) pathways that have SBGNs
+    https://reactome.org/about/news/110-sbgn-files-revamp
+    :return: list of pathway stIds
     """
 
     url = "https://reactome.org/download/current/homo_sapiens.sbgn.tar.gz"
@@ -55,9 +57,10 @@ def sbgn_stids():
 
 def _yield_zip(response):
     """
-
+    read zipfile in memory
+    https://docs.python.org/3/library/zipfile.html
     :param response:
-    :return:
+    :return: content of zip file
     """
 
     with zipfile.ZipFile(io.BytesIO(response.content)) as the_zip:
@@ -68,9 +71,9 @@ def _yield_zip(response):
 
 def _read_ziplines(response):
     """
-
+    helper function to clean zipline content parsing
     :param response:
-    :return:
+    :return: list
     """
 
     return [c.split('\t') for c in [c.decode('utf8') for c in list(_yield_zip(response))[0]]]
@@ -78,8 +81,8 @@ def _read_ziplines(response):
 
 def gene_mappings():
     """
-
-    :return:
+    Maps reactome pathway stId and name to it's associated gene list (HGNC)
+    :return: dictionary of reactome pathways and HGNC gene mappings to the pathway.
     """
 
     url = "https://reactome.org/download/current/ReactomePathways.gmt.zip"
