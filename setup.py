@@ -1,6 +1,9 @@
 from setuptools import setup, find_packages
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
+
+with open("README.md", "r") as f:
+    long_description = f.read()
 
 setup(
     name='reactome2py',
@@ -21,4 +24,7 @@ setup(
         'pandas': ["pandas==0.24.2"],
         'json': ["json5==0.8.4"],
     },
-    tests_require=['pytest'])
+    tests_require=['pytest'],
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+)
