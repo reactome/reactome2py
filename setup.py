@@ -16,8 +16,6 @@ setup(
     },
     install_requires=[
         'requests',
-        'zipfile',
-        'tarfile',
     ],
     extras_require={
         'pandas': ["pandas==0.24.2"],
