@@ -11,10 +11,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends build-essential
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --upgrade pip
-RUN pip install pandas argparse requests json csv jupyterlab --upgrade
-
+RUN pip install pandas argparse requests json csv jupyterlab --upgrade 
+RUN ln -s /usr/bin/python3 /usr/bin/python && \ 
+    ln -s /usr/bin/pip3 /usr/bin/pip
+    
 COPY . /app/
 
 WORKDIR /app
 
-RUN python3 setup.py install
+RUN python setup.py install
