@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>&lt;no title&gt; &#8212; reactome2py 0.0.3 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <span class="target" id="module-reactome2py.utils"></span><p>utility functions for Reactome data-fetch, mappings, and overlay networks</p>
+<dl class="function">
+<dt id="reactome2py.utils.ehld_stids">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">ehld_stids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.ehld_stids" title="Permalink to this definition">¶</a></dt>
+<dd><p>retrieves a list of high-level hierarchy pathway with Enhanced High Level Diagrams (EHLD)
+<a class="reference external" href="https://reactome.org/icon-info/ehld-specs-guideline">https://reactome.org/icon-info/ehld-specs-guideline</a>
+:return: list of pathway stIds</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.gene_mappings">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">gene_mappings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.gene_mappings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps reactome pathway stId and name to it’s associated gene list (HGNC)
+:return: dictionary of reactome pathways and HGNC gene mappings to the pathway.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.sbgn_stids">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">sbgn_stids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.sbgn_stids" title="Permalink to this definition">¶</a></dt>
+<dd><p>retieves a list of lower-level (with hierarchy) pathways that have SBGNs
+<a class="reference external" href="https://reactome.org/about/news/110-sbgn-files-revamp">https://reactome.org/about/news/110-sbgn-files-revamp</a>
+:return: list of pathway stIds</p>
+</dd></dl>
+
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">reactome2py</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nasim Sanati.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
