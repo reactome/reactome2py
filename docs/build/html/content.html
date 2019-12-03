@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>&lt;no title&gt; &#8212; reactome2py 0.0.3 documentation</title>
+    <title>Content Service &#8212; reactome2py 0.0.3 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +14,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Utils" href="utils.html" />
+    <link rel="prev" title="Analysis Service" href="analysis.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,7 +32,9 @@
 
           <div class="body" role="main">
             
-  <span class="target" id="module-reactome2py.content"></span><p>Content Service for Reactome knowledgebase
+  <div class="section" id="module-reactome2py.content">
+<span id="content-service"></span><h1>Content Service<a class="headerlink" href="#module-reactome2py.content" title="Permalink to this headline">¶</a></h1>
+<p>Content Service for Reactome knowledgebase
 <a class="reference external" href="https://reactome.org/ContentService/#/">https://reactome.org/ContentService/#/</a></p>
 <dl class="function">
 <dt id="reactome2py.content.discover">
@@ -38,7 +42,7 @@
 <dd><p>The schema.org for an Event in Reactome knowledgebase</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – An event identifier ex. pathway stable identifier (stId) of pathway</p>
+<dd class="field-odd"><p><strong>id</strong> -- An event identifier ex. pathway stable identifier (stId) of pathway</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p></p>
@@ -52,7 +56,7 @@
 <dd><p>Query list of diseases</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>doid</strong> – returns list of disease DOID if set to true</p>
+<dd class="field-odd"><p><strong>doid</strong> -- returns list of disease DOID if set to true</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The list of diseases or disease DOID if doid param is set to true</p>
@@ -70,8 +74,8 @@ optional parameter to ‘true’</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – the complex for which subunits are requested</p></li>
-<li><p><strong>exclude_structures</strong> – specifies whether contained complexes and entity sets are excluded in the response</p></li>
+<li><p><strong>id</strong> -- the complex for which subunits are requested</p></li>
+<li><p><strong>exclude_structures</strong> -- specifies whether contained complexes and entity sets are excluded in the response</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -88,8 +92,8 @@ into all its participants to do so.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – the identifier for which complexes are requested</p></li>
-<li><p><strong>resource</strong> – the resource of the identifier for complexes are requested</p></li>
+<li><p><strong>id</strong> -- the identifier for which complexes are requested</p></li>
+<li><p><strong>resource</strong> -- the resource of the identifier for complexes are requested</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -106,7 +110,7 @@ These other forms are PhysicalEntities that share the same ReferenceEntity ident
 e.g. PTEN H93R[R-HSA-2318524] and PTEN C124R[R-HSA-2317439] are two forms of PTEN.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – DbId or StId of a PhysicalEntity</p>
+<dd class="field-odd"><p><strong>id</strong> -- DbId or StId of a PhysicalEntity</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p></p>
@@ -122,7 +126,7 @@ It should be mentioned that the list includes only simplified entries (type, nam
 about each item.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – </p>
+<dd class="field-odd"><p><strong>id</strong> -- </p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of larger structures containing the entity</p>
@@ -140,7 +144,7 @@ in many pathways. Therefore, this method retrieves a list of all possible paths 
 top level pathway(s).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – The event for which the ancestors are requested</p>
+<dd class="field-odd"><p><strong>id</strong> -- The event for which the ancestors are requested</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The ancestors of a given event</p>
@@ -158,7 +162,7 @@ by a PathwayBrowserNode. The latter contains the stable identifier, the name, th
 the diagram of the particular event.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>species</strong> – Species name (eg: Homo sapiens) or Species taxId (eg: 9606)</p>
+<dd class="field-odd"><p><strong>species</strong> -- Species name (eg: Homo sapiens) or Species taxId (eg: 9606)</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The full event hierarchy for a given species</p>
@@ -170,28 +174,28 @@ the diagram of the particular event.</p>
 <dt id="reactome2py.content.export_diagram">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_diagram</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-177929'</em>, <em class="sig-param">ext='png'</em>, <em class="sig-param">quality='5'</em>, <em class="sig-param">flag_interactors=False</em>, <em class="sig-param">title=True</em>, <em class="sig-param">margin='15'</em>, <em class="sig-param">ehld=True</em>, <em class="sig-param">diagram_profile='Modern'</em>, <em class="sig-param">resource='Total'</em>, <em class="sig-param">analysis_profile='Standard'</em>, <em class="sig-param">token=None</em>, <em class="sig-param">flag=None</em>, <em class="sig-param">sel=[]</em>, <em class="sig-param">exp_column=None</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_diagram" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method accepts identifiers for Event class instances.
-When a diagrammed pathway is provided, the diagram is exported to the specified format.
-When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.
-When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.</p>
+* When a diagrammed pathway is provided, the diagram is exported to the specified format.
+* When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.
+* When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – Event identifier (it can be a pathway with diagram, a subpathway or a reaction)</p></li>
-<li><p><strong>ext</strong> – File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif</p></li>
-<li><p><strong>quality</strong> – Result image quality between [1 - 10]. It defines the quality of the final image (Default 5)</p></li>
-<li><p><strong>flag</strong> – Gene name, protein or chemical identifier or Reactome identifier used to flag elements in the diagram</p></li>
-<li><p><strong>flag_interactors</strong> – Defines whether to take into account interactors for the flagging default set to False</p></li>
-<li><p><strong>sel</strong> – Highlight element(s) selection in the diagram. CSV line. comma seperate python list ex [‘X’, ‘Y’, ‘Z’]</p></li>
-<li><p><strong>token</strong> – The analysis token with the results to be overlaid on top of the given diagram</p></li>
-<li><p><strong>title</strong> – Sets whether the name of the pathway is shown as title</p></li>
-<li><p><strong>margin</strong> – Defines the image margin between [0 - 20] (Default 15)</p></li>
-<li><p><strong>ehld</strong> – Defines whether textbook-like illustration are taken into account</p></li>
-<li><p><strong>diagram_profile</strong> – Diagram Color Profile: Modern or Standard</p></li>
-<li><p><strong>resource</strong> – The analysis resource for which the results will be overlaid on top of the given pathways overview</p></li>
-<li><p><strong>exp_column</strong> – Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay</p></li>
-<li><p><strong>analysis_profile</strong> – Analysis Color Profile: Standard, Strosobar, Copper Plus</p></li>
-<li><p><strong>file</strong> – Name of file default is ‘report’</p></li>
-<li><p><strong>path</strong> – Absolute path to save the file to</p></li>
+<li><p><strong>id</strong> -- Event identifier (it can be a pathway with diagram, a subpathway or a reaction)</p></li>
+<li><p><strong>ext</strong> -- File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif</p></li>
+<li><p><strong>quality</strong> -- Result image quality between [1 - 10]. It defines the quality of the final image (Default 5)</p></li>
+<li><p><strong>flag</strong> -- Gene name, protein or chemical identifier or Reactome identifier used to flag elements in the diagram</p></li>
+<li><p><strong>flag_interactors</strong> -- Defines whether to take into account interactors for the flagging default set to False</p></li>
+<li><p><strong>sel</strong> -- Highlight element(s) selection in the diagram. CSV line. comma seperate python list ex ['X', 'Y', 'Z']</p></li>
+<li><p><strong>token</strong> -- The analysis token with the results to be overlaid on top of the given diagram</p></li>
+<li><p><strong>title</strong> -- Sets whether the name of the pathway is shown as title</p></li>
+<li><p><strong>margin</strong> -- Defines the image margin between [0 - 20] (Default 15)</p></li>
+<li><p><strong>ehld</strong> -- Defines whether textbook-like illustration are taken into account</p></li>
+<li><p><strong>diagram_profile</strong> -- Diagram Color Profile: Modern or Standard</p></li>
+<li><p><strong>resource</strong> -- The analysis resource for which the results will be overlaid on top of the given pathways overview</p></li>
+<li><p><strong>exp_column</strong> -- Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay</p></li>
+<li><p><strong>analysis_profile</strong> -- Analysis Color Profile: Standard, Strosobar, Copper Plus</p></li>
+<li><p><strong>file</strong> -- Name of file default is 'report'</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the file to</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -204,25 +208,30 @@ When a reaction is provided, the diagram containing the reaction is exported and
 <dt id="reactome2py.content.export_document">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_document</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-177929'</em>, <em class="sig-param">level='1'</em>, <em class="sig-param">diagram_profile='Modern'</em>, <em class="sig-param">resource='Total'</em>, <em class="sig-param">analysis_profile='Standard'</em>, <em class="sig-param">token=None</em>, <em class="sig-param">exp_column=None</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method accepts identifiers for Event class instances.
-The generated document contains the details for the given event and, optionally, its children (see level parameter). These details include:
-- A diagram image
-- Summation
-- Literature references
-- Edit history
-- Other details: type, location, compartments, diseases</p>
+The generated document contains the details for the given event and, optionally, its children (see level parameter).</p>
+<dl class="simple">
+<dt>These details include:</dt><dd><ul class="simple">
+<li><p>A diagram image</p></li>
+<li><p>Summation</p></li>
+<li><p>Literature references</p></li>
+<li><p>Edit history</p></li>
+<li><p>Other details: type, location, compartments, diseases</p></li>
+</ul>
+</dd>
+</dl>
 <p>Documents can also be overlaid with pathway analysis results (given a token)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – Event identifier (it can be a pathway with diagram, a subpathway or a reaction)</p></li>
-<li><p><strong>level</strong> – Number of levels to explore down in the pathways hierarchy [0 - 1]</p></li>
-<li><p><strong>diagram_profile</strong> – Diagram Color Profile Modern or Standard</p></li>
-<li><p><strong>resource</strong> – The analysis resource for which the results will be overlaid on top of the given pathways overview</p></li>
-<li><p><strong>analysis_profile</strong> – Analysis Color Profile: Standard, Strosobar, Copper Plus</p></li>
-<li><p><strong>token</strong> – The analysis token with the results to be overlaid on top of the given diagram</p></li>
-<li><p><strong>exp_column</strong> – Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay</p></li>
-<li><p><strong>file</strong> – Name of file default is ‘report’</p></li>
-<li><p><strong>path</strong> – Absolute path to save the file to</p></li>
+<li><p><strong>id</strong> -- Event identifier (it can be a pathway with diagram, a subpathway or a reaction)</p></li>
+<li><p><strong>level</strong> -- Number of levels to explore down in the pathways hierarchy [0 - 1]</p></li>
+<li><p><strong>diagram_profile</strong> -- Diagram Color Profile Modern or Standard</p></li>
+<li><p><strong>resource</strong> -- The analysis resource for which the results will be overlaid on top of the given pathways overview</p></li>
+<li><p><strong>analysis_profile</strong> -- Analysis Color Profile: Standard, Strosobar, Copper Plus</p></li>
+<li><p><strong>token</strong> -- The analysis token with the results to be overlaid on top of the given diagram</p></li>
+<li><p><strong>exp_column</strong> -- Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay</p></li>
+<li><p><strong>file</strong> -- Name of file default is 'report'</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the file to</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -244,10 +253,10 @@ The generated document contains the details for the given event and, optionally,
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – DbId or StId of the requested pathway or reaction</p></li>
-<li><p><strong>format</strong> – sbgn or sbml</p></li>
-<li><p><strong>file</strong> – Name of file default is set to report</p></li>
-<li><p><strong>path</strong> – Absolute path to save the file</p></li>
+<li><p><strong>id</strong> -- DbId or StId of the requested pathway or reaction</p></li>
+<li><p><strong>format</strong> -- sbgn or sbml</p></li>
+<li><p><strong>file</strong> -- Name of file default is set to report</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the file</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -262,21 +271,21 @@ The generated document contains the details for the given event and, optionally,
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>species</strong> – Species identifier (it can be the taxonomy id, species name or dbId)</p></li>
-<li><p><strong>ext</strong> – File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif</p></li>
-<li><p><strong>file</strong> – Name of file default is set to report</p></li>
-<li><p><strong>path</strong> – Absolute path to save the file</p></li>
-<li><p><strong>quality</strong> – Result image quality between [1 - 10]. It defines the quality of the final image (Default 5)</p></li>
-<li><p><strong>flag</strong> – Gene name, protein or chemical identifier or Reactome identifier used to flag elements in the diagram</p></li>
-<li><p><strong>flag_interactors</strong> – Defines whether to take into account interactors for the flagging</p></li>
-<li><p><strong>sel</strong> – Highlight element(s) selection in the diagram. CSV line. comma seperate python list ex [‘X’, ‘Y’, ‘Z’]</p></li>
-<li><p><strong>title</strong> – Sets whether the name of the pathway is shown below</p></li>
-<li><p><strong>margin</strong> – Defines the image margin between [0 - 20] (Default 15)</p></li>
-<li><p><strong>resource</strong> – The analysis resource for which the results will be overlaid on top of the given pathways overview</p></li>
-<li><p><strong>diagram_profile</strong> – Diagram Color Profile available in: Copper, Copper plus, Barium lithium, Calcium salts</p></li>
-<li><p><strong>coverage</strong> – Set to ‘true’ to overlay analysis coverage values default is set to false</p></li>
-<li><p><strong>token</strong> – The analysis token with the results to be overlaid on top of the given pathways overview</p></li>
-<li><p><strong>exp_column</strong> – Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay</p></li>
+<li><p><strong>species</strong> -- Species identifier (it can be the taxonomy id, species name or dbId)</p></li>
+<li><p><strong>ext</strong> -- File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif</p></li>
+<li><p><strong>file</strong> -- Name of file default is set to report</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the file</p></li>
+<li><p><strong>quality</strong> -- Result image quality between [1 - 10]. It defines the quality of the final image (Default 5)</p></li>
+<li><p><strong>flag</strong> -- Gene name, protein or chemical identifier or Reactome identifier used to flag elements in the diagram</p></li>
+<li><p><strong>flag_interactors</strong> -- Defines whether to take into account interactors for the flagging</p></li>
+<li><p><strong>sel</strong> -- Highlight element(s) selection in the diagram. CSV line. comma seperate python list ex ['X', 'Y', 'Z']</p></li>
+<li><p><strong>title</strong> -- Sets whether the name of the pathway is shown below</p></li>
+<li><p><strong>margin</strong> -- Defines the image margin between [0 - 20] (Default 15)</p></li>
+<li><p><strong>resource</strong> -- The analysis resource for which the results will be overlaid on top of the given pathways overview</p></li>
+<li><p><strong>diagram_profile</strong> -- Diagram Color Profile available in: Copper, Copper plus, Barium lithium, Calcium salts</p></li>
+<li><p><strong>coverage</strong> -- Set to ‘true’ to overlay analysis coverage values default is set to false</p></li>
+<li><p><strong>token</strong> -- The analysis token with the results to be overlaid on top of the given pathways overview</p></li>
+<li><p><strong>exp_column</strong> -- Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -291,21 +300,21 @@ The generated document contains the details for the given event and, optionally,
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – Reaction identifier</p></li>
-<li><p><strong>ext</strong> – File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif</p></li>
-<li><p><strong>file</strong> – Name of file default is set to report</p></li>
-<li><p><strong>path</strong> – Absolute path to save the file</p></li>
-<li><p><strong>quality</strong> – Result image quality between [1 - 10]. It defines the quality of the final image (Default 5)</p></li>
-<li><p><strong>flag</strong> – Gene name, protein or chemical identifier or Reactome identifier used to flag elements in the diagram</p></li>
-<li><p><strong>flag_interactors</strong> – Defines whether to take into account interactors for the flagging</p></li>
-<li><p><strong>sel</strong> – Highlight element(s) selection in the diagram. CSV line. comma seperate python list ex [‘X’, ‘Y’, ‘Z’]</p></li>
-<li><p><strong>title</strong> – Sets whether the name of the pathway is shown below</p></li>
-<li><p><strong>margin</strong> – Defines the image margin between [0 - 20] (Default 15)</p></li>
-<li><p><strong>resource</strong> – The analysis resource for which the results will be overlaid on top of the given pathways overview</p></li>
-<li><p><strong>diagram_profile</strong> – Diagram Color Profile available in: Copper, Copper plus, Barium lithium, Calcium salts</p></li>
-<li><p><strong>coverage</strong> – Set to ‘true’ to overlay analysis coverage values default is set to false</p></li>
-<li><p><strong>token</strong> – The analysis token with the results to be overlaid on top of the given pathways overview</p></li>
-<li><p><strong>exp_column</strong> – Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay</p></li>
+<li><p><strong>id</strong> -- Reaction identifier</p></li>
+<li><p><strong>ext</strong> -- File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif</p></li>
+<li><p><strong>file</strong> -- Name of file default is set to report</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the file</p></li>
+<li><p><strong>quality</strong> -- Result image quality between [1 - 10]. It defines the quality of the final image (Default 5)</p></li>
+<li><p><strong>flag</strong> -- Gene name, protein or chemical identifier or Reactome identifier used to flag elements in the diagram</p></li>
+<li><p><strong>flag_interactors</strong> -- Defines whether to take into account interactors for the flagging</p></li>
+<li><p><strong>sel</strong> -- Highlight element(s) selection in the diagram. CSV line. comma seperate python list ex ['X', 'Y', 'Z']</p></li>
+<li><p><strong>title</strong> -- Sets whether the name of the pathway is shown below</p></li>
+<li><p><strong>margin</strong> -- Defines the image margin between [0 - 20] (Default 15)</p></li>
+<li><p><strong>resource</strong> -- The analysis resource for which the results will be overlaid on top of the given pathways overview</p></li>
+<li><p><strong>diagram_profile</strong> -- Diagram Color Profile available in: Copper, Copper plus, Barium lithium, Calcium salts</p></li>
+<li><p><strong>coverage</strong> -- Set to ‘true’ to overlay analysis coverage values default is set to false</p></li>
+<li><p><strong>token</strong> -- The analysis token with the results to be overlaid on top of the given pathways overview</p></li>
+<li><p><strong>exp_column</strong> -- Expression column. When the token is associated to an expression analysis, this parameter allows specifying the expression column for the overlay</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -321,9 +330,9 @@ The generated document contains the details for the given event and, optionally,
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>acc</strong> – Accession</p></li>
-<li><p><strong>species</strong> – The species name for which the pathways are requested (e.g. ‘Homo sapiens’)</p></li>
-<li><p><strong>only_diagrammed</strong> – Specifies whether the pathways has to have an associated diagram or not</p></li>
+<li><p><strong>acc</strong> -- Accession</p></li>
+<li><p><strong>species</strong> -- The species name for which the pathways are requested (e.g. ‘Homo sapiens’)</p></li>
+<li><p><strong>only_diagrammed</strong> -- Specifies whether the pathways has to have an associated diagram or not</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -339,8 +348,8 @@ The generated document contains the details for the given event and, optionally,
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> – Absolute path to file to be read with custom interactor</p></li>
-<li><p><strong>name</strong> – Name which identifies the sample</p></li>
+<li><p><strong>path</strong> -- Absolute path to file to be read with custom interactor</p></li>
+<li><p><strong>name</strong> -- Name which identifies the sample</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -364,13 +373,17 @@ The generated document contains the details for the given event and, optionally,
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>resource</strong> – Proteomics standards initiative common query interface (PSICQUIC) Resource</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>resource</strong> -- Proteomics standards initiative common query interface (PSICQUIC) Resource
+use interactors_psicquic_resources to retrive all active resources</p></li>
+<li><p><strong>acc</strong> -- Single Accession</p></li>
+<li><p><strong>by</strong> -- details or summary (returns counts of details available)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
 </dd>
 </dl>
-<p>use interactors_psicquic_resources to retrive all active resources
-:param acc: Single Accession
-:param by: details or summary (returns counts of details available)
-:return:</p>
 </dd></dl>
 
 <dl class="function">
@@ -389,13 +402,15 @@ The generated document contains the details for the given event and, optionally,
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>proteins</strong> – Comma seperate list of Accessions in string format ‘a1,a2,a3’</p></li>
-<li><p><strong>resource</strong> – Proteomics standards initiative common query interface (PSICQUIC) Resource</p></li>
+<li><p><strong>proteins</strong> -- Comma seperate list of Accessions in string format 'a1,a2,a3'</p></li>
+<li><p><strong>resource</strong> -- Proteomics standards initiative common query interface (PSICQUIC) Resource
+use interactors_psicquic_resources to retrive all active resources</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
 </dl>
-<p>use interactors_psicquic_resources to retrive all active resources
-:return:</p>
 </dd></dl>
 
 <dl class="function">
@@ -416,8 +431,8 @@ The generated document contains the details for the given event and, optionally,
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name which identifies the custom psicquic</p></li>
-<li><p><strong>psicquic_url</strong> – A URL pointing to the Custom PSICQUIC Resource</p></li>
+<li><p><strong>name</strong> -- Name which identifies the custom psicquic</p></li>
+<li><p><strong>psicquic_url</strong> -- A URL pointing to the Custom PSICQUIC Resource</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -432,10 +447,10 @@ The generated document contains the details for the given event and, optionally,
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>acc</strong> – Interactor accession (or identifier)</p></li>
-<li><p><strong>page</strong> – For paginating the results</p></li>
-<li><p><strong>page_size</strong> – Number of results to be retrieved</p></li>
-<li><p><strong>by</strong> – details or summary (returns counts of details available)</p></li>
+<li><p><strong>acc</strong> -- Interactor accession (or identifier)</p></li>
+<li><p><strong>page</strong> -- For paginating the results</p></li>
+<li><p><strong>page_size</strong> -- Number of results to be retrieved</p></li>
+<li><p><strong>by</strong> -- details or summary (returns counts of details available)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -450,10 +465,10 @@ The generated document contains the details for the given event and, optionally,
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>accs</strong> – Comma seperate list of Accessions in string format ‘a1,a2,a3’</p></li>
-<li><p><strong>by</strong> – details or summary (returns counts of details available)</p></li>
-<li><p><strong>page</strong> – For paginating the results</p></li>
-<li><p><strong>page_size</strong> – Number of results to be retrieved</p></li>
+<li><p><strong>accs</strong> -- Comma seperate list of Accessions in string format 'a1,a2,a3'</p></li>
+<li><p><strong>by</strong> -- details or summary (returns counts of details available)</p></li>
+<li><p><strong>page</strong> -- For paginating the results</p></li>
+<li><p><strong>page_size</strong> -- Number of results to be retrieved</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -469,8 +484,8 @@ The generated document contains the details for the given event and, optionally,
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name which identifies the sample</p></li>
-<li><p><strong>content</strong> – Paste custom interactors file content</p></li>
+<li><p><strong>name</strong> -- Name which identifies the sample</p></li>
+<li><p><strong>content</strong> -- Paste custom interactors file content</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -486,8 +501,8 @@ The generated document contains the details for the given event and, optionally,
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Name which identifies the sample</p></li>
-<li><p><strong>interactors_url</strong> – A URL pointing to the Interactors file</p></li>
+<li><p><strong>name</strong> -- Name which identifies the sample</p></li>
+<li><p><strong>interactors_url</strong> -- A URL pointing to the Interactors file</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -499,27 +514,35 @@ The generated document contains the details for the given event and, optionally,
 <dl class="function">
 <dt id="reactome2py.content.mapping">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">mapping</code><span class="sig-paren">(</span><em class="sig-param">id='PTEN'</em>, <em class="sig-param">resource='UniPort'</em>, <em class="sig-param">species='9606'</em>, <em class="sig-param">by='pathways'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.mapping" title="Permalink to this definition">¶</a></dt>
-<dd><dl>
+<dd><ol class="arabic simple">
+<li><dl class="simple">
 <dt>by pathways:</dt><dd><p>Entities play different roles in reactions, and reactions are events that conform a pathway. This method retrieves
-the pathways for which an identifier plays a role within one or more of their events.</p>
-<p>return: The lower level pathways where an identifier can be mapped to</p>
+the pathways for which an identifier plays a role within one or more of their events.
+return: The lower level pathways where an identifier can be mapped to</p>
 </dd>
+</dl>
+</li>
+<li><dl class="simple">
 <dt>by reactions:</dt><dd><p>Entities play different roles in reactions. This method retrieves the reactions for which an identifier plays a role .
 return: The reactions where an identifier can be mapped to</p>
 </dd>
 </dl>
+</li>
+</ol>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – The identifier to be mapped</p></li>
-<li><p><strong>resource</strong> – The resource name for which the identifier is submitted</p></li>
-<li><p><strong>species</strong> – Species for which the result is filtered. Accepts taxonomy id, species name and dbId.</p></li>
+<li><p><strong>id</strong> -- The identifier to be mapped</p></li>
+<li><p><strong>resource</strong> -- The resource name for which the identifier is submitted</p></li>
+<li><p><strong>species</strong> -- Species for which the result is filtered. Accepts taxonomy id, species name and dbId.
+Important Note - when identifier points to chemical, this becomes mandatory and if not provided, the default is ‘Homo sapiens’</p></li>
+<li><p><strong>by</strong> -- pathways or reactions</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
 </dl>
-<p>Important: when identifier points to chemical, this becomes mandatory and if not provided, the default is ‘Homo sapiens’
-:param by: pathways or reactions
-:return:</p>
 </dd></dl>
 
 <dl class="function">
@@ -532,8 +555,8 @@ Thus, this method retrieves the orthology for any given event or entity in the s
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – The event for which the orthology is requested</p></li>
-<li><p><strong>species</strong> – The species for which the orthology is requested</p></li>
+<li><p><strong>id</strong> -- The event for which the orthology is requested</p></li>
+<li><p><strong>species</strong> -- The species for which the orthology is requested</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -552,8 +575,8 @@ Thus, this method retrieves the orthologies for any given set of events or entit
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ids</strong> – The events identifiers for which the orthology is requested</p></li>
-<li><p><strong>species</strong> – The species for which the orthology is requested</p></li>
+<li><p><strong>ids</strong> -- The events identifiers for which the orthology is requested</p></li>
+<li><p><strong>species</strong> -- The species for which the orthology is requested</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -568,7 +591,7 @@ Thus, this method retrieves the orthologies for any given set of events or entit
 <dd><p>Participants contains a PhysicalEntity (dbId, displayName) and a collection of ReferenceEntities (dbId, name, identifier, url)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – DbId or StId of a PhysicalEntity</p>
+<dd class="field-odd"><p><strong>id</strong> -- DbId or StId of a PhysicalEntity</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of participants for a given event</p>
@@ -584,7 +607,7 @@ because a pathway can contain smaller pathways (subpathways), the method also re
 PhysicalEntities from every constituent</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – The event for which the participating PhysicalEntities are requested</p>
+<dd class="field-odd"><p><strong>id</strong> -- The event for which the participating PhysicalEntities are requested</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of participating PhysicalEntities for a given event</p>
@@ -606,7 +629,7 @@ because a pathway can contain smaller pathways (subpathways), this method also r
 ReferenceEntities for all PhysicalEntities in every constituent pathway.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – The event for which the participating ReferenceEntities are requested</p>
+<dd class="field-odd"><p><strong>id</strong> -- The event for which the participating ReferenceEntities are requested</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of participating ReferenceEntities for a given event</p>
@@ -623,7 +646,7 @@ a pathway can contain smaller pathways and reactions. This method recursively re
 contained in any given event.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – The event for which the contained events are requested</p>
+<dd class="field-odd"><p><strong>id</strong> -- The event for which the contained events are requested</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>All the events contained in the given event</p>
@@ -641,8 +664,8 @@ each of the events contained in the given event.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – The event for which the contained events are requested</p></li>
-<li><p><strong>attribute</strong> – Attribute to be filtered</p></li>
+<li><p><strong>id</strong> -- The event for which the contained events are requested</p></li>
+<li><p><strong>attribute</strong> -- Attribute to be filtered</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -656,15 +679,20 @@ each of the events contained in the given event.</p>
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathways_low_diagram</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-199420'</em>, <em class="sig-param">species=None</em>, <em class="sig-param">all_forms=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathways_low_diagram" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method traverses the event hierarchy and retrieves the list of all lower level pathways that have a
 diagram and contain the given PhysicalEntity or Event.</p>
-<p>if all_forms is set to tru: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms
-include for example different post-translationally modified versions of a single protein, or the same chemical
+<ul class="simple">
+<li><dl class="simple">
+<dt>if all_forms is set to true: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms</dt><dd><p>include for example different post-translationally modified versions of a single protein, or the same chemical
 in different compartments.</p>
+</dd>
+</dl>
+</li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – The entity that has to be present in the pathways</p></li>
-<li><p><strong>species</strong> – The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)</p></li>
-<li><p><strong>all_forms</strong> – If true, it retrieves the given PhysicalEntity in any of its variant forms.</p></li>
+<li><p><strong>id</strong> -- The entity that has to be present in the pathways</p></li>
+<li><p><strong>species</strong> -- The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)</p></li>
+<li><p><strong>all_forms</strong> -- If true, it retrieves the given PhysicalEntity in any of its variant forms.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -678,15 +706,20 @@ in different compartments.</p>
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathways_low_entity</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-199420'</em>, <em class="sig-param">species=None</em>, <em class="sig-param">all_forms=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathways_low_entity" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method traverses the event hierarchy and retrieves the list of all lower level pathways that contain
 the given PhysicalEntity or Event.</p>
-<p>if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given
-PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally
+<ul class="simple">
+<li><dl class="simple">
+<dt>if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given</dt><dd><p>PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally
 modified versions of a single protein, or the same chemical in different compartments.</p>
+</dd>
+</dl>
+</li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – The entity that has to be present in the pathways</p></li>
-<li><p><strong>species</strong> – The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)</p></li>
-<li><p><strong>all_forms</strong> – If set to true, it retrieves the list of all lower level pathways that contain the given PhysicalEntity in any of its variant forms.</p></li>
+<li><p><strong>id</strong> -- The entity that has to be present in the pathways</p></li>
+<li><p><strong>species</strong> -- The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)</p></li>
+<li><p><strong>all_forms</strong> -- If set to true, it retrieves the list of all lower level pathways that contain the given PhysicalEntity in any of its variant forms.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -701,7 +734,7 @@ modified versions of a single protein, or the same chemical in different compart
 <dd><p>This method retrieves the list of top level pathways for the given species</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>species</strong> – Specifies the species by the taxonomy identifier (eg: 9606) or species name (eg: ‘Homo+sapiens’)</p>
+<dd class="field-odd"><p><strong>species</strong> -- Specifies the species by the taxonomy identifier (eg: 9606) or species name (eg: ‘Homo+sapiens’)</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>All Reactome top level pathways</p>
@@ -712,21 +745,36 @@ modified versions of a single protein, or the same chemical in different compart
 <dl class="function">
 <dt id="reactome2py.content.person_id">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">person_id</code><span class="sig-paren">(</span><em class="sig-param">id='0000-0001-5807-0069'</em>, <em class="sig-param">by=None</em>, <em class="sig-param">attribute=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.person_id" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>With only id parameter declared,</dt><dd><p>Retrieves a person in Reactome by his/her OrcidId or DbId.</p>
-</dd>
-<dt>With id and query by declared with pathway or publication</dt><dd><p>Retrieves a list of pathways authored by a given person. OrcidId, DbId or Email can be used to specify the person.
-Retrieves a list of publications authored by a given person. OrcidId, DbId or Email can be used to specify the person.</p>
-</dd>
-<dt>with id and attribute declared</dt><dd><p>Retrieves a specific person’s property by his/her OrcidId or DbId.</p>
+<dd><ol class="arabic simple">
+<li><dl class="simple">
+<dt>With only id parameter declared,</dt><dd><ul class="simple">
+<li><p>Retrieves a person in Reactome by his/her OrcidId or DbId.</p></li>
+</ul>
 </dd>
 </dl>
+</li>
+<li><dl class="simple">
+<dt>With id and query by declared with pathway or publication</dt><dd><ul class="simple">
+<li><p>Retrieves a list of pathways authored by a given person. OrcidId, DbId or Email can be used to specify the person.</p></li>
+<li><p>Retrieves a list of publications authored by a given person. OrcidId, DbId or Email can be used to specify the person.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>With id and attribute declared</dt><dd><ul class="simple">
+<li><p>Retrieves a specific person’s property by his/her OrcidId or DbId.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – Person identifier - Can be OrcidId or DbId</p></li>
-<li><p><strong>by</strong> – if not None, query by authored: pathways or publications</p></li>
-<li><p><strong>attribute</strong> – Attribute to be filtered ex. displayName</p></li>
+<li><p><strong>id</strong> -- Person identifier - Can be OrcidId or DbId</p></li>
+<li><p><strong>by</strong> -- if not None, query by authored: pathways or publications</p></li>
+<li><p><strong>attribute</strong> -- Attribute to be filtered ex. displayName</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -738,14 +786,15 @@ Retrieves a list of publications authored by a given person. OrcidId, DbId or Em
 <dl class="function">
 <dt id="reactome2py.content.person_name">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">person_name</code><span class="sig-paren">(</span><em class="sig-param">name='Steve Jupe'</em>, <em class="sig-param">exact=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.person_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves a list of people in Reactome with either their first or last name partly matching the given name (string).
-If exact is set to true, retrieves a list of people in Reactome with either their first or last name matching exactly
-the given name (string).</p>
+<dd><p>Retrieves a list of people in Reactome with either their first or last name partly matching the given name (string).</p>
+<ul class="simple">
+<li><p>If exact is set to true, retrieves a list of people in Reactome with either their first or last name matching exactly the given name (string).</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Person’s first or last name</p></li>
-<li><p><strong>exact</strong> – </p></li>
+<li><p><strong>name</strong> -- Person’s first or last name</p></li>
+<li><p><strong>exact</strong> -- </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -760,14 +809,16 @@ the given name (string).</p>
 <dd><p>This method queries for an entry in Reactome knowledgebase based on the given identifier, i.e. stable id or
 database id. It is worth mentioning that the retrieved database object has all its properties and direct
 relationships (relationships of depth 1) filled.</p>
-<p>if enhanced is set to true it also includes any second level relationships regarding regulations and catalysts.</p>
-<p>if attribute name is present it queries the property of the attribute requested</p>
+<ul class="simple">
+<li><p>if enhanced is set to true it also includes any second level relationships regarding regulations and catalysts.</p></li>
+<li><p>if attribute name is present it queries the property of the attribute requested</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> – DbId or StId of the requested database object</p></li>
-<li><p><strong>enhanced</strong> – boolean value to make an enhanced query on id</p></li>
-<li><p><strong>attribute</strong> – Attribute to be queried</p></li>
+<li><p><strong>id</strong> -- DbId or StId of the requested database object</p></li>
+<li><p><strong>enhanced</strong> -- boolean value to make an enhanced query on id</p></li>
+<li><p><strong>attribute</strong> -- Attribute to be queried</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -782,12 +833,14 @@ relationships (relationships of depth 1) filled.</p>
 <dd><p>This method queries for a set of entries in Reactome knowledgebase based on the given list of identifiers.
 The provided list of identifiers can include stable ids, database ids or a mixture of both. It should be
 underlined that any duplicated ids are eliminated while only requests containing up to 20 ids are processed.</p>
-<p>if mapping is set, to true previous version of stable identifiers can be queried.</p>
+<ul class="simple">
+<li><p>if mapping is set, to true previous version of stable identifiers can be queried.</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ids</strong> – A comma separated list of identifiers</p></li>
-<li><p><strong>mapping</strong> – If set to true, retrieves a list of entries with their mapping to the provided identifiers</p></li>
+<li><p><strong>ids</strong> -- A comma separated list of identifiers</p></li>
+<li><p><strong>mapping</strong> -- If set to true, retrieves a list of entries with their mapping to the provided identifiers</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -802,7 +855,7 @@ underlined that any duplicated ids are eliminated while only requests containing
 <dd><p>Retrieves a list containing all the reference entities for a given identifier.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – Identifier for a given entity</p>
+<dd class="field-odd"><p><strong>id</strong> -- Identifier for a given entity</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>All ReferenceEntities for a given identifier</p>
@@ -817,25 +870,45 @@ underlined that any duplicated ids are eliminated while only requests containing
 Please take into account that if species is specified to filter the results, schema class needs to be an
 instance of Event or PhysicalEntity. Additionally, paging is required, while a maximum of 25 entries can be
 returned per request.</p>
-<dl class="simple">
-<dt>if by is count:</dt><dd><p>counts the total number of entries in Reactome that belong to the specified schema class.</p>
-</dd>
-<dt>if by is min:</dt><dd><p>the list of simplified entries in Reactome that belong to the specified schema class. A simplified entry may
-be considered as a minimised version of the full database object that includes its database id, stable id,
-displayName and type.</p>
-</dd>
-<dt>if by is reference:</dt><dd><p>the list of simplified reference objects that belong to the specified schema class. A reference object
-includes its database id, external identifier, and external database name.</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>if by is count:</dt><dd><ul class="simple">
+<li><p>counts the total number of entries in Reactome that belong to the specified schema class.</p></li>
+</ul>
 </dd>
 </dl>
+</li>
+<li><dl class="simple">
+<dt>if by is min:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>the list of simplified entries in Reactome that belong to the specified schema class. A simplified entry may</dt><dd><p>be considered as a minimised version of the full database object that includes its database id, stable id, displayName and type.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>if by is reference:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>the list of simplified reference objects that belong to the specified schema class. A reference object</dt><dd><p>includes its database id, external identifier, and external database name.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – Schema class name.</p></li>
-<li><p><strong>by</strong> – if not None, by count, min, or reference (name needs to an instance of ReferenceEntity or ExternalOntology)</p></li>
-<li><p><strong>species</strong> – Allowed species filter: SpeciesName (eg: Homo sapiens) SpeciesTaxId (eg: 9606)</p></li>
-<li><p><strong>offset</strong> – Number of rows returned. Maximum = 25</p></li>
-<li><p><strong>page</strong> – Page to be returned</p></li>
+<li><p><strong>name</strong> -- Schema class name.</p></li>
+<li><p><strong>by</strong> -- if not None, by count, min, or reference (name needs to an instance of ReferenceEntity or ExternalOntology)</p></li>
+<li><p><strong>species</strong> -- Allowed species filter: SpeciesName (eg: Homo sapiens) SpeciesTaxId (eg: 9606)</p></li>
+<li><p><strong>offset</strong> -- Number of rows returned. Maximum = 25</p></li>
+<li><p><strong>page</strong> -- Page to be returned</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -851,11 +924,11 @@ includes its database id, external identifier, and external database name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>diagram</strong> – diagram/pathway stable id</p></li>
-<li><p><strong>query</strong> – query names by this string</p></li>
-<li><p><strong>types</strong> – types to filter</p></li>
-<li><p><strong>start</strong> – start row</p></li>
-<li><p><strong>rows</strong> – number of rows to include</p></li>
+<li><p><strong>diagram</strong> -- diagram/pathway stable id</p></li>
+<li><p><strong>query</strong> -- query names by this string</p></li>
+<li><p><strong>types</strong> -- types to filter</p></li>
+<li><p><strong>start</strong> -- start row</p></li>
+<li><p><strong>rows</strong> -- number of rows to include</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -871,9 +944,9 @@ includes its database id, external identifier, and external database name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>diagram</strong> – diagram/pathway stable id</p></li>
-<li><p><strong>instance</strong> – instance stable id</p></li>
-<li><p><strong>types</strong> – types to filter</p></li>
+<li><p><strong>diagram</strong> -- diagram/pathway stable id</p></li>
+<li><p><strong>instance</strong> -- instance stable id</p></li>
+<li><p><strong>types</strong> -- types to filter</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -889,8 +962,8 @@ includes its database id, external identifier, and external database name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>diagram</strong> – diagram/pathway stable id</p></li>
-<li><p><strong>query</strong> – query names by this string</p></li>
+<li><p><strong>diagram</strong> -- diagram/pathway stable id</p></li>
+<li><p><strong>query</strong> -- query names by this string</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -917,11 +990,11 @@ includes its database id, external identifier, and external database name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>query</strong> – search term</p></li>
-<li><p><strong>species</strong> – Species identifier (it can be the taxonomy id, species name or dbId) - python list of strings</p></li>
-<li><p><strong>types</strong> – types to filter by - python list of strings</p></li>
-<li><p><strong>compartments</strong> – compartments - python list of strings</p></li>
-<li><p><strong>keywords</strong> – keywords - python list of strings</p></li>
+<li><p><strong>query</strong> -- search term</p></li>
+<li><p><strong>species</strong> -- Species identifier (it can be the taxonomy id, species name or dbId) - python list of strings</p></li>
+<li><p><strong>types</strong> -- types to filter by - python list of strings</p></li>
+<li><p><strong>compartments</strong> -- compartments - python list of strings</p></li>
+<li><p><strong>keywords</strong> -- keywords - python list of strings</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -937,11 +1010,11 @@ includes its database id, external identifier, and external database name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>query</strong> – Search term</p></li>
-<li><p><strong>species</strong> – Species identifier (it can be the taxonomy id, species name or dbId)</p></li>
-<li><p><strong>types</strong> – Types to filter by - python list of strings</p></li>
-<li><p><strong>start</strong> – Start row</p></li>
-<li><p><strong>rows</strong> – Number of rows to include</p></li>
+<li><p><strong>query</strong> -- Search term</p></li>
+<li><p><strong>species</strong> -- Species identifier (it can be the taxonomy id, species name or dbId)</p></li>
+<li><p><strong>types</strong> -- Types to filter by - python list of strings</p></li>
+<li><p><strong>start</strong> -- Start row</p></li>
+<li><p><strong>rows</strong> -- Number of rows to include</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -957,8 +1030,8 @@ includes its database id, external identifier, and external database name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>query</strong> – Search term</p></li>
-<li><p><strong>species</strong> – Species identifier (it can be the taxonomy id, species name or dbId)</p></li>
+<li><p><strong>query</strong> -- Search term</p></li>
+<li><p><strong>species</strong> -- Species identifier (it can be the taxonomy id, species name or dbId)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -974,14 +1047,14 @@ includes its database id, external identifier, and external database name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>query</strong> – term to search</p></li>
-<li><p><strong>species</strong> – list of species - python list of strings</p></li>
-<li><p><strong>types</strong> – Types to filter by - python list of strings</p></li>
-<li><p><strong>compartments</strong> – Compartments - python list of strings</p></li>
-<li><p><strong>keywords</strong> – Keywords - python list of strings</p></li>
-<li><p><strong>cluster</strong> – Cluster results</p></li>
-<li><p><strong>start</strong> – Start row</p></li>
-<li><p><strong>rows</strong> – number of rows to include</p></li>
+<li><p><strong>query</strong> -- term to search</p></li>
+<li><p><strong>species</strong> -- list of species - python list of strings</p></li>
+<li><p><strong>types</strong> -- Types to filter by - python list of strings</p></li>
+<li><p><strong>compartments</strong> -- Compartments - python list of strings</p></li>
+<li><p><strong>keywords</strong> -- Keywords - python list of strings</p></li>
+<li><p><strong>cluster</strong> -- Cluster results</p></li>
+<li><p><strong>start</strong> -- Start row</p></li>
+<li><p><strong>rows</strong> -- number of rows to include</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -996,7 +1069,7 @@ includes its database id, external identifier, and external database name.</p>
 <dd><p>This method retrieves a list of spell-check suggestions for a given search term.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>query</strong> – term to search</p>
+<dd class="field-odd"><p><strong>query</strong> -- term to search</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>python list of matched elements</p>
@@ -1010,7 +1083,7 @@ includes its database id, external identifier, and external database name.</p>
 <dd><p>This method retrieves a list of suggestions for a given search term.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>query</strong> – term to search</p>
+<dd class="field-odd"><p><strong>query</strong> -- term to search</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>python list of matched elements</p>
@@ -1022,13 +1095,15 @@ includes its database id, external identifier, and external database name.</p>
 <dt id="reactome2py.content.species">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">species</code><span class="sig-paren">(</span><em class="sig-param">by='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.species" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>Query species by:</dt><dd><p>all, returns list of all species in Reactome
-main, return list of main species in Reactome</p>
+<dt>Query species by:</dt><dd><ul class="simple">
+<li><p>all, returns list of all species in Reactome</p></li>
+<li><p>main, return list of main species in Reactome</p></li>
+</ul>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>by</strong> – all or main</p>
+<dd class="field-odd"><p><strong>by</strong> -- all or main</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p></p>
@@ -1043,8 +1118,8 @@ main, return list of main species in Reactome</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> – A token associated with a data submission</p></li>
-<li><p><strong>proteins</strong> – Interactors accessions</p></li>
+<li><p><strong>token</strong> -- A token associated with a data submission</p></li>
+<li><p><strong>proteins</strong> -- Interactors accessions</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1053,6 +1128,7 @@ main, return list of main species in Reactome</p>
 </dl>
 </dd></dl>
 
+</div>
 
 
           </div>
@@ -1071,11 +1147,19 @@ main, return list of main species in Reactome</p>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Analysis Service</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Content Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="analysis.html" title="previous chapter">Analysis Service</a></li>
+      <li>Next: <a href="utils.html" title="next chapter">Utils</a></li>
   </ul></li>
 </ul>
 </div>

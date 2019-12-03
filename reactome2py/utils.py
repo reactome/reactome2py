@@ -1,5 +1,5 @@
 """
-utility functions for Reactome data-fetch, mappings, and overlay networks
+Utility functions for Reactome data-fetch, mappings, and overlay networks in human.
 """
 from requests.exceptions import ConnectionError
 import requests
@@ -10,8 +10,8 @@ import zipfile
 
 def ehld_stids():
     """
-    retrieves a list of high-level hierarchy pathway with Enhanced High Level Diagrams (EHLD)
-    https://reactome.org/icon-info/ehld-specs-guideline
+    Retrieves a list of high-level hierarchy pathway with Enhanced High Level Diagrams (EHLD) https://reactome.org/icon-info/ehld-specs-guideline
+
     :return: list of pathway stIds
     """
 
@@ -32,8 +32,8 @@ def ehld_stids():
 
 def sbgn_stids():
     """
-    retieves a list of lower-level (with hierarchy) pathways that have SBGNs
-    https://reactome.org/about/news/110-sbgn-files-revamp
+    Retieves a list of lower-level (with hierarchy) pathways that have SBGNs https://reactome.org/about/news/110-sbgn-files-revamp
+
     :return: list of pathway stIds
     """
 
@@ -57,8 +57,8 @@ def sbgn_stids():
 
 def _yield_zip(response):
     """
-    read zipfile in memory
-    https://docs.python.org/3/library/zipfile.html
+    Read zipfile in memory https://docs.python.org/3/library/zipfile.html
+
     :param response:
     :return: content of zip file
     """
@@ -71,7 +71,8 @@ def _yield_zip(response):
 
 def _read_ziplines(response):
     """
-    helper function to clean zipline content parsing
+    Helper function to clean zipline content parsing
+
     :param response:
     :return: list
     """
@@ -82,6 +83,7 @@ def _read_ziplines(response):
 def gene_mappings():
     """
     Maps reactome pathway stId and name to it's associated gene list (HGNC)
+
     :return: dictionary of reactome pathways and HGNC gene mappings to the pathway.
     """
 

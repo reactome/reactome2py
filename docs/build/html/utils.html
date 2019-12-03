@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>&lt;no title&gt; &#8212; reactome2py 0.0.3 documentation</title>
+    <title>Utils &#8212; reactome2py 0.0.3 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,6 +14,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Content Service" href="content.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,30 +31,43 @@
 
           <div class="body" role="main">
             
-  <span class="target" id="module-reactome2py.utils"></span><p>utility functions for Reactome data-fetch, mappings, and overlay networks</p>
+  <div class="section" id="module-reactome2py.utils">
+<span id="utils"></span><h1>Utils<a class="headerlink" href="#module-reactome2py.utils" title="Permalink to this headline">¶</a></h1>
+<p>Utility functions for Reactome data-fetch, mappings, and overlay networks in human.</p>
 <dl class="function">
 <dt id="reactome2py.utils.ehld_stids">
 <code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">ehld_stids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.ehld_stids" title="Permalink to this definition">¶</a></dt>
-<dd><p>retrieves a list of high-level hierarchy pathway with Enhanced High Level Diagrams (EHLD)
-<a class="reference external" href="https://reactome.org/icon-info/ehld-specs-guideline">https://reactome.org/icon-info/ehld-specs-guideline</a>
-:return: list of pathway stIds</p>
+<dd><p>Retrieves a list of high-level hierarchy pathway with Enhanced High Level Diagrams (EHLD) <a class="reference external" href="https://reactome.org/icon-info/ehld-specs-guideline">https://reactome.org/icon-info/ehld-specs-guideline</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of pathway stIds</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="reactome2py.utils.gene_mappings">
 <code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">gene_mappings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.gene_mappings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maps reactome pathway stId and name to it’s associated gene list (HGNC)
-:return: dictionary of reactome pathways and HGNC gene mappings to the pathway.</p>
+<dd><p>Maps reactome pathway stId and name to it's associated gene list (HGNC)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dictionary of reactome pathways and HGNC gene mappings to the pathway.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="reactome2py.utils.sbgn_stids">
 <code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">sbgn_stids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.sbgn_stids" title="Permalink to this definition">¶</a></dt>
-<dd><p>retieves a list of lower-level (with hierarchy) pathways that have SBGNs
-<a class="reference external" href="https://reactome.org/about/news/110-sbgn-files-revamp">https://reactome.org/about/news/110-sbgn-files-revamp</a>
-:return: list of pathway stIds</p>
+<dd><p>Retieves a list of lower-level (with hierarchy) pathways that have SBGNs <a class="reference external" href="https://reactome.org/about/news/110-sbgn-files-revamp">https://reactome.org/about/news/110-sbgn-files-revamp</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of pathway stIds</p>
+</dd>
+</dl>
 </dd></dl>
 
+</div>
 
 
           </div>
@@ -72,11 +86,18 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Analysis Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content.html">Content Service</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Utils</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="content.html" title="previous chapter">Content Service</a></li>
   </ul></li>
 </ul>
 </div>
