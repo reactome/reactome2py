@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import json
 
-__version__ = json.loads(open('reactome/reactome2py').read())['latestVersion']
+__version__ = '0.0.4'
 
 with open("README.md", "r") as f:
     long_description = f.read()
