@@ -3,14 +3,20 @@ import json
 
 __version__ = json.loads(open('reactome/reactome2py').read())['latestVersion']
 
+with open("README.md", "r") as f:
+    long_description = f.read()
+
 setup(
     name='reactome2py',
     version=__version__,
     description='Python client for Reactome content and analysis service API calls.',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     url='https://github.com/reactome/reactome2py',
     author='Nasim Sanati',
     author_email='nasim@plenary.org',
     license='Apache',
+  
     packages=find_packages(),
     entry_points={
         'console_scripts': ['reactome2py = reactome2py.__main__:main']
