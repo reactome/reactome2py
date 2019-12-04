@@ -243,9 +243,9 @@ def export_diagram(id='R-HSA-177929', ext='png', quality='5', flag_interactors=F
                    flag=None, sel=[], exp_column=None, file='report', path=''):
     """
     This method accepts identifiers for Event class instances.
-    When a diagrammed pathway is provided, the diagram is exported to the specified format.
-    When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.
-    When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.
+    * When a diagrammed pathway is provided, the diagram is exported to the specified format.
+    * When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.
+    * When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.
 
     :param id: Event identifier (it can be a pathway with diagram, a subpathway or a reaction)
     :param ext: File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif
@@ -321,12 +321,14 @@ def export_document(id='R-HSA-177929', level='1', diagram_profile='Modern', reso
                     analysis_profile='Standard', token=None, exp_column=None, file='report', path=''):
     """
     This method accepts identifiers for Event class instances.
-    The generated document contains the details for the given event and, optionally, its children (see level parameter). These details include:
-    - A diagram image
-    - Summation
-    - Literature references
-    - Edit history
-    - Other details: type, location, compartments, diseases
+    The generated document contains the details for the given event and, optionally, its children (see level parameter).
+
+    These details include:
+        * A diagram image
+        * Summation
+        * Literature references
+        * Edit history
+        * Other details: type, location, compartments, diseases
 
     Documents can also be overlaid with pathway analysis results (given a token)
 
@@ -375,8 +377,8 @@ def export_document(id='R-HSA-177929', level='1', diagram_profile='Modern', reso
 def export_event(id='R-HSA-177929', format='sbgn', file='report', path=''):
     """
     Exports a given pathway or reaction to the format requested:
-        - Systems Biology Graphical Notation (SBGN)
-        - Systems Biology Markup Language (SBML)
+        * Systems Biology Graphical Notation (SBGN)
+        * Systems Biology Markup Language (SBML)
 
     :param id: DbId or StId of the requested pathway or reaction
     :param format: sbgn or sbml
@@ -560,12 +562,12 @@ def export_reaction(id='R-HSA-6787403', ext='png', file='report', path='', quali
 def interactors_psicquic_acc(resource='MINT', acc='Q13501', by='details'):
     """
     if by details
-        - Retrieve clustered interaction, sorted by score, of a given accession by resource
+        * Retrieve clustered interaction, sorted by score, of a given accession by resource
     if by summary
-        - Retrieve a summary of a given accession by resource
+        * Retrieve a summary of a given accession by resource
 
     :param resource: Proteomics standards initiative common query interface (PSICQUIC) Resource
-    use interactors_psicquic_resources to retrive all active resources
+        use interactors_psicquic_resources to retrive all active resources
     :param acc: Single Accession
     :param by: details or summary (returns counts of details available)
     :return:
@@ -594,13 +596,13 @@ def interactors_psicquic_acc(resource='MINT', acc='Q13501', by='details'):
 def interactors_psicquic_accs(proteins='EGFR', resource='MINT', by='details'):
     """
     if by details
-        - Retrieve clustered interaction, sorted by score, of a given accession(s) by resource.
+        * Retrieve clustered interaction, sorted by score, of a given accession(s) by resource.
     if by summary
-        - Retrieve a summary of a given accession list by resource.
+        * Retrieve a summary of a given accession list by resource.
 
     :param proteins: Comma seperate list of Accessions in string format 'a1,a2,a3'
     :param resource: Proteomics standards initiative common query interface (PSICQUIC) Resource
-    use interactors_psicquic_resources to retrive all active resources
+        use interactors_psicquic_resources to retrive all active resources
     :return:
     """
 
@@ -932,20 +934,19 @@ def interactors_url(name, interactors_url):
 
 def mapping(id='PTEN', resource='UniPort', species='9606', by='pathways'):
     """
-    by pathways:
+    1. by pathways:
         Entities play different roles in reactions, and reactions are events that conform a pathway. This method retrieves
         the pathways for which an identifier plays a role within one or more of their events.
-
         return: The lower level pathways where an identifier can be mapped to
 
-    by reactions:
+    2. by reactions:
         Entities play different roles in reactions. This method retrieves the reactions for which an identifier plays a role .
         return: The reactions where an identifier can be mapped to
 
     :param id: The identifier to be mapped
     :param resource: The resource name for which the identifier is submitted
     :param species: Species for which the result is filtered. Accepts taxonomy id, species name and dbId.
-    Important: when identifier points to chemical, this becomes mandatory and if not provided, the default is ‘Homo sapiens’
+        Important Note - when identifier points to chemical, this becomes mandatory and if not provided, the default is ‘Homo sapiens’
     :param by: pathways or reactions
     :return:
     """
@@ -1183,9 +1184,9 @@ def pathways_low_diagram(id='R-HSA-199420', species=None, all_forms=False):
     This method traverses the event hierarchy and retrieves the list of all lower level pathways that have a
     diagram and contain the given PhysicalEntity or Event.
 
-    if all_forms is set to tru: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms
-    include for example different post-translationally modified versions of a single protein, or the same chemical
-    in different compartments.
+    * if all_forms is set to true: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms
+        include for example different post-translationally modified versions of a single protein, or the same chemical
+        in different compartments.
 
     :param id: The entity that has to be present in the pathways
     :param species: The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)
@@ -1222,9 +1223,9 @@ def pathways_low_entity(id='R-HSA-199420', species=None, all_forms=False):
     This method traverses the event hierarchy and retrieves the list of all lower level pathways that contain
     the given PhysicalEntity or Event.
 
-    if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given
-    PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally
-    modified versions of a single protein, or the same chemical in different compartments.
+    * if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given
+        PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally
+        modified versions of a single protein, or the same chemical in different compartments.
 
     :param id: The entity that has to be present in the pathways
     :param species: The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)
@@ -1284,8 +1285,8 @@ def pathways_top_level(species='9606'):
 def person_name(name='Steve Jupe', exact=False):
     """
     Retrieves a list of people in Reactome with either their first or last name partly matching the given name (string).
-    If exact is set to true, retrieves a list of people in Reactome with either their first or last name matching exactly
-    the given name (string).
+
+    * If exact is set to true, retrieves a list of people in Reactome with either their first or last name matching exactly the given name (string).
 
     :param name: Person’s first or last name
     :param exact:
@@ -1314,15 +1315,15 @@ def person_name(name='Steve Jupe', exact=False):
 
 def person_id(id='0000-0001-5807-0069', by=None, attribute=None):
     """
-    With only id parameter declared,
-        Retrieves a person in Reactome by his/her OrcidId or DbId.
+    1. With only id parameter declared,
+        * Retrieves a person in Reactome by his/her OrcidId or DbId.
 
-    With id and query by declared with pathway or publication
-        Retrieves a list of pathways authored by a given person. OrcidId, DbId or Email can be used to specify the person.
-        Retrieves a list of publications authored by a given person. OrcidId, DbId or Email can be used to specify the person.
+    2. With id and query by declared with pathway or publication
+        * Retrieves a list of pathways authored by a given person. OrcidId, DbId or Email can be used to specify the person.
+        * Retrieves a list of publications authored by a given person. OrcidId, DbId or Email can be used to specify the person.
 
-    with id and attribute declared
-        Retrieves a specific person’s property by his/her OrcidId or DbId.
+    3. With id and attribute declared
+        * Retrieves a specific person’s property by his/her OrcidId or DbId.
 
     :param id: Person identifier - Can be OrcidId or DbId
     :param by: if not None, query by authored: pathways or publications
@@ -1364,9 +1365,8 @@ def query_id(id='R-HSA-60140', enhanced=False, attribute=None):
     database id. It is worth mentioning that the retrieved database object has all its properties and direct
     relationships (relationships of depth 1) filled.
 
-    if enhanced is set to true it also includes any second level relationships regarding regulations and catalysts.
-
-    if attribute name is present it queries the property of the attribute requested
+    * if enhanced is set to true it also includes any second level relationships regarding regulations and catalysts.
+    * if attribute name is present it queries the property of the attribute requested
 
     :param id: DbId or StId of the requested database object
     :param enhanced: boolean value to make an enhanced query on id
@@ -1404,7 +1404,7 @@ def query_ids(ids='R-HSA-60140', mapping=False):
     The provided list of identifiers can include stable ids, database ids or a mixture of both. It should be
     underlined that any duplicated ids are eliminated while only requests containing up to 20 ids are processed.
 
-    if mapping is set, to true previous version of stable identifiers can be queried.
+    * if mapping is set, to true previous version of stable identifiers can be queried.
 
     :param ids: A comma separated list of identifiers
     :param mapping: If set to true, retrieves a list of entries with their mapping to the provided identifiers
@@ -1462,8 +1462,9 @@ def references(id='15377'):
 def species(by='all'):
     """
     Query species by:
-        all, returns list of all species in Reactome
-        main, return list of main species in Reactome
+        * all, returns list of all species in Reactome
+        * main, return list of main species in Reactome
+
     :param by: all or main
     :return:
     """
@@ -1497,15 +1498,14 @@ def schema(name='Pathway', by=None, species=None, page=None, offset=None):
     instance of Event or PhysicalEntity. Additionally, paging is required, while a maximum of 25 entries can be
     returned per request.
 
-    if by is count:
-        counts the total number of entries in Reactome that belong to the specified schema class.
-    if by is min:
-        the list of simplified entries in Reactome that belong to the specified schema class. A simplified entry may
-        be considered as a minimised version of the full database object that includes its database id, stable id,
-        displayName and type.
-    if by is reference:
-         the list of simplified reference objects that belong to the specified schema class. A reference object
-         includes its database id, external identifier, and external database name.
+    1. if by is count:
+        * counts the total number of entries in Reactome that belong to the specified schema class.
+    2. if by is min:
+        * the list of simplified entries in Reactome that belong to the specified schema class. A simplified entry may
+            be considered as a minimised version of the full database object that includes its database id, stable id, displayName and type.
+    3. if by is reference:
+        * the list of simplified reference objects that belong to the specified schema class. A reference object
+            includes its database id, external identifier, and external database name.
 
     :param name: Schema class name.
     :param by: if not None, by count, min, or reference (name needs to an instance of ReferenceEntity or ExternalOntology)

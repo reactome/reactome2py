@@ -21,7 +21,7 @@ Python client for Reactome content and analysis services API calls.
 - Dockerfile 
    ```
    (sudo) docker build -t <tag-name>:latest
-   (sudo) docker run -t -i --rm <tag-name>:latest
+   (sudo) docker run -it --rm <tag-name>:latest
    ```
 
 #### reactome2py Jupyter notebook use-case examples 

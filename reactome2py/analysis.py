@@ -2,6 +2,7 @@
 Pathway Analysis Service
 Provides pathway over-representation and expression analysis as well as species comparison tool
 https://reactome.org/AnalysisService/#/
+
 """
 from __future__ import print_function
 from __future__ import unicode_literals
@@ -23,13 +24,13 @@ def identifier(id='EGFR', interactors=False, page_size='1', page='1', species='H
 
     :param id: a protein, gene or small molecule identifier symbol id ex. EGFR
     :param interactors: boolean value if set to false, your query will consider only manually curated Reactome pathways
-     with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
-     including all available protein-protein interactors from the IntAct database
+        with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
+        including all available protein-protein interactors from the IntAct database
     :param page_size: page size
     :param page: number of pages
     :param species: list of species to filter the result (accepts taxonomy ids, species names and reactome dbId)
-    :param sort_by: how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
-    FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
+    :param sort_by: how to sort the result. Available filters TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
+        FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
     :param order: order ASC or DESC
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
@@ -107,14 +108,13 @@ def identifiers(ids='EGF,EGFR', interactors=False, page_size='1', page='1', spec
     """
     Given a list of protein, gene, or small molecule identifiers conducts reactome pathway enrichment analysis.
 
-    :param ids: comma seperated list of proteins, genes or small molecules identifiers symbol in string format
-    ex. 'EGF,EGFR'
+    :param ids: comma seperated list of proteins, genes or small molecules identifiers symbol in string format ex. 'EGF,EGFR'
     :param interactors: boolean value indicating include interations
     :param page_size: page size
     :param page: number of pages
     :param species: list of species to filter the result (accepts taxonomy ids, species names and dbId)
-    :param sort_by: how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS, FOUND_ENTITIES,
-    FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
+    :param sort_by: how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
+        FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
     :param order: order ASC or DESC
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
@@ -194,20 +194,20 @@ def identifiers_form(path, interactors=False, page_size='1', page='1', species='
     Given a file path with a list of identifiers conducts reactome pathway enrichment analysis
 
     :param path: absolute path to the the txt file with identifier symbols to be analysed - refer to https://reactome.org/dev/analysis for format.
-    :param interactors: boolean value if set to false, your query will consider only manually curated Reactome pathways
-     with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
-     including all available protein-protein interactors from the IntAct database.
+    :param interactors: boolean value if set to false, your query will consider only manually curated Reactome
+        pathways with known biological significance. if true, your query will consider Reactome pathways that
+        have been expanded by including all available protein-protein interactors from the IntAct database.
     :param page_size: page size
     :param page: number of pages
     :param species: list of species to filter the result (accepts taxonomy ids, species names and dbId)
     :param sort_by: how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS, FOUND_ENTITIES,
-    FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
+        FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
     :param order: order ASC or DESC
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
     :param include_disease: set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)
     :param projection: if true, projects the identifiers to human and only shows the result in this species
-    :param max_entities maximum number of contained entities per pathway (takes into account the resource)
+    :param max_entities: maximum number of contained entities per pathway (takes into account the resource)
     :param min_entities: minimum number of contained entities per pathway (takes into account the resource)
     :return:
     """
@@ -281,13 +281,13 @@ def identifiers_url(external_url, interactors=False, page_size='1', page='1', sp
 
     :param external_url: url containing identifiers id symbols
     :param interactors: boolean value if set to false, your query will consider only manually curated Reactome pathways
-     with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
-     including all available protein-protein interactors from the IntAct database.
+        with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
+        including all available protein-protein interactors from the IntAct database.
     :param page_size: page size
     :param page: number of pages
     :param species: list of species to filter the result (accepts taxonomy ids, species names and dbId)
     :param sort_by: how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS, FOUND_ENTITIES,
-    FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
+        FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
     :param order: order ASC or DESC
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
@@ -364,7 +364,7 @@ def result2json(token, path='', file='result.json', save=False, gzip=False, chun
     View of analysis result in json format
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param path: absolute path to save the file containing analysis results to
     :param file: file name to save the analysis results to
     :param save: boolean value if true - saves result as json file. default is set to false.
@@ -403,7 +403,7 @@ def pathway2df(token, path='', resource='TOTAL', file='result.csv', save=False, 
     Create a Data frame of the analysis result for all the pathway hits - save to csv file (comma separated)
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param path: absolute path to save the file containing analysis results to
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param file: file name to save the analysis results to
@@ -443,8 +443,8 @@ def found_entities(token, path='', resource='TOTAL', file='result.csv', save=Fal
     """
     list of found entities in reactome database
 
-    :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+    :param token: the token associated with the data result - analysis Web-Service is token based so for every analysis
+        request a TOKEN is associated to the result
     :param path: absolute path to save the csv file to
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param file: file name default is set to result.csv
@@ -484,7 +484,7 @@ def unfound_entities(token, path='', file='result.csv', save=False, chunk_size=1
     list of unfound entities in reactome database
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param file: file name default is set to result.csv
     :param path: absolute path to save the csv file to
     :param save:  if true saves the result data frame as csv file, else it returns the data frame
@@ -568,7 +568,7 @@ def report(token, path, file='report.pdf', number='25', resource='TOTAL', diagra
     Downloads a report for a given pathway analysis result
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param path: absolute path to save the report pdf file to
     :param file: pdf file name to save the analysis report to - default set to report.pdf
     :param number: Number of pathways reported (max 50)
@@ -616,12 +616,12 @@ def compare_species(species='48892', page_size='1', page='1', sort_by='ENTITIES_
     Compares Homo sapiens to the specified species
 
     :param species: The reactome dbId string of the species to compare to ex. of some dbId mappings {'Homo sapiens':'48887',
-    'Mus musculus':'48892', 'Rattus norvegicus':'48895', 'Sus scrofa':'49633', 'Xenopus tropicalis':'205621',
-    'Bos taurus':'48898', 'Gallus gallus':'49591'}
+        'Mus musculus':'48892', 'Rattus norvegicus':'48895', 'Sus scrofa':'49633', 'Xenopus tropicalis':'205621',
+        'Bos taurus':'48898', 'Gallus gallus':'49591'}
     :param page_size: page size
     :param page: number of pages
     :param sort_by: how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
-    FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
+        FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
     :param order: order ASC or DESC
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
@@ -669,11 +669,10 @@ def identifiers_mapping(ids='EGF,EGFR', interactors=False, projection=False):
     Maps the identifiers passed as a comma seperated list in str format over the different species and if projection is
     set to true, projects the result to Homo Sapiens
 
-    :param ids: comma seperated list of proteins, genes or small molecules identifiers symbol in string format
-    ex. 'EGF,EGFR'
+    :param ids: comma seperated list of proteins, genes or small molecules identifiers symbol in string format ex. 'EGF,EGFR'
     :param interactors: boolean value if set to false, your query will consider only manually curated Reactome pathways
-     with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
-     including all available protein-protein interactors from the IntAct database.
+        with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
+        including all available protein-protein interactors from the IntAct database.
     :param projection: if true, projects the identifiers to human and only shows the result in this species
     :return:
     """
@@ -715,10 +714,11 @@ def identifiers_mapping_form(path, interactors=False, projection=False):
     Maps the identifiers passed via txt file over the different species and if projection is set to true, projects the
     result to Homo Sapiens
 
-    :param path: absolute path to the the txt file with identifier symbols to be analysed - refer to https://reactome.org/dev/analysis for format.
+    :param path: absolute path to the the txt file with identifier symbols to be analysed -
+        refer to https://reactome.org/dev/analysis for format.
     :param interactors: boolean value if set to false, your query will consider only manually curated Reactome pathways
-     with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
-     including all available protein-protein interactors from the IntAct database.
+        with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
+        including all available protein-protein interactors from the IntAct database.
     :param projection: if true, projects the identifiers to human and only shows the result in this species
     :return:
     """
@@ -761,8 +761,8 @@ def identifiers_mapping_url(external_url, interactors=False, projection=False):
 
     :param external_url:
     :param interactors: boolean value if set to false, your query will consider only manually curated Reactome pathways
-     with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
-     including all available protein-protein interactors from the IntAct database.
+        with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
+        including all available protein-protein interactors from the IntAct database.
     :param projection: if true, projects the identifiers to human and only shows the result in this species
     :return:
     """
@@ -806,12 +806,12 @@ def token(token, species='Homo sapiens', page_size='1', page='1', sort_by='ENTIT
     The resource field will filter the results to show only those corresponding to the preferred molecule type (TOTAL includes all the different molecules type)
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param species: list of species to filter the result (accepts taxonomy ids, species names and reactome dbId)
     :param page_size: page size
     :param page: page number
     :param sort_by: how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
-    FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
+        FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
     :param order: order ASC or DESC
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
@@ -878,7 +878,7 @@ def token_pathways_result(token, pathways, species='Homo sapiens', resource='TOT
     present in the result (with the results for the indicated molecule type)
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param pathways: the pathways stable identifiers (stId - provided in the analysis result for each pathway)
     :param species: list of species to filter the result (accepts taxonomy ids, species names and reactome dbId)
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
@@ -936,10 +936,10 @@ def token_filter_species(token, species='Homo sapiens', sort_by='ENTITIES_FDR', 
     Queries analysis token and returns and filters the result by species
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param species: list of species to filter the result (accepts taxonomy ids, species names and reactome dbId)
     :param sort_by: how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
-    FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
+        FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
     :param order: order ASC or DESC
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :return:
@@ -973,7 +973,7 @@ def token_pathways_summary(token, pathways, resource='TOTAL'):
     Queries analysis token and returns a summary of the contained identifiers and interactors for all pathways
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param pathways: the pathways stable identifier (stId - provided in the analysis result for each pathway)
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :return:
@@ -1005,13 +1005,14 @@ def token_pathways_summary(token, pathways, resource='TOTAL'):
 def token_pathway_summary(token, pathway, resource='TOTAL', page='1', page_size='1', by='all'):
     """
     Queries analysis token and returns a summary of
-     1 - by='all': all the contained identifiers and interactors
-     2 - by='entities': the found curated identifiers
-     3 - by='interactors': the found interactors
+        1. by='all': all the contained identifiers and interactors
+        2. by='entities': the found curated identifiers
+        3. by='interactors': the found interactors
+
     for a given pathway and token
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param pathway: the pathway stable identifier (stId - provided in the analysis result for each pathway)
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param page: page number
@@ -1071,7 +1072,7 @@ def token_unfound_identifiers(token, page_size='1', page='1'):
     Returns a list of the identifiers not found for a given token
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param page_size: page size
     :param page: number of pages
     :return:
@@ -1110,11 +1111,11 @@ def token_pathway_page(token, pathway, page_size='1', sort_by='ENTITIES_FDR', or
     Returns the page where the corresponding pathway is taking into account the passed parameters
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param pathway: the pathway stable identifier (stId - provided in the analysis result for each pathway)
     :param page_size: page size
     :param sort_by: how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
-    FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
+        FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO
     :param order: order ASC or DESC
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
@@ -1174,7 +1175,7 @@ def token_pathways_binned(token, resource='TOTAL', bin_size='100', p_value='1', 
     Returns a list of binned hit pathway sizes associated with the token
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param bin_size: defines the size of each bin for the classification (min: 100)
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
@@ -1223,7 +1224,7 @@ def token_pathways_reactions(token, pathways, resource='TOTAL', p_value='1', inc
     Returns the reaction ids of all the pathway stable identifiers (stIds) that are present in the original result
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param pathways: the pathways stable identifier (stId - provided in the analysis result for each pathway)
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
@@ -1281,7 +1282,7 @@ def token_pathway_reactions(token, pathway, resource='TOTAL', p_value='1', inclu
     Returns the reaction ids a or one pathway's stable identifiers (stId) that is present in the original result
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :param pathway: the pathway stable identifier (stId - provided in the analysis result for each pathway)
     :param resource: the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param p_value: defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
@@ -1335,7 +1336,7 @@ def token_resources(token):
     the resources summary associated with the token
 
     :param token: the token associated with the data result - analysis Web-Service is token based, so for every analysis
-    request a TOKEN is associated to the result
+        request a TOKEN is associated to the result
     :return: the resources summary associated with the token
     """
 
