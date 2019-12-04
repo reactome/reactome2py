@@ -1,6 +1,7 @@
 from setuptools import setup, find_packages
+import json
 
-__version__ = '0.0.2'
+__version__ = json.loads(open('reactome/reactome2py').read())['latestVersion']
 
 setup(
     name='reactome2py',
