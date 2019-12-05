@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Content Service &#8212; reactome2py 0.0.3 documentation</title>
+    <title>Content Service &#8212; reactome2py 0.0.4 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -34,18 +34,20 @@
             
   <div class="section" id="module-reactome2py.content">
 <span id="content-service"></span><h1>Content Service<a class="headerlink" href="#module-reactome2py.content" title="Permalink to this headline">¶</a></h1>
-<p>Content Service for Reactome knowledgebase
-<a class="reference external" href="https://reactome.org/ContentService/#/">https://reactome.org/ContentService/#/</a></p>
+<p>Content Service for Reactome knowledgebase.
+API calls are avaialble &#64; <a class="reference external" href="https://reactome.org/ContentService/#/">https://reactome.org/ContentService/#/</a></p>
+<p>Data model key classes for id query are available &#64; <a class="reference external" href="https://reactome.org/documentation/data-model">https://reactome.org/documentation/data-model</a></p>
 <dl class="function">
 <dt id="reactome2py.content.discover">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">discover</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-446203'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.discover" title="Permalink to this definition">¶</a></dt>
-<dd><p>The schema.org for an Event in Reactome knowledgebase</p>
+<dd><p>For each event (reaction or pathway) this method generates a json representing the dataset object as defined
+by schema.org (http). This is mainly used by search engines in order to index the data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>id</strong> -- An event identifier ex. pathway stable identifier (stId) of pathway</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object of The schema.org for an Event in Reactome knowledgebase</p>
 </dd>
 </dl>
 </dd></dl>
@@ -54,12 +56,16 @@
 <dt id="reactome2py.content.disease">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">disease</code><span class="sig-paren">(</span><em class="sig-param">doid=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.disease" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query list of diseases</p>
+<p>if doid is set to False
+* it retrieves the list of diseases annotated in Reactome</p>
+<p>if doid is set to True
+* it retrieves the list of disease DOIDs annotated in Reactome</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>doid</strong> -- returns list of disease DOID if set to true</p>
+<dd class="field-odd"><p><strong>doid</strong> -- Boolean param, if set to true - function returns a list of disease DOID</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The list of diseases or disease DOID if doid param is set to true</p>
+<dd class="field-even"><p>Json list object of diseases or disease DOID(s)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -74,30 +80,30 @@ optional parameter to ‘true’</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> -- the complex for which subunits are requested</p></li>
-<li><p><strong>exclude_structures</strong> -- specifies whether contained complexes and entity sets are excluded in the response</p></li>
+<li><p><strong>id</strong> -- The complex for which subunits are requested</p></li>
+<li><p><strong>exclude_structures</strong> -- Specifies whether contained complexes and entity sets are excluded in the response</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list with the entities contained in a given complex</p>
+<dd class="field-even"><p>Json list object with the entities contained in a given complex</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="reactome2py.content.entities_complexes">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entities_complexes</code><span class="sig-paren">(</span><em class="sig-param">id='P00533'</em>, <em class="sig-param">resource='UniPort'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entities_complexes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entities_complexes</code><span class="sig-paren">(</span><em class="sig-param">id='P00533'</em>, <em class="sig-param">resource='UniProt'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entities_complexes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the list of complexes that contain a given (identifier, resource). The method deconstructs the complexes
 into all its participants to do so.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> -- the identifier for which complexes are requested</p></li>
-<li><p><strong>resource</strong> -- the resource of the identifier for complexes are requested</p></li>
+<li><p><strong>id</strong> -- The resource's identifier for which complexes are requested</p></li>
+<li><p><strong>resource</strong> -- The resource of the identifier for complexes are requested</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of complexes containing the pair (identifier, resource)</p>
+<dd class="field-even"><p>Json list object of complexes containing the pair (identifier, resource)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -107,13 +113,13 @@ into all its participants to do so.</p>
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entity_other_form</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-199420'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entity_other_form" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves a list containing all other forms of the given PhysicalEntity.
 These other forms are PhysicalEntities that share the same ReferenceEntity identifier,
-e.g. PTEN H93R[R-HSA-2318524] and PTEN C124R[R-HSA-2317439] are two forms of PTEN.</p>
+ex. PTEN H93R[R-HSA-2318524] and PTEN C124R[R-HSA-2317439] are two forms of PTEN.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> -- DbId or StId of a PhysicalEntity</p>
+<dd class="field-odd"><p><strong>id</strong> -- dbId or stId of a PhysicalEntity</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -126,10 +132,10 @@ It should be mentioned that the list includes only simplified entries (type, nam
 about each item.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> -- </p>
+<dd class="field-odd"><p><strong>id</strong> -- stable Identifier (stID) of a PhysicalEntity ex. PTEN [cytosol] R-HSA-199420'</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of larger structures containing the entity</p>
+<dd class="field-even"><p>Json list object of larger structures containing the entity</p>
 </dd>
 </dl>
 </dd></dl>
@@ -147,7 +153,7 @@ top level pathway(s).</p>
 <dd class="field-odd"><p><strong>id</strong> -- The event for which the ancestors are requested</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The ancestors of a given event</p>
+<dd class="field-even"><p>Json list object of the ancestors of a given event</p>
 </dd>
 </dl>
 </dd></dl>
@@ -162,10 +168,10 @@ by a PathwayBrowserNode. The latter contains the stable identifier, the name, th
 the diagram of the particular event.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>species</strong> -- Species name (eg: Homo sapiens) or Species taxId (eg: 9606)</p>
+<dd class="field-odd"><p><strong>species</strong> -- Species name (ex: Homo sapiens) or species taxId (ex: 9606)</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The full event hierarchy for a given species</p>
+<dd class="field-even"><p>Json list object of the full event hierarchy for a given species</p>
 </dd>
 </dl>
 </dd></dl>
@@ -268,7 +274,9 @@ The generated document contains the details for the given event and, optionally,
 <dl class="function">
 <dt id="reactome2py.content.export_fireworks">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_fireworks</code><span class="sig-paren">(</span><em class="sig-param">species='9606'</em>, <em class="sig-param">ext='png'</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em>, <em class="sig-param">quality='5'</em>, <em class="sig-param">flag=None</em>, <em class="sig-param">flag_interactors=False</em>, <em class="sig-param">sel=[]</em>, <em class="sig-param">title=True</em>, <em class="sig-param">margin='15'</em>, <em class="sig-param">resource='Total'</em>, <em class="sig-param">diagram_profile=''</em>, <em class="sig-param">coverage=False</em>, <em class="sig-param">token=None</em>, <em class="sig-param">exp_column=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_fireworks" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Exports a given pathway overview to the specified image format (png, jpg, jpeg, svg, gif)
+<a class="reference external" href="https://reactome.org/dev/pathways-overview/js">https://reactome.org/dev/pathways-overview/js</a></p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>species</strong> -- Species identifier (it can be the taxonomy id, species name or dbId)</p></li>
@@ -297,7 +305,8 @@ The generated document contains the details for the given event and, optionally,
 <dl class="function">
 <dt id="reactome2py.content.export_reaction">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_reaction</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-6787403'</em>, <em class="sig-param">ext='png'</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em>, <em class="sig-param">quality='5'</em>, <em class="sig-param">flag=None</em>, <em class="sig-param">flag_interactors=False</em>, <em class="sig-param">sel=[]</em>, <em class="sig-param">title=True</em>, <em class="sig-param">margin='15'</em>, <em class="sig-param">resource='Total'</em>, <em class="sig-param">diagram_profile=''</em>, <em class="sig-param">coverage=False</em>, <em class="sig-param">token=None</em>, <em class="sig-param">exp_column=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_reaction" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Exports a given reaction to the specified image format (png, jpg, jpeg, svg, gif)</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>id</strong> -- Reaction identifier</p></li>
@@ -336,7 +345,7 @@ The generated document contains the details for the given event and, optionally,
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Retrieve a list of lower level pathways where the interacting molecules can be found</p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -381,7 +390,7 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -408,7 +417,7 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -419,7 +428,7 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 <dd><p>Retrieve a list of all Psicquic Registries services</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Retrieve a list of all Psicquic Registries services</p>
+<dd class="field-odd"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -444,7 +453,11 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 <dl class="function">
 <dt id="reactome2py.content.interactors_static_acc">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_static_acc</code><span class="sig-paren">(</span><em class="sig-param">acc='Q13501'</em>, <em class="sig-param">page='-1'</em>, <em class="sig-param">page_size='-1'</em>, <em class="sig-param">by='details'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_static_acc" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>if by details:
+* retrieve a detailed interaction information of a given accession
+if by summary:
+* retrieve a summary of a given accession</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>acc</strong> -- Interactor accession (or identifier)</p></li>
@@ -454,7 +467,7 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -462,7 +475,11 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 <dl class="function">
 <dt id="reactome2py.content.interactors_static_accs">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_static_accs</code><span class="sig-paren">(</span><em class="sig-param">accs='Q9BXM7-1'</em>, <em class="sig-param">by='details'</em>, <em class="sig-param">page='-1'</em>, <em class="sig-param">page_size='-1'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_static_accs" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>if by details:
+* retrieve clustered interaction, sorted by score, of a given accession(s) by resource.
+if by summary:
+* retrieve a summary of a given accession list by resource.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>accs</strong> -- Comma seperate list of Accessions in string format 'a1,a2,a3'</p></li>
@@ -472,7 +489,7 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -513,7 +530,7 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 
 <dl class="function">
 <dt id="reactome2py.content.mapping">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">mapping</code><span class="sig-paren">(</span><em class="sig-param">id='PTEN'</em>, <em class="sig-param">resource='UniPort'</em>, <em class="sig-param">species='9606'</em>, <em class="sig-param">by='pathways'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.mapping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">mapping</code><span class="sig-paren">(</span><em class="sig-param">id='PTEN'</em>, <em class="sig-param">resource='UniProt'</em>, <em class="sig-param">species='9606'</em>, <em class="sig-param">by='pathways'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.mapping" title="Permalink to this definition">¶</a></dt>
 <dd><ol class="arabic simple">
 <li><dl class="simple">
 <dt>by pathways:</dt><dd><p>Entities play different roles in reactions, and reactions are events that conform a pathway. This method retrieves
@@ -540,7 +557,7 @@ Important Note - when identifier points to chemical, this becomes mandatory and 
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -556,18 +573,18 @@ Thus, this method retrieves the orthology for any given event or entity in the s
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>id</strong> -- The event for which the orthology is requested</p></li>
-<li><p><strong>species</strong> -- The species for which the orthology is requested</p></li>
+<li><p><strong>species</strong> -- The species id for which the orthology is requested</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The orthology for a given event or entity</p>
+<dd class="field-even"><p>Json dictionary object of the orthology for a given event or entity</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="reactome2py.content.orthology_events">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">orthology_events</code><span class="sig-paren">(</span><em class="sig-param">ids</em>, <em class="sig-param">species</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.orthology_events" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">orthology_events</code><span class="sig-paren">(</span><em class="sig-param">ids='R-HSA-6799198</em>, <em class="sig-param">R-HSA-168256</em>, <em class="sig-param">R-HSA-168249'</em>, <em class="sig-param">species='49633'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.orthology_events" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reactome uses the set of manually curated human reactions to computationally infer reactions in
 twenty evolutionarily divergent eukaryotic species for which high-quality whole-genome sequence
 data are available, and hence a comprehensive and high-quality set of protein predictions exists.
@@ -576,11 +593,11 @@ Thus, this method retrieves the orthologies for any given set of events or entit
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ids</strong> -- The events identifiers for which the orthology is requested</p></li>
-<li><p><strong>species</strong> -- The species for which the orthology is requested</p></li>
+<li><p><strong>species</strong> -- The species id for which the orthology is requested</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object of the orthologies of a given set of events or entities</p>
 </dd>
 </dl>
 </dd></dl>
@@ -591,10 +608,10 @@ Thus, this method retrieves the orthologies for any given set of events or entit
 <dd><p>Participants contains a PhysicalEntity (dbId, displayName) and a collection of ReferenceEntities (dbId, name, identifier, url)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> -- DbId or StId of a PhysicalEntity</p>
+<dd class="field-odd"><p><strong>id</strong> -- dbId or stId of a PhysicalEntity</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of participants for a given event</p>
+<dd class="field-even"><p>Json list obj of participants for a given event</p>
 </dd>
 </dl>
 </dd></dl>
@@ -610,7 +627,7 @@ PhysicalEntities from every constituent</p>
 <dd class="field-odd"><p><strong>id</strong> -- The event for which the participating PhysicalEntities are requested</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of participating PhysicalEntities for a given event</p>
+<dd class="field-even"><p>Json list object of participating PhysicalEntities for a given event</p>
 </dd>
 </dl>
 </dd></dl>
@@ -632,7 +649,7 @@ ReferenceEntities for all PhysicalEntities in every constituent pathway.</p>
 <dd class="field-odd"><p><strong>id</strong> -- The event for which the participating ReferenceEntities are requested</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of participating ReferenceEntities for a given event</p>
+<dd class="field-even"><p>Json list object of participating ReferenceEntities for a given event</p>
 </dd>
 </dl>
 </dd></dl>
@@ -649,7 +666,7 @@ contained in any given event.</p>
 <dd class="field-odd"><p><strong>id</strong> -- The event for which the contained events are requested</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>All the events contained in the given event</p>
+<dd class="field-even"><p>Json list object of all the events contained in the given event</p>
 </dd>
 </dl>
 </dd></dl>
@@ -669,7 +686,7 @@ each of the events contained in the given event.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>python list object of a single property for each event contained in the given event</p>
+<dd class="field-even"><p>List object of a single property for each event contained in the given event</p>
 </dd>
 </dl>
 </dd></dl>
@@ -696,7 +713,7 @@ in different compartments.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of lower level pathways with diagram containing a given entity or event</p>
+<dd class="field-even"><p>Json list object of lower level pathways with diagram containing a given entity or event</p>
 </dd>
 </dl>
 </dd></dl>
@@ -723,7 +740,7 @@ modified versions of a single protein, or the same chemical in different compart
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of lower level pathways containing a given entity or event</p>
+<dd class="field-even"><p>Json list object of lower level pathways containing a given entity or event</p>
 </dd>
 </dl>
 </dd></dl>
@@ -737,7 +754,7 @@ modified versions of a single protein, or the same chemical in different compart
 <dd class="field-odd"><p><strong>species</strong> -- Specifies the species by the taxonomy identifier (eg: 9606) or species name (eg: ‘Homo+sapiens’)</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>All Reactome top level pathways</p>
+<dd class="field-even"><p>Json list object of all Reactome top level pathways</p>
 </dd>
 </dl>
 </dd></dl>
@@ -778,7 +795,7 @@ modified versions of a single protein, or the same chemical in different compart
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -798,7 +815,7 @@ modified versions of a single protein, or the same chemical in different compart
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of people with first or last name partly or exactly matching a given name (string)</p>
+<dd class="field-even"><p>Json list object of people with first or last name partly or exactly matching a given name (string)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -822,7 +839,7 @@ relationships (relationships of depth 1) filled.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -844,7 +861,7 @@ underlined that any duplicated ids are eliminated while only requests containing
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -858,14 +875,14 @@ underlined that any duplicated ids are eliminated while only requests containing
 <dd class="field-odd"><p><strong>id</strong> -- Identifier for a given entity</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>All ReferenceEntities for a given identifier</p>
+<dd class="field-even"><p>Json list obkect of all ReferenceEntities for a given identifier</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="reactome2py.content.schema">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">schema</code><span class="sig-paren">(</span><em class="sig-param">name='Pathway'</em>, <em class="sig-param">by=None</em>, <em class="sig-param">species=None</em>, <em class="sig-param">page=None</em>, <em class="sig-param">offset=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.schema" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">schema</code><span class="sig-paren">(</span><em class="sig-param">name='Pathway'</em>, <em class="sig-param">by='count'</em>, <em class="sig-param">species='9606'</em>, <em class="sig-param">page='-1'</em>, <em class="sig-param">offset='20000'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.schema" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method retrieves the list of entries in Reactome that belong to the specified schema class.
 Please take into account that if species is specified to filter the results, schema class needs to be an
 instance of Event or PhysicalEntity. Additionally, paging is required, while a maximum of 25 entries can be
@@ -880,22 +897,14 @@ returned per request.</p>
 </li>
 <li><dl class="simple">
 <dt>if by is min:</dt><dd><ul class="simple">
-<li><dl class="simple">
-<dt>the list of simplified entries in Reactome that belong to the specified schema class. A simplified entry may</dt><dd><p>be considered as a minimised version of the full database object that includes its database id, stable id, displayName and type.</p>
-</dd>
-</dl>
-</li>
+<li><p>the list of simplified entries in Reactome that belong to the specified schema class. A simplified entry may be considered as a minimised version of the full database object that includes its database id, stable id, displayName and type.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
 <dt>if by is reference:</dt><dd><ul class="simple">
-<li><dl class="simple">
-<dt>the list of simplified reference objects that belong to the specified schema class. A reference object</dt><dd><p>includes its database id, external identifier, and external database name.</p>
-</dd>
-</dl>
-</li>
+<li><p>the list of simplified reference objects that belong to the specified schema class. A reference object includes its database id, external identifier, and external database name. ex. name='ReferenceMolecule'</p></li>
 </ul>
 </dd>
 </dl>
@@ -912,7 +921,7 @@ returned per request.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>int if by = count, json list if by = min or reference</p>
 </dd>
 </dl>
 </dd></dl>
@@ -932,7 +941,7 @@ returned per request.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -950,7 +959,7 @@ returned per request.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -967,7 +976,7 @@ returned per request.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of diagram entities plus pathways from the provided list containing the specified identifier</p>
+<dd class="field-even"><p>Json dictionary object of diagram entities plus pathways from the provided list containing the specified identifier</p>
 </dd>
 </dl>
 </dd></dl>
@@ -978,7 +987,7 @@ returned per request.</p>
 <dd><p>This method retrieves faceting information on the whole Reactome search data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A list of facets corresponding to the whole Reactome search data</p>
+<dd class="field-odd"><p>Json dictionary object of all facets corresponding to the whole Reactome search data</p>
 </dd>
 </dl>
 </dd></dl>
@@ -998,7 +1007,7 @@ returned per request.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1018,7 +1027,7 @@ returned per request.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1035,7 +1044,7 @@ returned per request.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1058,7 +1067,7 @@ returned per request.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1072,7 +1081,7 @@ returned per request.</p>
 <dd class="field-odd"><p><strong>query</strong> -- term to search</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>python list of matched elements</p>
+<dd class="field-even"><p>list of matched elements</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1086,7 +1095,7 @@ returned per request.</p>
 <dd class="field-odd"><p><strong>query</strong> -- term to search</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>python list of matched elements</p>
+<dd class="field-even"><p>list of matched elements</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1106,7 +1115,7 @@ returned per request.</p>
 <dd class="field-odd"><p><strong>by</strong> -- all or main</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>

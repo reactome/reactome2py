@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-import json
 
 __version__ = '0.0.4'
 
