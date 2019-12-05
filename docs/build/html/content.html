@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Content Service &#8212; reactome2py 0.0.4 documentation</title>
+    <title>Content Service &#8212; reactome2py 0.0.5 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -56,10 +56,22 @@ by schema.org (http). This is mainly used by search engines in order to index th
 <dt id="reactome2py.content.disease">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">disease</code><span class="sig-paren">(</span><em class="sig-param">doid=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.disease" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query list of diseases</p>
-<p>if doid is set to False
-* it retrieves the list of diseases annotated in Reactome</p>
-<p>if doid is set to True
-* it retrieves the list of disease DOIDs annotated in Reactome</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>if doid is set to False</dt><dd><ul class="simple">
+<li><p>it retrieves the list of diseases annotated in Reactome</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>if doid is set to True</dt><dd><ul class="simple">
+<li><p>it retrieves the list of disease DOIDs annotated in Reactome</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>doid</strong> -- Boolean param, if set to true - function returns a list of disease DOID</p>
@@ -179,10 +191,14 @@ the diagram of the particular event.</p>
 <dl class="function">
 <dt id="reactome2py.content.export_diagram">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_diagram</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-177929'</em>, <em class="sig-param">ext='png'</em>, <em class="sig-param">quality='5'</em>, <em class="sig-param">flag_interactors=False</em>, <em class="sig-param">title=True</em>, <em class="sig-param">margin='15'</em>, <em class="sig-param">ehld=True</em>, <em class="sig-param">diagram_profile='Modern'</em>, <em class="sig-param">resource='Total'</em>, <em class="sig-param">analysis_profile='Standard'</em>, <em class="sig-param">token=None</em>, <em class="sig-param">flag=None</em>, <em class="sig-param">sel=[]</em>, <em class="sig-param">exp_column=None</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_diagram" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method accepts identifiers for Event class instances.
-* When a diagrammed pathway is provided, the diagram is exported to the specified format.
-* When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.
-* When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.</p>
+<dd><dl class="simple">
+<dt>This method accepts identifiers for Event class instances.</dt><dd><ul class="simple">
+<li><p>When a diagrammed pathway is provided, the diagram is exported to the specified format.</p></li>
+<li><p>When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.</p></li>
+<li><p>When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -370,16 +386,22 @@ The generated document contains the details for the given event and, optionally,
 <dl class="function">
 <dt id="reactome2py.content.interactors_psicquic_acc">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_psicquic_acc</code><span class="sig-paren">(</span><em class="sig-param">resource='MINT'</em>, <em class="sig-param">acc='Q13501'</em>, <em class="sig-param">by='details'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_psicquic_acc" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
+<dd><ol class="arabic simple">
+<li><dl class="simple">
 <dt>if by details</dt><dd><ul class="simple">
 <li><p>Retrieve clustered interaction, sorted by score, of a given accession by resource</p></li>
 </ul>
 </dd>
+</dl>
+</li>
+<li><dl class="simple">
 <dt>if by summary</dt><dd><ul class="simple">
 <li><p>Retrieve a summary of a given accession by resource</p></li>
 </ul>
 </dd>
 </dl>
+</li>
+</ol>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -398,16 +420,22 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 <dl class="function">
 <dt id="reactome2py.content.interactors_psicquic_accs">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_psicquic_accs</code><span class="sig-paren">(</span><em class="sig-param">proteins='EGFR'</em>, <em class="sig-param">resource='MINT'</em>, <em class="sig-param">by='details'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_psicquic_accs" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
+<dd><ol class="arabic simple">
+<li><dl class="simple">
 <dt>if by details</dt><dd><ul class="simple">
 <li><p>Retrieve clustered interaction, sorted by score, of a given accession(s) by resource.</p></li>
 </ul>
 </dd>
+</dl>
+</li>
+<li><dl class="simple">
 <dt>if by summary</dt><dd><ul class="simple">
 <li><p>Retrieve a summary of a given accession list by resource.</p></li>
 </ul>
 </dd>
 </dl>
+</li>
+</ol>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -453,10 +481,22 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 <dl class="function">
 <dt id="reactome2py.content.interactors_static_acc">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_static_acc</code><span class="sig-paren">(</span><em class="sig-param">acc='Q13501'</em>, <em class="sig-param">page='-1'</em>, <em class="sig-param">page_size='-1'</em>, <em class="sig-param">by='details'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_static_acc" title="Permalink to this definition">¶</a></dt>
-<dd><p>if by details:
-* retrieve a detailed interaction information of a given accession
-if by summary:
-* retrieve a summary of a given accession</p>
+<dd><ol class="arabic simple">
+<li><dl class="simple">
+<dt>if by details:</dt><dd><ul class="simple">
+<li><p>retrieve a detailed interaction information of a given accession</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>if by summary:</dt><dd><ul class="simple">
+<li><p>retrieve a summary of a given accession</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -475,10 +515,22 @@ if by summary:
 <dl class="function">
 <dt id="reactome2py.content.interactors_static_accs">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_static_accs</code><span class="sig-paren">(</span><em class="sig-param">accs='Q9BXM7-1'</em>, <em class="sig-param">by='details'</em>, <em class="sig-param">page='-1'</em>, <em class="sig-param">page_size='-1'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_static_accs" title="Permalink to this definition">¶</a></dt>
-<dd><p>if by details:
-* retrieve clustered interaction, sorted by score, of a given accession(s) by resource.
-if by summary:
-* retrieve a summary of a given accession list by resource.</p>
+<dd><ol class="arabic simple">
+<li><dl class="simple">
+<dt>if by details:</dt><dd><ul class="simple">
+<li><p>Retrieve clustered interaction, sorted by score, of a given accession(s) by resource.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>if by summary:</dt><dd><ul class="simple">
+<li><p>Retrieve a summary of a given accession list by resource.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -697,12 +749,7 @@ each of the events contained in the given event.</p>
 <dd><p>This method traverses the event hierarchy and retrieves the list of all lower level pathways that have a
 diagram and contain the given PhysicalEntity or Event.</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>if all_forms is set to true: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms</dt><dd><p>include for example different post-translationally modified versions of a single protein, or the same chemical
-in different compartments.</p>
-</dd>
-</dl>
-</li>
+<li><p>if all_forms is set to true: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally modified versions of a single protein, or the same chemical in different compartments.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -724,12 +771,7 @@ in different compartments.</p>
 <dd><p>This method traverses the event hierarchy and retrieves the list of all lower level pathways that contain
 the given PhysicalEntity or Event.</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given</dt><dd><p>PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally
-modified versions of a single protein, or the same chemical in different compartments.</p>
-</dd>
-</dl>
-</li>
+<li><p>if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally modified versions of a single protein, or the same chemical in different compartments.</p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

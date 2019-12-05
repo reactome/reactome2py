@@ -40,11 +40,11 @@ def disease(doid=False):
     """
     Query list of diseases
 
-    if doid is set to False
-    * it retrieves the list of diseases annotated in Reactome
+    1. if doid is set to False
+        * it retrieves the list of diseases annotated in Reactome
 
-    if doid is set to True
-    * it retrieves the list of disease DOIDs annotated in Reactome
+    2. if doid is set to True
+        * it retrieves the list of disease DOIDs annotated in Reactome
 
     :param doid: Boolean param, if set to true - function returns a list of disease DOID
     :return: Json list object of diseases or disease DOID(s)
@@ -251,9 +251,9 @@ def export_diagram(id='R-HSA-177929', ext='png', quality='5', flag_interactors=F
                    flag=None, sel=[], exp_column=None, file='report', path=''):
     """
     This method accepts identifiers for Event class instances.
-    * When a diagrammed pathway is provided, the diagram is exported to the specified format.
-    * When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.
-    * When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.
+        * When a diagrammed pathway is provided, the diagram is exported to the specified format.
+        * When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.
+        * When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.
 
     :param id: Event identifier (it can be a pathway with diagram, a subpathway or a reaction)
     :param ext: File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif
@@ -573,9 +573,9 @@ def export_reaction(id='R-HSA-6787403', ext='png', file='report', path='', quali
 
 def interactors_psicquic_acc(resource='MINT', acc='Q13501', by='details'):
     """
-    if by details
+    1. if by details
         * Retrieve clustered interaction, sorted by score, of a given accession by resource
-    if by summary
+    2. if by summary
         * Retrieve a summary of a given accession by resource
 
     :param resource: Proteomics standards initiative common query interface (PSICQUIC) Resource
@@ -607,9 +607,9 @@ def interactors_psicquic_acc(resource='MINT', acc='Q13501', by='details'):
 
 def interactors_psicquic_accs(proteins='EGFR', resource='MINT', by='details'):
     """
-    if by details
+    1. if by details
         * Retrieve clustered interaction, sorted by score, of a given accession(s) by resource.
-    if by summary
+    2. if by summary
         * Retrieve a summary of a given accession list by resource.
 
     :param proteins: Comma seperate list of Accessions in string format 'a1,a2,a3'
@@ -667,10 +667,10 @@ def interactors_psicquic_resources():
 
 def interactors_static_acc(acc='Q13501', page='-1', page_size='-1', by='details'):
     """
-    if by details:
-    * retrieve a detailed interaction information of a given accession
-    if by summary:
-    * retrieve a summary of a given accession
+    1. if by details:
+        * retrieve a detailed interaction information of a given accession
+    2. if by summary:
+        * retrieve a summary of a given accession
 
     :param acc: Interactor accession (or identifier)
     :param page: For paginating the results
@@ -744,10 +744,10 @@ def interactors_acc_pathways(acc='Q9BXM7-1', species='Homo sapiens', only_diagra
 
 def interactors_static_accs(accs='Q9BXM7-1', by='details', page='-1', page_size='-1'):
     """
-    if by details:
-    * retrieve clustered interaction, sorted by score, of a given accession(s) by resource.
-    if by summary:
-    * retrieve a summary of a given accession list by resource.
+    1. if by details:
+        * Retrieve clustered interaction, sorted by score, of a given accession(s) by resource.
+    2. if by summary:
+        * Retrieve a summary of a given accession list by resource.
 
     :param accs: Comma seperate list of Accessions in string format 'a1,a2,a3'
     :param by: details or summary (returns counts of details available)
@@ -1204,9 +1204,7 @@ def pathways_low_diagram(id='R-HSA-199420', species=None, all_forms=False):
     This method traverses the event hierarchy and retrieves the list of all lower level pathways that have a
     diagram and contain the given PhysicalEntity or Event.
 
-    * if all_forms is set to true: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms
-        include for example different post-translationally modified versions of a single protein, or the same chemical
-        in different compartments.
+    * if all_forms is set to true: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally modified versions of a single protein, or the same chemical in different compartments.
 
     :param id: The entity that has to be present in the pathways
     :param species: The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)
@@ -1243,9 +1241,7 @@ def pathways_low_entity(id='R-HSA-199420', species=None, all_forms=False):
     This method traverses the event hierarchy and retrieves the list of all lower level pathways that contain
     the given PhysicalEntity or Event.
 
-    * if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given
-        PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally
-        modified versions of a single protein, or the same chemical in different compartments.
+    * if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally modified versions of a single protein, or the same chemical in different compartments.
 
     :param id: The entity that has to be present in the pathways
     :param species: The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)

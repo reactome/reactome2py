@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Analysis Service &#8212; reactome2py 0.0.4 documentation</title>
+    <title>Analysis Service &#8212; reactome2py 0.0.5 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -35,8 +35,9 @@
   <div class="section" id="module-reactome2py.analysis">
 <span id="analysis-service"></span><h1>Analysis Service<a class="headerlink" href="#module-reactome2py.analysis" title="Permalink to this headline">¶</a></h1>
 <p>Pathway Analysis Service
-Provides pathway over-representation and expression analysis as well as species comparison tool
-<a class="reference external" href="https://reactome.org/AnalysisService/#/">https://reactome.org/AnalysisService/#/</a></p>
+Provides pathway over-representation and expression analysis as well as species comparison tool</p>
+<p>API calls are avaialble &#64; <a class="reference external" href="https://reactome.org/AnalysisService/#/">https://reactome.org/AnalysisService/#/</a></p>
+<p>Data model key classes for id query are available &#64; <a class="reference external" href="https://reactome.org/documentation/data-model">https://reactome.org/documentation/data-model</a></p>
 <dl class="function">
 <dt id="reactome2py.analysis.compare_species">
 <code class="sig-prename descclassname">reactome2py.analysis.</code><code class="sig-name descname">compare_species</code><span class="sig-paren">(</span><em class="sig-param">species='48892'</em>, <em class="sig-param">page_size='1'</em>, <em class="sig-param">page='1'</em>, <em class="sig-param">sort_by='ENTITIES_FDR'</em>, <em class="sig-param">order='ASC'</em>, <em class="sig-param">resource='TOTAL'</em>, <em class="sig-param">p_value='1'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.analysis.compare_species" title="Permalink to this definition">¶</a></dt>
@@ -47,17 +48,17 @@ Provides pathway over-representation and expression analysis as well as species 
 <li><p><strong>species</strong> -- The reactome dbId string of the species to compare to ex. of some dbId mappings {'Homo sapiens':'48887',
 'Mus musculus':'48892', 'Rattus norvegicus':'48895', 'Sus scrofa':'49633', 'Xenopus tropicalis':'205621',
 'Bos taurus':'48898', 'Gallus gallus':'49591'}</p></li>
-<li><p><strong>page_size</strong> -- page size</p></li>
-<li><p><strong>page</strong> -- number of pages</p></li>
-<li><p><strong>sort_by</strong> -- how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
+<li><p><strong>page_size</strong> -- Page size</p></li>
+<li><p><strong>page</strong> -- Number of pages</p></li>
+<li><p><strong>sort_by</strong> -- How to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
 FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO</p></li>
-<li><p><strong>order</strong> -- order ASC or DESC</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>p_value</strong> -- defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
+<li><p><strong>order</strong> -- Order ASC or DESC</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>p_value</strong> -- Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -68,7 +69,7 @@ FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PV
 <dd><p>The name of current database</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the name of current database.</p>
+<dd class="field-odd"><p>String of the name of current database.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -79,7 +80,7 @@ FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PV
 <dd><p>The version number of current database</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The version number of current database.</p>
+<dd class="field-odd"><p>String of the version number of current database.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -91,17 +92,17 @@ FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PV
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>path</strong> -- absolute path to save the csv file to</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>file</strong> -- file name default is set to result.csv</p></li>
-<li><p><strong>save</strong> -- if true saves the result data frame as csv file, else it returns the data frame</p></li>
-<li><p><strong>chunk_size</strong> -- python generator iter_content() chunk size - default set to 128</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the csv file to</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>file</strong> -- File name default is set to result.csv</p></li>
+<li><p><strong>save</strong> -- If true saves the result data frame as csv file, else it returns the data frame</p></li>
+<li><p><strong>chunk_size</strong> -- Python generator iter_content() chunk size - default set to 128</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of genes or entities found in pathway enrichment analysis overlap</p>
+<dd class="field-even"><p>Pandas data frame with genes or entities found in pathway enrichment analysis overlap</p>
 </dd>
 </dl>
 </dd></dl>
@@ -114,26 +115,26 @@ and pathways in reactome database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> -- a protein, gene or small molecule identifier symbol id ex. EGFR</p></li>
-<li><p><strong>interactors</strong> -- boolean value if set to false, your query will consider only manually curated Reactome pathways
+<li><p><strong>id</strong> -- A protein, gene or small molecule identifier symbol id ex. EGFR</p></li>
+<li><p><strong>interactors</strong> -- Boolean value if set to false, your query will consider only manually curated Reactome pathways
 with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
 including all available protein-protein interactors from the IntAct database</p></li>
-<li><p><strong>page_size</strong> -- page size</p></li>
-<li><p><strong>page</strong> -- number of pages</p></li>
-<li><p><strong>species</strong> -- list of species to filter the result (accepts taxonomy ids, species names and reactome dbId)</p></li>
-<li><p><strong>sort_by</strong> -- how to sort the result. Available filters TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
+<li><p><strong>page_size</strong> -- Page size</p></li>
+<li><p><strong>page</strong> -- Number of pages</p></li>
+<li><p><strong>species</strong> -- List of species to filter the result (accepts taxonomy ids, species names and reactome dbId)</p></li>
+<li><p><strong>sort_by</strong> -- How to sort the result. Available filters TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
 FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO</p></li>
-<li><p><strong>order</strong> -- order ASC or DESC</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>p_value</strong> -- defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
-<li><p><strong>include_disease</strong> -- set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
-<li><p><strong>projection</strong> -- if true, projects the identifiers to human and only shows the result in this species</p></li>
-<li><p><strong>max_entities</strong> -- maximum number of contained entities per pathway (takes into account the resource)</p></li>
-<li><p><strong>min_entities</strong> -- minimum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>order</strong> -- Order ASC or DESC</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>p_value</strong> -- Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
+<li><p><strong>include_disease</strong> -- Set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
+<li><p><strong>projection</strong> -- If true, projects the identifiers to human and only shows the result in this species</p></li>
+<li><p><strong>max_entities</strong> -- Maximum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>min_entities</strong> -- Minimum number of contained entities per pathway (takes into account the resource)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -162,7 +163,7 @@ FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PV
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -206,15 +207,15 @@ set to true, projects the result to Homo Sapiens</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ids</strong> -- comma seperated list of proteins, genes or small molecules identifiers symbol in string format ex. 'EGF,EGFR'</p></li>
+<li><p><strong>ids</strong> -- Comma seperated list of proteins, genes or small molecules identifiers symbol in string format ex. 'EGF,EGFR'</p></li>
 <li><p><strong>interactors</strong> -- boolean value if set to false, your query will consider only manually curated Reactome pathways
 with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
 including all available protein-protein interactors from the IntAct database.</p></li>
-<li><p><strong>projection</strong> -- if true, projects the identifiers to human and only shows the result in this species</p></li>
+<li><p><strong>projection</strong> -- If true, projects the identifiers to human and only shows the result in this species</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -227,12 +228,12 @@ result to Homo Sapiens</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> -- absolute path to the the txt file with identifier symbols to be analysed -
+<li><p><strong>path</strong> -- Absolute path to the the txt file with identifier symbols to be analysed -
 refer to <a class="reference external" href="https://reactome.org/dev/analysis">https://reactome.org/dev/analysis</a> for format.</p></li>
 <li><p><strong>interactors</strong> -- boolean value if set to false, your query will consider only manually curated Reactome pathways
 with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
 including all available protein-protein interactors from the IntAct database.</p></li>
-<li><p><strong>projection</strong> -- if true, projects the identifiers to human and only shows the result in this species</p></li>
+<li><p><strong>projection</strong> -- If true, projects the identifiers to human and only shows the result in this species</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -250,10 +251,10 @@ result to Homo Sapiens</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>external_url</strong> -- </p></li>
-<li><p><strong>interactors</strong> -- boolean value if set to false, your query will consider only manually curated Reactome pathways
+<li><p><strong>interactors</strong> -- Boolean value if set to false, your query will consider only manually curated Reactome pathways
 with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
 including all available protein-protein interactors from the IntAct database.</p></li>
-<li><p><strong>projection</strong> -- if true, projects the identifiers to human and only shows the result in this species</p></li>
+<li><p><strong>projection</strong> -- If true, projects the identifiers to human and only shows the result in this species</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -269,22 +270,22 @@ including all available protein-protein interactors from the IntAct database.</p
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>external_url</strong> -- url containing identifiers id symbols</p></li>
-<li><p><strong>interactors</strong> -- boolean value if set to false, your query will consider only manually curated Reactome pathways
+<li><p><strong>external_url</strong> -- Url containing identifiers id symbols</p></li>
+<li><p><strong>interactors</strong> -- Boolean value if set to false, your query will consider only manually curated Reactome pathways
 with known biological significance. if true, your query will consider Reactome pathways that have been expanded by
 including all available protein-protein interactors from the IntAct database.</p></li>
-<li><p><strong>page_size</strong> -- page size</p></li>
-<li><p><strong>page</strong> -- number of pages</p></li>
-<li><p><strong>species</strong> -- list of species to filter the result (accepts taxonomy ids, species names and dbId)</p></li>
-<li><p><strong>sort_by</strong> -- how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS, FOUND_ENTITIES,
+<li><p><strong>page_size</strong> -- Page size</p></li>
+<li><p><strong>page</strong> -- Number of pages</p></li>
+<li><p><strong>species</strong> -- List of species to filter the result (accepts taxonomy ids, species names and dbId)</p></li>
+<li><p><strong>sort_by</strong> -- How to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS, FOUND_ENTITIES,
 FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO</p></li>
-<li><p><strong>order</strong> -- order ASC or DESC</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>p_value</strong> -- defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
-<li><p><strong>include_disease</strong> -- set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
-<li><p><strong>projection</strong> -- if true, projects the identifiers to human and only shows the result in this species</p></li>
-<li><p><strong>max_entities</strong> -- maximum number of contained entities per pathway (takes into account the resource)</p></li>
-<li><p><strong>min_entities</strong> -- minimum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>order</strong> -- Order ASC or DESC</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>p_value</strong> -- Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
+<li><p><strong>include_disease</strong> -- Set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
+<li><p><strong>projection</strong> -- If true, projects the identifiers to human and only shows the result in this species</p></li>
+<li><p><strong>max_entities</strong> -- Maximum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>min_entities</strong> -- Minimum number of contained entities per pathway (takes into account the resource)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -345,17 +346,17 @@ The accepted format is the same as provided by the method /#/download/{token}/re
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>path</strong> -- absolute path to save the file containing analysis results to</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>file</strong> -- file name to save the analysis results to</p></li>
-<li><p><strong>save</strong> -- boolean value if true - saves data frame as csv file. default is set to false.</p></li>
-<li><p><strong>chunk_size</strong> -- python generator iter_content() chunk size - default set to 128</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the file containing analysis results to</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>file</strong> -- File name to save the analysis results to</p></li>
+<li><p><strong>save</strong> -- Boolean value if true - saves data frame as csv file. default is set to false.</p></li>
+<li><p><strong>chunk_size</strong> -- Python generator iter_content() chunk size - default set to 128</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>saves the result as csv file or returns a pandas data frame</p>
+<dd class="field-even"><p>Saves the result as csv file or returns a pandas data frame</p>
 </dd>
 </dl>
 </dd></dl>
@@ -367,21 +368,21 @@ request a TOKEN is associated to the result</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>path</strong> -- absolute path to save the report pdf file to</p></li>
-<li><p><strong>file</strong> -- pdf file name to save the analysis report to - default set to report.pdf</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the report pdf file to</p></li>
+<li><p><strong>file</strong> -- Pdf file name to save the analysis report to - default set to report.pdf</p></li>
 <li><p><strong>number</strong> -- Number of pathways reported (max 50)</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
 <li><p><strong>diagram_profile</strong> -- Diagram Color Profile - as string</p></li>
 <li><p><strong>analysis_profile</strong> -- Analysis Color Profile - as string</p></li>
 <li><p><strong>fireworks_profile</strong> -- Diagram Color Profile - as string</p></li>
-<li><p><strong>species</strong> -- the species for which results will be reported</p></li>
-<li><p><strong>chunk_size</strong> -- python generator iter_content() chunk size - default set to 128</p></li>
+<li><p><strong>species</strong> -- The species for which results will be reported</p></li>
+<li><p><strong>chunk_size</strong> -- Python generator iter_content() chunk size - default set to 128</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>saves a reactome analysis pdf report to the indicated path and file name</p>
+<dd class="field-even"><p>Saves a reactome analysis pdf report to the indicated path and file name</p>
 </dd>
 </dl>
 </dd></dl>
@@ -393,17 +394,17 @@ request a TOKEN is associated to the result</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>path</strong> -- absolute path to save the file containing analysis results to</p></li>
-<li><p><strong>file</strong> -- file name to save the analysis results to</p></li>
-<li><p><strong>save</strong> -- boolean value if true - saves result as json file. default is set to false.</p></li>
-<li><p><strong>gzip</strong> -- boolean value if true - saves result as gzipped json file. default is set to false.</p></li>
-<li><p><strong>chunk_size</strong> -- python generator iter_content() chunk size - default set to 128</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the file containing analysis results to</p></li>
+<li><p><strong>file</strong> -- File name to save the analysis results to</p></li>
+<li><p><strong>save</strong> -- Boolean value if true - saves result as json file. default is set to false.</p></li>
+<li><p><strong>gzip</strong> -- Boolean value if true - saves result as gzipped json file. default is set to false.</p></li>
+<li><p><strong>chunk_size</strong> -- Python generator iter_content() chunk size - default set to 128</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>file or json object containing data on pathway, entities, statistics, etc. found in analysis overlap</p>
+<dd class="field-even"><p>File or json object containing data on pathway, entities, statistics, etc. found in analysis overlap</p>
 </dd>
 </dl>
 </dd></dl>
@@ -417,23 +418,23 @@ The resource field will filter the results to show only those corresponding to t
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>species</strong> -- list of species to filter the result (accepts taxonomy ids, species names and reactome dbId)</p></li>
-<li><p><strong>page_size</strong> -- page size</p></li>
-<li><p><strong>page</strong> -- page number</p></li>
-<li><p><strong>sort_by</strong> -- how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
+<li><p><strong>species</strong> -- List of species to filter the result (accepts taxonomy ids, species names and reactome dbId)</p></li>
+<li><p><strong>page_size</strong> -- Page size</p></li>
+<li><p><strong>page</strong> -- Page number</p></li>
+<li><p><strong>sort_by</strong> -- How to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
 FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO</p></li>
-<li><p><strong>order</strong> -- order ASC or DESC</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>p_value</strong> -- defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
-<li><p><strong>include_disease</strong> -- set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
-<li><p><strong>min_entities</strong> -- minimum number of contained entities per pathway (takes into account the resource)</p></li>
-<li><p><strong>max_entities</strong> -- maximum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>order</strong> -- Order ASC or DESC</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>p_value</strong> -- Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
+<li><p><strong>include_disease</strong> -- Set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
+<li><p><strong>min_entities</strong> -- Minimum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>max_entities</strong> -- Maximum number of contained entities per pathway (takes into account the resource)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -445,17 +446,17 @@ FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PV
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>species</strong> -- list of species to filter the result (accepts taxonomy ids, species names and reactome dbId)</p></li>
-<li><p><strong>sort_by</strong> -- how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
+<li><p><strong>species</strong> -- List of species to filter the result (accepts taxonomy ids, species names and reactome dbId)</p></li>
+<li><p><strong>sort_by</strong> -- How to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
 FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO</p></li>
-<li><p><strong>order</strong> -- order ASC or DESC</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>order</strong> -- Order ASC or DESC</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -467,22 +468,22 @@ FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PV
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>pathway</strong> -- the pathway stable identifier (stId - provided in the analysis result for each pathway)</p></li>
-<li><p><strong>page_size</strong> -- page size</p></li>
-<li><p><strong>sort_by</strong> -- how to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
+<li><p><strong>pathway</strong> -- The pathway stable identifier (stId - provided in the analysis result for each pathway)</p></li>
+<li><p><strong>page_size</strong> -- Page size</p></li>
+<li><p><strong>sort_by</strong> -- How to sort the result. Available filters: TOTAL_ENTITIES, TOTAL_REACTIONS, TOTAL_INTERACTIONS,
 FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PVALUE, ENTITIES_FDR, REACTIONS_RATIO</p></li>
-<li><p><strong>order</strong> -- order ASC or DESC</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>p_value</strong> -- defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
-<li><p><strong>include_disease</strong> -- set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
-<li><p><strong>min_entities</strong> -- minimum number of contained entities per pathway (takes into account the resource)</p></li>
-<li><p><strong>max_entities</strong> -- maximum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>order</strong> -- Order ASC or DESC</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>p_value</strong> -- Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
+<li><p><strong>include_disease</strong> -- Set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
+<li><p><strong>min_entities</strong> -- Minimum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>max_entities</strong> -- Maximum number of contained entities per pathway (takes into account the resource)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
@@ -494,18 +495,18 @@ FOUND_ENTITIES, FOUND_INTERACTIONS, FOUND_REACTIONS, ENTITIES_RATIO, ENTITIES_PV
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>pathway</strong> -- the pathway stable identifier (stId - provided in the analysis result for each pathway)</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>p_value</strong> -- defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
-<li><p><strong>include_disease</strong> -- set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
-<li><p><strong>min_entities</strong> -- minimum number of contained entities per pathway (takes into account the resource)</p></li>
-<li><p><strong>max_entities</strong> -- maximum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>pathway</strong> -- The pathway stable identifier (stId - provided in the analysis result for each pathway)</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>p_value</strong> -- Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
+<li><p><strong>include_disease</strong> -- Set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
+<li><p><strong>min_entities</strong> -- Minimum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>max_entities</strong> -- Maximum number of contained entities per pathway (takes into account the resource)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
@@ -517,7 +518,7 @@ request a TOKEN is associated to the result</p></li>
 <dt>Queries analysis token and returns a summary of</dt><dd><ol class="arabic simple">
 <li><p>by='all': all the contained identifiers and interactors</p></li>
 <li><p>by='entities': the found curated identifiers</p></li>
-<li><p>by='interactors': the found interactors</p></li>
+<li><p>by='interactors': the found interactors (may return null or none)</p></li>
 </ol>
 </dd>
 </dl>
@@ -525,17 +526,17 @@ request a TOKEN is associated to the result</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>pathway</strong> -- the pathway stable identifier (stId - provided in the analysis result for each pathway)</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>page</strong> -- page number</p></li>
-<li><p><strong>page_size</strong> -- page size</p></li>
-<li><p><strong>by</strong> -- filter found cases by: all, entities, interactors</p></li>
+<li><p><strong>pathway</strong> -- The pathway stable identifier (stId - provided in the analysis result for each pathway)</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>page</strong> -- Page number</p></li>
+<li><p><strong>page_size</strong> -- Page size</p></li>
+<li><p><strong>by</strong> -- Filter found cases by: all, entities, interactors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -547,16 +548,16 @@ request a TOKEN is associated to the result</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>bin_size</strong> -- defines the size of each bin for the classification (min: 100)</p></li>
-<li><p><strong>p_value</strong> -- defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
-<li><p><strong>include_disease</strong> -- set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>bin_size</strong> -- Defines the size of each bin for the classification (min: 100)</p></li>
+<li><p><strong>p_value</strong> -- Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
+<li><p><strong>include_disease</strong> -- Set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -568,18 +569,18 @@ request a TOKEN is associated to the result</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>pathways</strong> -- the pathways stable identifier (stId - provided in the analysis result for each pathway)</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>p_value</strong> -- defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
-<li><p><strong>include_disease</strong> -- set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
-<li><p><strong>min_entities</strong> -- minimum number of contained entities per pathway (takes into account the resource)</p></li>
-<li><p><strong>max_entities</strong> -- maximum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>pathways</strong> -- The pathways stable identifier (stId - provided in the analysis result for each pathway)</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>p_value</strong> -- Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
+<li><p><strong>include_disease</strong> -- Set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
+<li><p><strong>min_entities</strong> -- Minimum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>max_entities</strong> -- Maximum number of contained entities per pathway (takes into account the resource)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
@@ -592,19 +593,19 @@ present in the result (with the results for the indicated molecule type)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>pathways</strong> -- the pathways stable identifiers (stId - provided in the analysis result for each pathway)</p></li>
-<li><p><strong>species</strong> -- list of species to filter the result (accepts taxonomy ids, species names and reactome dbId)</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
-<li><p><strong>p_value</strong> -- defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
-<li><p><strong>include_disease</strong> -- set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
-<li><p><strong>min_entities</strong> -- minimum number of contained entities per pathway (takes into account the resource)</p></li>
-<li><p><strong>max_entities</strong> -- maximum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>pathways</strong> -- The pathways stable identifiers (stId - provided in the analysis result for each pathway)</p></li>
+<li><p><strong>species</strong> -- List of species to filter the result (accepts taxonomy ids, species names and reactome dbId)</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>p_value</strong> -- Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned</p></li>
+<li><p><strong>include_disease</strong> -- Set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)</p></li>
+<li><p><strong>min_entities</strong> -- Minimum number of contained entities per pathway (takes into account the resource)</p></li>
+<li><p><strong>max_entities</strong> -- Maximum number of contained entities per pathway (takes into account the resource)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -616,14 +617,14 @@ request a TOKEN is associated to the result</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>pathways</strong> -- the pathways stable identifier (stId - provided in the analysis result for each pathway)</p></li>
-<li><p><strong>resource</strong> -- the resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
+<li><p><strong>pathways</strong> -- The pathways stable identifier (stId - provided in the analysis result for each pathway)</p></li>
+<li><p><strong>resource</strong> -- The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -634,11 +635,11 @@ request a TOKEN is associated to the result</p></li>
 <dd><p>the resources summary associated with the token</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<dd class="field-odd"><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the resources summary associated with the token</p>
+<dd class="field-even"><p>Json list object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -650,14 +651,14 @@ request a TOKEN is associated to the result</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>page_size</strong> -- page size</p></li>
-<li><p><strong>page</strong> -- number of pages</p></li>
+<li><p><strong>page_size</strong> -- Page size</p></li>
+<li><p><strong>page</strong> -- Number of pages</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
@@ -669,16 +670,16 @@ request a TOKEN is associated to the result</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>token</strong> -- the token associated with the data result - analysis Web-Service is token based, so for every analysis
+<li><p><strong>token</strong> -- The token associated with the data result - analysis Web-Service is token based, so for every analysis
 request a TOKEN is associated to the result</p></li>
-<li><p><strong>file</strong> -- file name default is set to result.csv</p></li>
-<li><p><strong>path</strong> -- absolute path to save the csv file to</p></li>
-<li><p><strong>save</strong> -- if true saves the result data frame as csv file, else it returns the data frame</p></li>
-<li><p><strong>chunk_size</strong> -- python generator iter_content() chunk size - default set to 128</p></li>
+<li><p><strong>file</strong> -- File name default is set to result.csv</p></li>
+<li><p><strong>path</strong> -- Absolute path to save the csv file to</p></li>
+<li><p><strong>save</strong> -- If true saves the result data frame as csv file, else it returns the data frame</p></li>
+<li><p><strong>chunk_size</strong> -- Python generator iter_content() chunk size - default set to 128</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of genes or entities not found in pathway enrichment analysis overlap</p>
+<dd class="field-even"><p>Pandas data frame with genes or entities not found in pathway enrichment analysis overlap</p>
 </dd>
 </dl>
 </dd></dl>
