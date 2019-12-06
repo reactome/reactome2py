@@ -1,6 +1,7 @@
 """
-Content Service for Reactome knowledgebase
-https://reactome.org/ContentService/#/
+Content Service for Reactome knowledgebase.
+API calls are avaialble @ https://reactome.org/ContentService/#/   \n
+Data model key classes for id query are available @ https://reactome.org/documentation/data-model
 """
 from requests.exceptions import ConnectionError
 import requests
@@ -11,10 +12,11 @@ NumberTypes = (int, float, complex)
 
 def discover(id='R-HSA-446203'):
     """
-    The schema.org for an Event in Reactome knowledgebase
+    For each event (reaction or pathway) this method generates a json representing the dataset object as defined
+    by schema.org (http). This is mainly used by search engines in order to index the data
 
     :param id: An event identifier ex. pathway stable identifier (stId) of pathway
-    :return:
+    :return: Json dictionary object of The schema.org for an Event in Reactome knowledgebase
     """
 
     headers = {
@@ -38,8 +40,14 @@ def disease(doid=False):
     """
     Query list of diseases
 
-    :param doid: returns list of disease DOID if set to true
-    :return: The list of diseases or disease DOID if doid param is set to true
+    1. if doid is set to False
+        * it retrieves the list of diseases annotated in Reactome
+
+    2. if doid is set to True
+        * it retrieves the list of disease DOIDs annotated in Reactome
+
+    :param doid: Boolean param, if set to true - function returns a list of disease DOID
+    :return: Json list object of diseases or disease DOID(s)
     """
 
     headers = {
@@ -69,9 +77,9 @@ def entities_complex(id='R-HSA-5674003', exclude_structures=False):
     contained PhysicalEntity. Contained complexes and entity sets can be excluded setting the ‘exclude_structures’
     optional parameter to ‘true’
 
-    :param id: the complex for which subunits are requested
-    :param exclude_structures: specifies whether contained complexes and entity sets are excluded in the response
-    :return: A list with the entities contained in a given complex
+    :param id: The complex for which subunits are requested
+    :param exclude_structures: Specifies whether contained complexes and entity sets are excluded in the response
+    :return: Json list object with the entities contained in a given complex
     """
 
     if exclude_structures:
@@ -100,14 +108,14 @@ def entities_complex(id='R-HSA-5674003', exclude_structures=False):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def entities_complexes(id='P00533', resource='UniPort'):
+def entities_complexes(id='P00533', resource='UniProt'):
     """
     Retrieves the list of complexes that contain a given (identifier, resource). The method deconstructs the complexes
     into all its participants to do so.
 
-    :param id: the identifier for which complexes are requested
-    :param resource: the resource of the identifier for complexes are requested
-    :return: A list of complexes containing the pair (identifier, resource)
+    :param id: The resource's identifier for which complexes are requested
+    :param resource: The resource of the identifier for complexes are requested
+    :return: Json list object of complexes containing the pair (identifier, resource)
     """
 
     headers = {
@@ -133,8 +141,8 @@ def entity_structures(id='R-HSA-199420'):
     It should be mentioned that the list includes only simplified entries (type, names, ids) and not full information
     about each item.
 
-    :param id:
-    :return: A list of larger structures containing the entity
+    :param id: stable Identifier (stID) of a PhysicalEntity ex. PTEN [cytosol] R-HSA-199420'
+    :return: Json list object of larger structures containing the entity
     """
 
     headers = {
@@ -158,10 +166,10 @@ def entity_other_form(id='R-HSA-199420'):
     """
     Retrieves a list containing all other forms of the given PhysicalEntity.
     These other forms are PhysicalEntities that share the same ReferenceEntity identifier,
-    e.g. PTEN H93R[R-HSA-2318524] and PTEN C124R[R-HSA-2317439] are two forms of PTEN.
+    ex. PTEN H93R[R-HSA-2318524] and PTEN C124R[R-HSA-2317439] are two forms of PTEN.
 
-    :param id: DbId or StId of a PhysicalEntity
-    :return:
+    :param id: dbId or stId of a PhysicalEntity
+    :return: Json list object
     """
 
     headers = {
@@ -190,7 +198,7 @@ def event_ancestors(id='R-HSA-5673001'):
     top level pathway(s).
 
     :param id: The event for which the ancestors are requested
-    :return: The ancestors of a given event
+    :return: Json list object of the ancestors of a given event
     """
 
     headers = {
@@ -218,8 +226,8 @@ def event_species(species='9606'):
     by a PathwayBrowserNode. The latter contains the stable identifier, the name, the species, the url, the type, and
     the diagram of the particular event.
 
-    :param species: Species name (eg: Homo sapiens) or Species taxId (eg: 9606)
-    :return: The full event hierarchy for a given species
+    :param species: Species name (ex: Homo sapiens) or species taxId (ex: 9606)
+    :return: Json list object of the full event hierarchy for a given species
     """
     headers = {
         'accept': 'application/json',
@@ -243,9 +251,9 @@ def export_diagram(id='R-HSA-177929', ext='png', quality='5', flag_interactors=F
                    flag=None, sel=[], exp_column=None, file='report', path=''):
     """
     This method accepts identifiers for Event class instances.
-    * When a diagrammed pathway is provided, the diagram is exported to the specified format.
-    * When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.
-    * When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.
+        * When a diagrammed pathway is provided, the diagram is exported to the specified format.
+        * When a subpathway is provided, the diagram for the parent is exported and the events that are part of the subpathways are selected.
+        * When a reaction is provided, the diagram containing the reaction is exported and the reaction is selected.
 
     :param id: Event identifier (it can be a pathway with diagram, a subpathway or a reaction)
     :param ext: File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif
@@ -417,6 +425,9 @@ def export_fireworks(species='9606', ext='png', file='report', path='', quality=
                      sel=[], title=True, margin='15', resource='Total', diagram_profile='', coverage=False, token=None,
                      exp_column=None):
     """
+    Exports a given pathway overview to the specified image format (png, jpg, jpeg, svg, gif)
+    https://reactome.org/dev/pathways-overview/js
+
 
     :param species: Species identifier (it can be the taxonomy id, species name or dbId)
     :param ext: File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif
@@ -490,6 +501,7 @@ def export_reaction(id='R-HSA-6787403', ext='png', file='report', path='', quali
                      sel=[], title=True, margin='15', resource='Total', diagram_profile='', coverage=False, token=None,
                      exp_column=None):
     """
+    Exports a given reaction to the specified image format (png, jpg, jpeg, svg, gif)
 
     :param id: Reaction identifier
     :param ext: File extension (defines the image format) available extensions: png, jpg, jpeg, svg, gif
@@ -561,16 +573,16 @@ def export_reaction(id='R-HSA-6787403', ext='png', file='report', path='', quali
 
 def interactors_psicquic_acc(resource='MINT', acc='Q13501', by='details'):
     """
-    if by details
+    1. if by details
         * Retrieve clustered interaction, sorted by score, of a given accession by resource
-    if by summary
+    2. if by summary
         * Retrieve a summary of a given accession by resource
 
     :param resource: Proteomics standards initiative common query interface (PSICQUIC) Resource
         use interactors_psicquic_resources to retrive all active resources
     :param acc: Single Accession
     :param by: details or summary (returns counts of details available)
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -595,15 +607,15 @@ def interactors_psicquic_acc(resource='MINT', acc='Q13501', by='details'):
 
 def interactors_psicquic_accs(proteins='EGFR', resource='MINT', by='details'):
     """
-    if by details
+    1. if by details
         * Retrieve clustered interaction, sorted by score, of a given accession(s) by resource.
-    if by summary
+    2. if by summary
         * Retrieve a summary of a given accession list by resource.
 
     :param proteins: Comma seperate list of Accessions in string format 'a1,a2,a3'
     :param resource: Proteomics standards initiative common query interface (PSICQUIC) Resource
         use interactors_psicquic_resources to retrive all active resources
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -633,7 +645,7 @@ def interactors_psicquic_resources():
     """
     Retrieve a list of all Psicquic Registries services
 
-    :return: Retrieve a list of all Psicquic Registries services
+    :return: Json list object
     """
 
     headers = {
@@ -655,12 +667,16 @@ def interactors_psicquic_resources():
 
 def interactors_static_acc(acc='Q13501', page='-1', page_size='-1', by='details'):
     """
+    1. if by details:
+        * retrieve a detailed interaction information of a given accession
+    2. if by summary:
+        * retrieve a summary of a given accession
 
     :param acc: Interactor accession (or identifier)
     :param page: For paginating the results
     :param page_size: Number of results to be retrieved
     :param by: details or summary (returns counts of details available)
-    :return:
+    :return: Json dictionary object
     """
 
     if isinstance(page_size, NumberTypes):
@@ -701,7 +717,7 @@ def interactors_acc_pathways(acc='Q9BXM7-1', species='Homo sapiens', only_diagra
     :param acc: Accession
     :param species: The species name for which the pathways are requested (e.g. ‘Homo sapiens’)
     :param only_diagrammed: Specifies whether the pathways has to have an associated diagram or not
-    :return: Retrieve a list of lower level pathways where the interacting molecules can be found
+    :return: Json list object
     """
 
     headers = {
@@ -728,12 +744,16 @@ def interactors_acc_pathways(acc='Q9BXM7-1', species='Homo sapiens', only_diagra
 
 def interactors_static_accs(accs='Q9BXM7-1', by='details', page='-1', page_size='-1'):
     """
+    1. if by details:
+        * Retrieve clustered interaction, sorted by score, of a given accession(s) by resource.
+    2. if by summary:
+        * Retrieve a summary of a given accession list by resource.
 
     :param accs: Comma seperate list of Accessions in string format 'a1,a2,a3'
     :param by: details or summary (returns counts of details available)
     :param page: For paginating the results
     :param page_size: Number of results to be retrieved
-    :return:
+    :return: Json dictionary object
     """
 
     if isinstance(page_size, NumberTypes):
@@ -932,7 +952,7 @@ def interactors_url(name, interactors_url):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def mapping(id='PTEN', resource='UniPort', species='9606', by='pathways'):
+def mapping(id='PTEN', resource='UniProt', species='9606', by='pathways'):
     """
     1. by pathways:
         Entities play different roles in reactions, and reactions are events that conform a pathway. This method retrieves
@@ -948,7 +968,7 @@ def mapping(id='PTEN', resource='UniPort', species='9606', by='pathways'):
     :param species: Species for which the result is filtered. Accepts taxonomy id, species name and dbId.
         Important Note - when identifier points to chemical, this becomes mandatory and if not provided, the default is ‘Homo sapiens’
     :param by: pathways or reactions
-    :return:
+    :return: Json list object
     """
 
     headers = {
@@ -975,7 +995,7 @@ def mapping(id='PTEN', resource='UniPort', species='9606', by='pathways'):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def orthology_events(ids, species):
+def orthology_events(ids='R-HSA-6799198,R-HSA-168256,R-HSA-168249', species='49633'):
     """
     Reactome uses the set of manually curated human reactions to computationally infer reactions in
     twenty evolutionarily divergent eukaryotic species for which high-quality whole-genome sequence
@@ -983,8 +1003,8 @@ def orthology_events(ids, species):
     Thus, this method retrieves the orthologies for any given set of events or entities in the specified species.
 
     :param ids: The events identifiers for which the orthology is requested
-    :param species: The species for which the orthology is requested
-    :return:
+    :param species: The species id for which the orthology is requested
+    :return: Json dictionary object of the orthologies of a given set of events or entities
     """
 
     headers = {
@@ -1015,8 +1035,8 @@ def orthology(id='R-HSA-6799198', species='49633'):
     Thus, this method retrieves the orthology for any given event or entity in the specified species.
 
     :param id: The event for which the orthology is requested
-    :param species: The species for which the orthology is requested
-    :return: The orthology for a given event or entity
+    :param species: The species id for which the orthology is requested
+    :return: Json dictionary object of the orthology for a given event or entity
     """
 
     headers = {
@@ -1024,7 +1044,7 @@ def orthology(id='R-HSA-6799198', species='49633'):
         'content-type': 'text/plain',
     }
 
-    url = 'https://reactome.org/ContentService/data/orthologies/%s/species/%s' % (id, species)
+    url = 'https://reactome.org/ContentService/data/orthology/%s/species/%s' % (id, species)
 
     try:
         response = requests.get(url=url, headers=headers)
@@ -1041,8 +1061,8 @@ def participants(id='5205685'):
     """
     Participants contains a PhysicalEntity (dbId, displayName) and a collection of ReferenceEntities (dbId, name, identifier, url)
 
-    :param id: DbId or StId of a PhysicalEntity
-    :return: A list of participants for a given event
+    :param id: dbId or stId of a PhysicalEntity
+    :return: Json list obj of participants for a given event
     """
 
     headers = {
@@ -1069,7 +1089,7 @@ def participants_physical_entities(id='R-HSA-5205685'):
     PhysicalEntities from every constituent
 
     :param id: The event for which the participating PhysicalEntities are requested
-    :return: A list of participating PhysicalEntities for a given event
+    :return: Json list object of participating PhysicalEntities for a given event
     """
 
     headers = {
@@ -1102,7 +1122,7 @@ def participants_reference_entities(id='5205685'):
     ReferenceEntities for all PhysicalEntities in every constituent pathway.
 
     :param id: The event for which the participating ReferenceEntities are requested
-    :return: A list of participating ReferenceEntities for a given event
+    :return: Json list object of participating ReferenceEntities for a given event
     """
 
     headers = {
@@ -1130,7 +1150,7 @@ def pathway_contained_event(id='R-HSA-5673001'):
     contained in any given event.
 
     :param id: The event for which the contained events are requested
-    :return: All the events contained in the given event
+    :return: Json list object of all the events contained in the given event
     """
 
     headers = {
@@ -1159,7 +1179,7 @@ def pathway_contained_event_atttibute(id='R-HSA-5673001', attribute='stId'):
 
     :param id: The event for which the contained events are requested
     :param attribute: Attribute to be filtered
-    :return: python list object of a single property for each event contained in the given event
+    :return: List object of a single property for each event contained in the given event
     """
 
     headers = {
@@ -1184,14 +1204,12 @@ def pathways_low_diagram(id='R-HSA-199420', species=None, all_forms=False):
     This method traverses the event hierarchy and retrieves the list of all lower level pathways that have a
     diagram and contain the given PhysicalEntity or Event.
 
-    * if all_forms is set to true: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms
-        include for example different post-translationally modified versions of a single protein, or the same chemical
-        in different compartments.
+    * if all_forms is set to true: it retrieves the given PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally modified versions of a single protein, or the same chemical in different compartments.
 
     :param id: The entity that has to be present in the pathways
     :param species: The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)
     :param all_forms: If true, it retrieves the given PhysicalEntity in any of its variant forms.
-    :return: A list of lower level pathways with diagram containing a given entity or event
+    :return: Json list object of lower level pathways with diagram containing a given entity or event
     """
 
     headers = {
@@ -1223,14 +1241,12 @@ def pathways_low_entity(id='R-HSA-199420', species=None, all_forms=False):
     This method traverses the event hierarchy and retrieves the list of all lower level pathways that contain
     the given PhysicalEntity or Event.
 
-    * if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given
-        PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally
-        modified versions of a single protein, or the same chemical in different compartments.
+    * if all_forms is set to true, it retrieves the list of all lower level pathways that contain the given PhysicalEntity in any of its variant forms. These variant forms include for example different post-translationally modified versions of a single protein, or the same chemical in different compartments.
 
     :param id: The entity that has to be present in the pathways
     :param species: The species for which the pathways are requested. Taxonomy identifier (eg: 9606) or species name (eg: ‘Homo sapiens’)
     :param all_forms: If set to true, it retrieves the list of all lower level pathways that contain the given PhysicalEntity in any of its variant forms.
-    :return: A list of lower level pathways containing a given entity or event
+    :return: Json list object of lower level pathways containing a given entity or event
     """
 
     headers = {
@@ -1262,7 +1278,7 @@ def pathways_top_level(species='9606'):
     This method retrieves the list of top level pathways for the given species
 
     :param species: Specifies the species by the taxonomy identifier (eg: 9606) or species name (eg: ‘Homo+sapiens’)
-    :return: All Reactome top level pathways
+    :return: Json list object of all Reactome top level pathways
     """
 
     headers = {
@@ -1290,7 +1306,7 @@ def person_name(name='Steve Jupe', exact=False):
 
     :param name: Person’s first or last name
     :param exact:
-    :return: A list of people with first or last name partly or exactly matching a given name (string)
+    :return: Json list object of people with first or last name partly or exactly matching a given name (string)
     """
 
     headers = {
@@ -1328,7 +1344,7 @@ def person_id(id='0000-0001-5807-0069', by=None, attribute=None):
     :param id: Person identifier - Can be OrcidId or DbId
     :param by: if not None, query by authored: pathways or publications
     :param attribute: Attribute to be filtered ex. displayName
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -1371,7 +1387,7 @@ def query_id(id='R-HSA-60140', enhanced=False, attribute=None):
     :param id: DbId or StId of the requested database object
     :param enhanced: boolean value to make an enhanced query on id
     :param attribute: Attribute to be queried
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -1408,7 +1424,7 @@ def query_ids(ids='R-HSA-60140', mapping=False):
 
     :param ids: A comma separated list of identifiers
     :param mapping: If set to true, retrieves a list of entries with their mapping to the provided identifiers
-    :return:
+    :return: Json list object
     """
 
     headers = {
@@ -1439,7 +1455,7 @@ def references(id='15377'):
     Retrieves a list containing all the reference entities for a given identifier.
 
     :param id: Identifier for a given entity
-    :return: All ReferenceEntities for a given identifier
+    :return: Json list obkect of all ReferenceEntities for a given identifier
     """
 
     headers = {
@@ -1466,7 +1482,7 @@ def species(by='all'):
         * main, return list of main species in Reactome
 
     :param by: all or main
-    :return:
+    :return: Json list object
     """
 
     headers = {
@@ -1491,7 +1507,7 @@ def species(by='all'):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def schema(name='Pathway', by=None, species=None, page=None, offset=None):
+def schema(name='Pathway', by='count', species='9606', page='-1', offset='20000'):
     """
     This method retrieves the list of entries in Reactome that belong to the specified schema class.
     Please take into account that if species is specified to filter the results, schema class needs to be an
@@ -1501,19 +1517,23 @@ def schema(name='Pathway', by=None, species=None, page=None, offset=None):
     1. if by is count:
         * counts the total number of entries in Reactome that belong to the specified schema class.
     2. if by is min:
-        * the list of simplified entries in Reactome that belong to the specified schema class. A simplified entry may
-            be considered as a minimised version of the full database object that includes its database id, stable id, displayName and type.
+        * the list of simplified entries in Reactome that belong to the specified schema class. A simplified entry may be considered as a minimised version of the full database object that includes its database id, stable id, displayName and type.
     3. if by is reference:
-        * the list of simplified reference objects that belong to the specified schema class. A reference object
-            includes its database id, external identifier, and external database name.
+        * the list of simplified reference objects that belong to the specified schema class. A reference object includes its database id, external identifier, and external database name. ex. name='ReferenceMolecule'
 
     :param name: Schema class name.
     :param by: if not None, by count, min, or reference (name needs to an instance of ReferenceEntity or ExternalOntology)
     :param species: Allowed species filter: SpeciesName (eg: Homo sapiens) SpeciesTaxId (eg: 9606)
     :param offset: Number of rows returned. Maximum = 25
     :param page: Page to be returned
-    :return:
+    :return: int if by = count, json list if by = min or reference
     """
+
+    if isinstance(page, NumberTypes):
+        page = str(page)
+
+    if isinstance(offset, NumberTypes):
+        offset = str(offset)
 
     headers = {
         'accept': 'application/json',
@@ -1528,14 +1548,14 @@ def schema(name='Pathway', by=None, species=None, page=None, offset=None):
             ('offset', offset),
         )
 
-    if by and by.tolower() in 'count':
+    if by and by.lower() in 'count':
         url = 'https://reactome.org/ContentService/data/schema/%s/count' % name
 
         params = (
             ('species', species),
         )
 
-    if by and by.tolower() in 'min':
+    if by and by.lower() in 'min':
         url = 'https://reactome.org/ContentService/data/schema/%s/min' % name
 
         params = (
@@ -1544,7 +1564,7 @@ def schema(name='Pathway', by=None, species=None, page=None, offset=None):
             ('offset', offset),
         )
 
-    if by and by.tolower() in 'reference':
+    if by and by.lower() in 'reference':
         url = 'https://reactome.org/ContentService/data/schema/%s/reference' % name
 
         params = (
@@ -1572,7 +1592,7 @@ def search_diagram(diagram='R-HSA-8848021', query='MAD', types=[], start=None, r
     :param types: types to filter
     :param start: start row
     :param rows: number of rows to include
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -1606,7 +1626,7 @@ def search_diagram_instance(diagram='R-HSA-68886', instance='R-HSA-141433', type
     :param diagram: diagram/pathway stable id
     :param instance: instance stable id
     :param types: types to filter
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -1636,7 +1656,7 @@ def search_diagram_pathway_flag(diagram='R-HSA-446203', query='CTSA'):
 
     :param diagram: diagram/pathway stable id
     :param query: query names by this string
-    :return: A list of diagram entities plus pathways from the provided list containing the specified identifier
+    :return: Json dictionary object of diagram entities plus pathways from the provided list containing the specified identifier
     """
 
     headers = {
@@ -1664,7 +1684,7 @@ def search_facet():
     """
     This method retrieves faceting information on the whole Reactome search data.
 
-    :return: A list of facets corresponding to the whole Reactome search data
+    :return: Json dictionary object of all facets corresponding to the whole Reactome search data
     """
 
     headers = {
@@ -1693,7 +1713,7 @@ def search_facet_query(query='TP53', species=[], types=[], compartments=[], keyw
     :param types: types to filter by - python list of strings
     :param compartments: compartments - python list of strings
     :param keywords: keywords - python list of strings
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -1730,7 +1750,7 @@ def search_fireworks(query='BRAF', species='Homo sapiens', types=[], start=None,
     :param types: Types to filter by - python list of strings
     :param start: Start row
     :param rows: Number of rows to include
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -1764,7 +1784,7 @@ def search_fireworks_flag(query='KNTC1', species='Homo sapiens'):
 
     :param query: Search term
     :param species: Species identifier (it can be the taxonomy id, species name or dbId)
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -1802,7 +1822,7 @@ def search_query(query='Biological oxidations', species=[], types=[], compartmen
     :param cluster: Cluster results
     :param start: Start row
     :param rows: number of rows to include
-    :return:
+    :return: Json dictionary object
     """
 
     headers = {
@@ -1838,7 +1858,7 @@ def search_spellcheck(query='repoduction'):
     This method retrieves a list of spell-check suggestions for a given search term.
 
     :param query: term to search
-    :return: python list of matched elements
+    :return: list of matched elements
     """
     headers = {
         'accept': 'application/json',
@@ -1866,7 +1886,7 @@ def search_suggest(query='platele'):
     This method retrieves a list of suggestions for a given search term.
 
     :param query: term to search
-    :return: python list of matched elements
+    :return: list of matched elements
     """
 
     headers = {
