@@ -106,3 +106,29 @@ def gene_mappings():
         return relations
     else:
         print('Status code returned a value of %s' % response.status_code)
+
+
+def pathway_fi(stId="R-HSA-177929", pattern="R-HSA-"):
+    """
+
+    :return: json
+    """
+
+    headers = {
+        'accept': 'application/json',
+    }
+
+    if pattern in stId:
+        stId = stId.replace(pattern, "")
+
+    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/network/convertPathwayToFIs/%s" % stId
+
+    try:
+        response = requests.get(url=url, headers=headers)
+    except ConnectionError as e:
+        print(e)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print('Status code returned a value of %s' % response.status_code)
