@@ -110,6 +110,8 @@ def gene_mappings():
 
 def pathway_fi(stId="R-HSA-177929", pattern="R-HSA-"):
     """
+    :param stId:
+    :param pattern:
 
     :return: json
     """
@@ -122,6 +124,172 @@ def pathway_fi(stId="R-HSA-177929", pattern="R-HSA-"):
         stId = stId.replace(pattern, "")
 
     url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/network/convertPathwayToFIs/%s" % stId
+
+    try:
+        response = requests.get(url=url, headers=headers)
+    except ConnectionError as e:
+        print(e)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print('Status code returned a value of %s' % response.status_code)
+
+
+def pathway_boolean_network(stId="R-HSA-177929", pattern="R-HSA-"):
+    """
+    :param stId:
+    :param pattern:
+
+    :return: json
+    """
+
+    headers = {
+        'accept': 'application/json',
+    }
+
+    if pattern in stId:
+        stId = stId.replace(pattern, "")
+
+    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/network/convertPathwayToBooleanNetwork/%s" % stId
+
+    try:
+        response = requests.get(url=url, headers=headers)
+    except ConnectionError as e:
+        print(e)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print('Status code returned a value of %s' % response.status_code)
+
+
+def pathway_factor_graph(stId="R-HSA-177929", pattern="R-HSA-"):
+    """
+    :param stId:
+    :param pattern:
+
+    :return: json
+    """
+
+    headers = {
+        'accept': 'application/json',
+    }
+
+    if pattern in stId:
+        stId = stId.replace(pattern, "")
+
+    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/network/convertPathwayToFactorGraph/%s" % stId
+
+    try:
+        response = requests.post(url=url, headers=headers)
+    except ConnectionError as e:
+        print(e)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print('Status code returned a value of %s' % response.status_code)
+
+
+def drug_data_source(source="drugcentral"):
+    """
+    Query a list of drug-target interactions.
+
+    :param source: drugcentral or targetome
+
+    :return: json
+    """
+
+    headers = {
+        'accept': 'application/json',
+    }
+
+    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/drug/listDrugs/%s" % source
+
+    try:
+        response = requests.get(url=url, headers=headers)
+    except ConnectionError as e:
+        print(e)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print('Status code returned a value of %s' % response.status_code)
+
+
+def drug_target_interactions(ids="EGFR\nESR1\nBRAF", source="drugcentral"):
+    """
+    :param ids: Gene HGNC seperated by new line
+    :param source: drugcentral or targetome
+
+    :return: json
+    """
+
+    headers = {
+        'accept': 'application/json',
+    }
+
+    data = ids
+
+    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/drug/queryDrugTargetInteractions/%s" % source
+
+    try:
+        response = requests.post(url=url, headers=headers, data=data)
+    except ConnectionError as e:
+        print(e)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print("Status code returned a value of %s" % response.status_code)
+
+
+def drug_target_interaction_pe_in_diagram(source="drugcentral", pdId="507988", peId="1220578"):
+    """
+    Query drug/target interactions for a PE that is specified by its pdId
+
+    :param source: drugcentral or targetome
+    :param pdId:
+    :param peId:
+
+    :return: json
+    """
+
+    headers = {
+        'accept': 'application/json',
+    }
+
+    ids = "/".join([pdId, peId])
+
+    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/drug/queryInteractionsForPEInDiagram/%s/%s" % (source, ids)
+
+    try:
+        response = requests.get(url=url, headers=headers)
+    except ConnectionError as e:
+        print(e)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print('Status code returned a value of %s' % response.status_code)
+
+
+def drug_target_interaction_diagram(source="drugcentral", pdId="507988"):
+    """
+    Query drug/target interactions for a PE by pdId.
+
+    :param source: drugcentral or targetome
+    :param pdId:
+
+    :return: json
+    """
+
+    headers = {
+        'accept': 'application/json',
+    }
+
+    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/drug/queryInteractionsForDiagram/%s/%s" % (source, pdId)
 
     try:
         response = requests.get(url=url, headers=headers)
