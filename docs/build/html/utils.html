@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Utils &#8212; reactome2py 0.0.5 documentation</title>
+    <title>Utils &#8212; reactome2py 0.0.6 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -35,6 +35,41 @@
 <span id="utils"></span><h1>Utils<a class="headerlink" href="#module-reactome2py.utils" title="Permalink to this headline">¶</a></h1>
 <p>Utility functions for Reactome data-fetch, mappings, and overlay networks in human.</p>
 <dl class="function">
+<dt id="reactome2py.utils.drug_data_source">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">drug_data_source</code><span class="sig-paren">(</span><em class="sig-param">release='2018'</em>, <em class="sig-param">source='drugcentral'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.drug_data_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query a list of drug-target interactions from targetome or drugcentral</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>release</strong> -- release year for Functional Interactions (FI) data</p></li>
+<li><p><strong>source</strong> -- drugcentral or targetome</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>json dictionary object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.drug_targets">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">drug_targets</code><span class="sig-paren">(</span><em class="sig-param">release='2018'</em>, <em class="sig-param">drug='Gefitinib'</em>, <em class="sig-param">source='drugcentral'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.drug_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query known/available drug-target interactions for a drug</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>release</strong> -- release year for Functional Interactions (FI) data</p></li>
+<li><p><strong>ids</strong> -- String of comma separated Gene names (HGNC)</p></li>
+<li><p><strong>source</strong> -- drugcentral or targetome</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>json dictionary object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="reactome2py.utils.ehld_stids">
 <code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">ehld_stids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.ehld_stids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves a list of high-level hierarchy pathway with Enhanced High Level Diagrams (EHLD) <a class="reference external" href="https://reactome.org/icon-info/ehld-specs-guideline">https://reactome.org/icon-info/ehld-specs-guideline</a></p>
@@ -52,6 +87,132 @@
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>dictionary of reactome pathways and HGNC gene mappings to the pathway.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.genelist_drug_target">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">genelist_drug_target</code><span class="sig-paren">(</span><em class="sig-param">release='2018'</em>, <em class="sig-param">ids='EGFR</em>, <em class="sig-param">ESR1</em>, <em class="sig-param">BRAF'</em>, <em class="sig-param">source='drugcentral'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.genelist_drug_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query drug-target interactions for a gene list from targetome or drugcentral</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>release</strong> -- release year for Functional Interactions (FI) data</p></li>
+<li><p><strong>ids</strong> -- String of comma separated Gene names (HGNC)</p></li>
+<li><p><strong>source</strong> -- drugcentral or targetome</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>json dictionary object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.genelist_fi">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">genelist_fi</code><span class="sig-paren">(</span><em class="sig-param">release='2018'</em>, <em class="sig-param">ids='EGF</em>, <em class="sig-param">EGFR'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.genelist_fi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch Pathway's genelist Functional Interactions (FI) <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/20482850">https://www.ncbi.nlm.nih.gov/pubmed/20482850</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>release</strong> -- release year for Functional Interactions (FI) data</p></li>
+<li><p><strong>ids</strong> -- String of comma separated Gene names (HGNC)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>json dictionary object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.pathway_boolean_network">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_boolean_network</code><span class="sig-paren">(</span><em class="sig-param">release='2018'</em>, <em class="sig-param">stId='R-HSA-177929'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_boolean_network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch Pathway as a boolean network</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>release</strong> -- release year for Functional Interactions (FI) data</p></li>
+<li><p><strong>stId</strong> -- stable Identifier (stID) of a pathway</p></li>
+<li><p><strong>pattern</strong> -- reactome's stable Identifier (stID) string tag for Human &quot;R-HSA-&quot;</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>json dictionary object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.pathway_drug_target">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_drug_target</code><span class="sig-paren">(</span><em class="sig-param">release='2018'</em>, <em class="sig-param">source='drugcentral'</em>, <em class="sig-param">pdId='507988'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_drug_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query drug-target interactions for a  PhysicalEntity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>release</strong> -- release year for Functional Interactions (FI) data</p></li>
+<li><p><strong>source</strong> -- drugcentral or targetome</p></li>
+<li><p><strong>pdId</strong> -- stable Identifier (stID) of a pathway</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>json dictionary object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.pathway_factor_graph">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_factor_graph</code><span class="sig-paren">(</span><em class="sig-param">release='2018'</em>, <em class="sig-param">stId='R-HSA-177929'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_factor_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch Pathway as a factor graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>release</strong> -- release year for Functional Interactions (FI) data</p></li>
+<li><p><strong>stId</strong> -- stable Identifier (stID) of a pathway</p></li>
+<li><p><strong>pattern</strong> -- reactome's stable Identifier (stID) string tag for Human &quot;R-HSA-&quot;</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>json dictionary object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.pathway_fi">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_fi</code><span class="sig-paren">(</span><em class="sig-param">release='2018'</em>, <em class="sig-param">stId='R-HSA-177929'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_fi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch Pathway's Functional Interactions (FI) <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/20482850">https://www.ncbi.nlm.nih.gov/pubmed/20482850</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>release</strong> -- release year for Functional Interactions (FI) data</p></li>
+<li><p><strong>stId</strong> -- stable Identifier (stID) of a pathway</p></li>
+<li><p><strong>pattern</strong> -- reactome's stable Identifier (stID) string tag for Human &quot;R-HSA-&quot;</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>json dictionary object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="reactome2py.utils.pathway_pe_drug_target">
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_pe_drug_target</code><span class="sig-paren">(</span><em class="sig-param">release='2018'</em>, <em class="sig-param">source='drugcentral'</em>, <em class="sig-param">pdId='507988'</em>, <em class="sig-param">peId='1220578'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_pe_drug_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query drug-target interactions for a Physical Entity ex a complex within a pathway</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>release</strong> -- release year for Functional Interactions (FI) data</p></li>
+<li><p><strong>source</strong> -- drugcentral or targetome</p></li>
+<li><p><strong>pdId</strong> -- stable Identifier (stID) of a pathway</p></li>
+<li><p><strong>peId</strong> -- stable Identifier (stID) of a PhysicalEntity ex. EGF:Ligand-responsive R-HSA-1220578' within human context</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>json dictionary object</p>
 </dd>
 </dl>
 </dd></dl>
