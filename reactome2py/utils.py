@@ -110,13 +110,13 @@ def gene_mappings():
 
 def pathway_fi(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
     """
-    Fetch Pathway's Functional Interactions (FI) genes https://www.ncbi.nlm.nih.gov/pubmed/20482850
+    Fetch Pathway's Functional Interactions (FI) https://www.ncbi.nlm.nih.gov/pubmed/20482850
 
     :param release: release year for Functional Interactions (FI) data
     :param stId: stable Identifier (stID) of a pathway
     :param pattern: reactome's stable Identifier (stID) string tag for Human "R-HSA-"
 
-    :return: json
+    :return: json dictionary object
     """
 
     headers = {
@@ -137,6 +137,38 @@ def pathway_fi(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
         return response.json()
     else:
         print('Status code returned a value of %s' % response.status_code)
+
+
+def genelist_fi(release="2018", ids="EGF,EGFR"):
+    """
+    Fetch Pathway's genelist Functional Interactions (FI) https://www.ncbi.nlm.nih.gov/pubmed/20482850
+
+    :param release: release year for Functional Interactions (FI) data
+    :param ids: String of comma separated Gene names (HGNC)
+
+    :return: json dictionary object
+    """
+
+    headers = {
+        'accept': 'application/json',
+    }
+
+    if "," in ids:
+        ids = ids.replace(",", "\t")
+
+    data = ids
+
+    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/network/queryEdge" % release
+
+    try:
+        response = requests.post(url=url, headers=headers, data=data)
+    except ConnectionError as e:
+        print(e)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print("Status code returned a value of %s" % response.status_code)
 
 
 def pathway_boolean_network(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
@@ -178,7 +210,7 @@ def pathway_factor_graph(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
     :param stId: stable Identifier (stID) of a pathway
     :param pattern: reactome's stable Identifier (stID) string tag for Human "R-HSA-"
 
-    :return: json
+    :return: json dictionary object
     """
 
     headers = {
@@ -208,7 +240,7 @@ def drug_data_source(release="2018", source="drugcentral"):
     :param release: release year for Functional Interactions (FI) data
     :param source: drugcentral or targetome
 
-    :return: json
+    :return: json dictionary object
     """
 
     headers = {
@@ -228,20 +260,23 @@ def drug_data_source(release="2018", source="drugcentral"):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def genelist_drug_target(release="2018", ids="EGFR\nESR1\nBRAF", source="drugcentral"):
+def genelist_drug_target(release="2018", ids="EGFR,ESR1,BRAF", source="drugcentral"):
     """
     Query drug-target interactions for a gene list from targetome or drugcentral
 
     :param release: release year for Functional Interactions (FI) data
-    :param ids: Gene HGNC seperated by new line
+    :param ids: String of comma separated Gene names (HGNC)
     :param source: drugcentral or targetome
 
-    :return: json
+    :return: json dictionary object
     """
 
     headers = {
         'accept': 'application/json',
     }
+
+    if "," in ids:
+        ids = ids.replace(",", "\n")
 
     data = ids
 
@@ -260,14 +295,14 @@ def genelist_drug_target(release="2018", ids="EGFR\nESR1\nBRAF", source="drugcen
 
 def pathway_pe_drug_target(release="2018", source="drugcentral", pdId="507988", peId="1220578", pattern="R-HSA-"):
     """
-    Query drug/target interactions for a Physical Entity ex a complex within a pathway
+    Query drug-target interactions for a Physical Entity ex a complex within a pathway
 
     :param release: release year for Functional Interactions (FI) data
     :param source: drugcentral or targetome
     :param pdId: stable Identifier (stID) of a pathway
     :param peId: stable Identifier (stID) of a PhysicalEntity ex. EGF:Ligand-responsive R-HSA-1220578' within human context
 
-    :return: json
+    :return: json dictionary object
     """
 
     headers = {
@@ -303,7 +338,7 @@ def pathway_drug_target(release="2018", source="drugcentral", pdId="507988", pat
     :param source: drugcentral or targetome
     :param pdId: stable Identifier (stID) of a pathway
 
-    :return: json
+    :return: json dictionary object
     """
 
     headers = {
@@ -324,3 +359,33 @@ def pathway_drug_target(release="2018", source="drugcentral", pdId="507988", pat
         return response.json()
     else:
         print('Status code returned a value of %s' % response.status_code)
+
+
+def drug_targets(release="2018", drug="Gefitinib", source="drugcentral"):
+    """
+    Query known/available drug-target interactions for a drug
+
+    :param release: release year for Functional Interactions (FI) data
+    :param ids: String of comma separated Gene names (HGNC)
+    :param source: drugcentral or targetome
+
+    :return: json dictionary object
+    """
+
+    headers = {
+        'accept': 'application/json',
+    }
+
+    data = drug
+
+    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/queryInteractionsForDrugs/%s" % (release, source)
+
+    try:
+        response = requests.post(url=url, headers=headers, data=data)
+    except ConnectionError as e:
+        print(e)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print("Status code returned a value of %s" % response.status_code)
