@@ -108,10 +108,13 @@ def gene_mappings():
         print('Status code returned a value of %s' % response.status_code)
 
 
-def pathway_fi(stId="R-HSA-177929", pattern="R-HSA-"):
+def pathway_fi(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
     """
-    :param stId:
-    :param pattern:
+    Fetch Pathway's Functional Interactions (FI) genes https://www.ncbi.nlm.nih.gov/pubmed/20482850
+
+    :param release: release year for Functional Interactions (FI) data
+    :param stId: stable Identifier (stID) of a pathway
+    :param pattern: reactome's stable Identifier (stID) string tag for Human "R-HSA-"
 
     :return: json
     """
@@ -123,7 +126,7 @@ def pathway_fi(stId="R-HSA-177929", pattern="R-HSA-"):
     if pattern in stId:
         stId = stId.replace(pattern, "")
 
-    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/network/convertPathwayToFIs/%s" % stId
+    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/network/convertPathwayToFIs/%s" % (release, stId)
 
     try:
         response = requests.get(url=url, headers=headers)
@@ -136,12 +139,15 @@ def pathway_fi(stId="R-HSA-177929", pattern="R-HSA-"):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def pathway_boolean_network(stId="R-HSA-177929", pattern="R-HSA-"):
+def pathway_boolean_network(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
     """
-    :param stId:
-    :param pattern:
+    Fetch Pathway as a boolean network
 
-    :return: json
+    :param release: release year for Functional Interactions (FI) data
+    :param stId: stable Identifier (stID) of a pathway
+    :param pattern: reactome's stable Identifier (stID) string tag for Human "R-HSA-"
+
+    :return: json dictionary object
     """
 
     headers = {
@@ -151,7 +157,7 @@ def pathway_boolean_network(stId="R-HSA-177929", pattern="R-HSA-"):
     if pattern in stId:
         stId = stId.replace(pattern, "")
 
-    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/network/convertPathwayToBooleanNetwork/%s" % stId
+    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/network/convertPathwayToBooleanNetwork/%s" % (release, stId)
 
     try:
         response = requests.get(url=url, headers=headers)
@@ -164,10 +170,13 @@ def pathway_boolean_network(stId="R-HSA-177929", pattern="R-HSA-"):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def pathway_factor_graph(stId="R-HSA-177929", pattern="R-HSA-"):
+def pathway_factor_graph(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
     """
-    :param stId:
-    :param pattern:
+    Fetch Pathway as a factor graph
+
+    :param release: release year for Functional Interactions (FI) data
+    :param stId: stable Identifier (stID) of a pathway
+    :param pattern: reactome's stable Identifier (stID) string tag for Human "R-HSA-"
 
     :return: json
     """
@@ -179,7 +188,7 @@ def pathway_factor_graph(stId="R-HSA-177929", pattern="R-HSA-"):
     if pattern in stId:
         stId = stId.replace(pattern, "")
 
-    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/network/convertPathwayToFactorGraph/%s" % stId
+    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/network/convertPathwayToFactorGraph/%s" % (release, stId)
 
     try:
         response = requests.post(url=url, headers=headers)
@@ -192,10 +201,11 @@ def pathway_factor_graph(stId="R-HSA-177929", pattern="R-HSA-"):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def drug_data_source(source="drugcentral"):
+def drug_data_source(release="2018", source="drugcentral"):
     """
-    Query a list of drug-target interactions.
+    Query a list of drug-target interactions from targetome or drugcentral
 
+    :param release: release year for Functional Interactions (FI) data
     :param source: drugcentral or targetome
 
     :return: json
@@ -205,7 +215,7 @@ def drug_data_source(source="drugcentral"):
         'accept': 'application/json',
     }
 
-    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/drug/listDrugs/%s" % source
+    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/listDrugs/%s" % (release, source)
 
     try:
         response = requests.get(url=url, headers=headers)
@@ -218,8 +228,11 @@ def drug_data_source(source="drugcentral"):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def drug_target_interactions(ids="EGFR\nESR1\nBRAF", source="drugcentral"):
+def genelist_drug_target(release="2018", ids="EGFR\nESR1\nBRAF", source="drugcentral"):
     """
+    Query drug-target interactions for a gene list from targetome or drugcentral
+
+    :param release: release year for Functional Interactions (FI) data
     :param ids: Gene HGNC seperated by new line
     :param source: drugcentral or targetome
 
@@ -232,7 +245,7 @@ def drug_target_interactions(ids="EGFR\nESR1\nBRAF", source="drugcentral"):
 
     data = ids
 
-    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/drug/queryDrugTargetInteractions/%s" % source
+    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/queryDrugTargetInteractions/%s" % (release, source)
 
     try:
         response = requests.post(url=url, headers=headers, data=data)
@@ -245,13 +258,14 @@ def drug_target_interactions(ids="EGFR\nESR1\nBRAF", source="drugcentral"):
         print("Status code returned a value of %s" % response.status_code)
 
 
-def drug_target_interaction_pe_in_diagram(source="drugcentral", pdId="507988", peId="1220578"):
+def pathway_pe_drug_target(release="2018", source="drugcentral", pdId="507988", peId="1220578", pattern="R-HSA-"):
     """
-    Query drug/target interactions for a PE that is specified by its pdId
+    Query drug/target interactions for a Physical Entity ex a complex within a pathway
 
+    :param release: release year for Functional Interactions (FI) data
     :param source: drugcentral or targetome
-    :param pdId:
-    :param peId:
+    :param pdId: stable Identifier (stID) of a pathway
+    :param peId: stable Identifier (stID) of a PhysicalEntity ex. EGF:Ligand-responsive R-HSA-1220578' within human context
 
     :return: json
     """
@@ -260,9 +274,15 @@ def drug_target_interaction_pe_in_diagram(source="drugcentral", pdId="507988", p
         'accept': 'application/json',
     }
 
+    if pattern in pdId:
+        pdId = pdId.replace(pattern, "")
+
+    if pattern in peId:
+        peId = peId.replace(pattern, "")
+
     ids = "/".join([pdId, peId])
 
-    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/drug/queryInteractionsForPEInDiagram/%s/%s" % (source, ids)
+    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/queryInteractionsForPEInDiagram/%s/%s" % (release, source, ids)
 
     try:
         response = requests.get(url=url, headers=headers)
@@ -275,12 +295,13 @@ def drug_target_interaction_pe_in_diagram(source="drugcentral", pdId="507988", p
         print('Status code returned a value of %s' % response.status_code)
 
 
-def drug_target_interaction_diagram(source="drugcentral", pdId="507988"):
+def pathway_drug_target(release="2018", source="drugcentral", pdId="507988", pattern="R-HSA-"):
     """
-    Query drug/target interactions for a PE by pdId.
+    Query drug-target interactions for a  PhysicalEntity
 
+    :param release: release year for Functional Interactions (FI) data
     :param source: drugcentral or targetome
-    :param pdId:
+    :param pdId: stable Identifier (stID) of a pathway
 
     :return: json
     """
@@ -289,7 +310,10 @@ def drug_target_interaction_diagram(source="drugcentral", pdId="507988"):
         'accept': 'application/json',
     }
 
-    url = "http://cpws.reactome.org/caBigR3WebApp2018/FIService/drug/queryInteractionsForDiagram/%s/%s" % (source, pdId)
+    if pattern in pdId:
+        pdId = pdId.replace(pattern, "")
+
+    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/queryInteractionsForDiagram/%s/%s" % (release, source, pdId)
 
     try:
         response = requests.get(url=url, headers=headers)
