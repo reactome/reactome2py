@@ -48,7 +48,8 @@ def sbgn_stids():
         tar_file = tarfile.open(fileobj=io.BytesIO(response.content))
         file_names = tar_file.getnames()
         ehlds = ehld_stids()
-        sbgns = [f.replace('.sbgn', '') for f in file_names]
+        sbgns = [f.replace('.sbgn', '').replace('./', '') for f in file_names]
+
         sbgn_only = list(set(sbgns) - set(ehlds))
         return sbgn_only
     else:
