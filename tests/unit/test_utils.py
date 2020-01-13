@@ -9,6 +9,13 @@ def test_sbgn_stids():
     assert isinstance(utils.sbgn_stids(), list)
 
 
+def test_sbgn_notin_ehld():
+    sbgn_stIds = utils.sbgn_stids()
+    ehld_stIds = utils.ehld_stids()
+    is_subset = set(sbgn_stIds).intersection(ehld_stIds)
+    assert bool(is_subset) is False
+
+
 def test_gene_mappings():
     assert isinstance(utils.gene_mappings()[0], dict)
 
