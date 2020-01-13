@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-__version__ = '0.0.7'
+__version__ = '0.0.8'
 
 with open("README.md", "r") as f:
     long_description = f.read()
