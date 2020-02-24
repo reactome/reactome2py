@@ -18,11 +18,11 @@ sys.path.insert(0, os.path.abspath('.'))
 # -- Project information -----------------------------------------------------
 
 project = 'reactome2py'
-copyright = '2019, Nasim Sanati'
+copyright = '2020, Nasim Sanati'
 author = 'Nasim Sanati'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.8'
+release = '1.0.0'
 
 
 # -- General configuration ---------------------------------------------------
