@@ -109,7 +109,7 @@ def gene_mappings():
         print('Status code returned a value of %s' % response.status_code)
 
 
-def pathway_fi(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
+def pathway_fi(release="2019", stId="R-HSA-177929", pattern="R-HSA-"):
     """
     Fetch Pathway's Functional Interactions (FI) https://www.ncbi.nlm.nih.gov/pubmed/20482850
 
