@@ -140,7 +140,7 @@ def pathway_fi(release="2019", stId="R-HSA-177929", pattern="R-HSA-"):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def genelist_fi(release="2018", ids="EGF,EGFR"):
+def genelist_fi(release="2019", ids="EGF,EGFR"):
     """
     Fetch Pathway's genelist Functional Interactions (FI) https://www.ncbi.nlm.nih.gov/pubmed/20482850
 
@@ -172,7 +172,7 @@ def genelist_fi(release="2018", ids="EGF,EGFR"):
         print("Status code returned a value of %s" % response.status_code)
 
 
-def pathway_boolean_network(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
+def pathway_boolean_network(release="2019", stId="R-HSA-177929", pattern="R-HSA-"):
     """
     Fetch Pathway as a boolean network
 
@@ -203,7 +203,7 @@ def pathway_boolean_network(release="2018", stId="R-HSA-177929", pattern="R-HSA-
         print('Status code returned a value of %s' % response.status_code)
 
 
-def pathway_factor_graph(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
+def pathway_factor_graph(release="2019", stId="R-HSA-177929", pattern="R-HSA-"):
     """
     Fetch Pathway as a factor graph
 
@@ -234,7 +234,7 @@ def pathway_factor_graph(release="2018", stId="R-HSA-177929", pattern="R-HSA-"):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def drug_data_source(release="2018", source="drugcentral"):
+def drug_data_source(release="2019", source="drugcentral"):
     """
     Query a list of drug-target interactions from targetome or drugcentral
 
@@ -261,7 +261,7 @@ def drug_data_source(release="2018", source="drugcentral"):
         print('Status code returned a value of %s' % response.status_code)
 
 
-def genelist_drug_target(release="2018", ids="EGFR,ESR1,BRAF", source="drugcentral"):
+def genelist_drug_target(release="2019", ids="EGFR,ESR1,BRAF", source="drugcentral"):
     """
     Query drug-target interactions for a gene list from targetome or drugcentral
 
@@ -294,7 +294,7 @@ def genelist_drug_target(release="2018", ids="EGFR,ESR1,BRAF", source="drugcentr
         print("Status code returned a value of %s" % response.status_code)
 
 
-def pathway_pe_drug_target(release="2018", source="drugcentral", pdId="507988", peId="1220578", pattern="R-HSA-"):
+def pathway_pe_drug_target(release="2019", source="drugcentral", pdId="507988", peId="1220578", pattern="R-HSA-"):
     """
     Query drug-target interactions for a Physical Entity ex a complex within a pathway
 
@@ -331,7 +331,7 @@ def pathway_pe_drug_target(release="2018", source="drugcentral", pdId="507988", 
         print('Status code returned a value of %s' % response.status_code)
 
 
-def pathway_drug_target(release="2018", source="drugcentral", pdId="507988", pattern="R-HSA-"):
+def pathway_drug_target(release="2019", source="drugcentral", pdId="507988", pattern="R-HSA-"):
     """
     Query drug-target interactions for a  PhysicalEntity
 
@@ -362,7 +362,7 @@ def pathway_drug_target(release="2018", source="drugcentral", pdId="507988", pat
         print('Status code returned a value of %s' % response.status_code)
 
 
-def drug_targets(release="2018", drug="Gefitinib", source="drugcentral"):
+def drug_targets(release="2019", drug="Gefitinib", source="drugcentral"):
     """
     Query known/available drug-target interactions for a drug
 
