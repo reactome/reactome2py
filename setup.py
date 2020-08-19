@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -22,11 +22,9 @@ setup(
     },
     install_requires=[
         'requests',
+        'pandas>=0.24.2',
+        'json5>=0.8.4',
     ],
-    extras_require={
-        'pandas': ['pandas==0.24.2'],
-        'json': ['json5==0.8.4'],
-    },
     tests_require=['pytest'],
     classifiers=[
         'Programming Language :: Python',
