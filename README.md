@@ -32,7 +32,7 @@ Python client for Reactome content and analysis services API calls.
 
 `demo` folder holds jupyter notebooks to show use-cases
 
-Try it on the fly with google coolab - NOTE: click on folder/file icon to find results generated via jupyter nootbooke. 
+Try it on the fly with google coolab - NOTE: click on folder/file icon to find results generated via jupyter notebook. 
 
 
 * [microbiologist-clinician](https://colab.research.google.com/drive/1yOM9FC_hU2NbaoK_dyuVlNb605MkdFjW?usp=sharing)
