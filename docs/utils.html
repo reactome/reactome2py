@@ -1,17 +1,18 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Utils &#8212; reactome2py 1.0.1 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Utils &#8212; reactome2py 2.0.0 documentation</title>
     <link rel="stylesheet" href="static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
-    <script type="text/javascript" src="static/jquery.js"></script>
-    <script type="text/javascript" src="static/underscore.js"></script>
-    <script type="text/javascript" src="static/doctools.js"></script>
-    <script type="text/javascript" src="static/language_data.js"></script>
+    <script id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
+    <script src="static/jquery.js"></script>
+    <script src="static/underscore.js"></script>
+    <script src="static/doctools.js"></script>
+    <script src="static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Content Service" href="content.html" />
@@ -34,9 +35,9 @@
   <div class="section" id="module-reactome2py.utils">
 <span id="utils"></span><h1>Utils<a class="headerlink" href="#module-reactome2py.utils" title="Permalink to this headline">¶</a></h1>
 <p>Utility functions for Reactome data-fetch, mappings, and overlay networks in human.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.drug_data_source">
-<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">drug_data_source</code><span class="sig-paren">(</span><em class="sig-param">release='2019'</em>, <em class="sig-param">source='drugcentral'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.drug_data_source" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">drug_data_source</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">'2019'</span></em>, <em class="sig-param"><span class="n">source</span><span class="o">=</span><span class="default_value">'drugcentral'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.drug_data_source" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query a list of drug-target interactions from targetome or drugcentral</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -51,9 +52,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.drug_targets">
-<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">drug_targets</code><span class="sig-paren">(</span><em class="sig-param">release='2019'</em>, <em class="sig-param">drug='Gefitinib'</em>, <em class="sig-param">source='drugcentral'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.drug_targets" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">drug_targets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">'2019'</span></em>, <em class="sig-param"><span class="n">drug</span><span class="o">=</span><span class="default_value">'Gefitinib'</span></em>, <em class="sig-param"><span class="n">source</span><span class="o">=</span><span class="default_value">'drugcentral'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.drug_targets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query known/available drug-target interactions for a drug</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -69,7 +70,7 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.ehld_stids">
 <code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">ehld_stids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.ehld_stids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves a list of high-level hierarchy pathway with Enhanced High Level Diagrams (EHLD) <a class="reference external" href="https://reactome.org/icon-info/ehld-specs-guideline">https://reactome.org/icon-info/ehld-specs-guideline</a></p>
@@ -80,7 +81,7 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.gene_mappings">
 <code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">gene_mappings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.gene_mappings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maps reactome pathway stId and name to it's associated gene list (HGNC)</p>
@@ -91,9 +92,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.genelist_drug_target">
-<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">genelist_drug_target</code><span class="sig-paren">(</span><em class="sig-param">release='2019'</em>, <em class="sig-param">ids='EGFR</em>, <em class="sig-param">ESR1</em>, <em class="sig-param">BRAF'</em>, <em class="sig-param">source='drugcentral'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.genelist_drug_target" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">genelist_drug_target</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">'2019'</span></em>, <em class="sig-param"><span class="n">ids</span><span class="o">=</span><span class="default_value">'EGFR,ESR1,BRAF'</span></em>, <em class="sig-param"><span class="n">source</span><span class="o">=</span><span class="default_value">'drugcentral'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.genelist_drug_target" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query drug-target interactions for a gene list from targetome or drugcentral</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -109,9 +110,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.genelist_fi">
-<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">genelist_fi</code><span class="sig-paren">(</span><em class="sig-param">release='2019'</em>, <em class="sig-param">ids='EGF</em>, <em class="sig-param">EGFR'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.genelist_fi" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">genelist_fi</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">'2019'</span></em>, <em class="sig-param"><span class="n">ids</span><span class="o">=</span><span class="default_value">'EGF,EGFR'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.genelist_fi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch Pathway's genelist Functional Interactions (FI) <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/20482850">https://www.ncbi.nlm.nih.gov/pubmed/20482850</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -126,9 +127,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.pathway_boolean_network">
-<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_boolean_network</code><span class="sig-paren">(</span><em class="sig-param">release='2019'</em>, <em class="sig-param">stId='R-HSA-177929'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_boolean_network" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_boolean_network</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">'2019'</span></em>, <em class="sig-param"><span class="n">stId</span><span class="o">=</span><span class="default_value">'R-HSA-177929'</span></em>, <em class="sig-param"><span class="n">pattern</span><span class="o">=</span><span class="default_value">'R-HSA-'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_boolean_network" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch Pathway as a boolean network</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -144,9 +145,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.pathway_drug_target">
-<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_drug_target</code><span class="sig-paren">(</span><em class="sig-param">release='2019'</em>, <em class="sig-param">source='drugcentral'</em>, <em class="sig-param">pdId='507988'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_drug_target" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_drug_target</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">'2019'</span></em>, <em class="sig-param"><span class="n">source</span><span class="o">=</span><span class="default_value">'drugcentral'</span></em>, <em class="sig-param"><span class="n">pdId</span><span class="o">=</span><span class="default_value">'507988'</span></em>, <em class="sig-param"><span class="n">pattern</span><span class="o">=</span><span class="default_value">'R-HSA-'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_drug_target" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query drug-target interactions for a  PhysicalEntity</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -162,9 +163,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.pathway_factor_graph">
-<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_factor_graph</code><span class="sig-paren">(</span><em class="sig-param">release='2019'</em>, <em class="sig-param">stId='R-HSA-177929'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_factor_graph" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_factor_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">'2019'</span></em>, <em class="sig-param"><span class="n">stId</span><span class="o">=</span><span class="default_value">'R-HSA-177929'</span></em>, <em class="sig-param"><span class="n">pattern</span><span class="o">=</span><span class="default_value">'R-HSA-'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_factor_graph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch Pathway as a factor graph</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -180,9 +181,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.pathway_fi">
-<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_fi</code><span class="sig-paren">(</span><em class="sig-param">release='2019'</em>, <em class="sig-param">stId='R-HSA-177929'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_fi" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_fi</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">'2019'</span></em>, <em class="sig-param"><span class="n">stId</span><span class="o">=</span><span class="default_value">'R-HSA-177929'</span></em>, <em class="sig-param"><span class="n">pattern</span><span class="o">=</span><span class="default_value">'R-HSA-'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_fi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch Pathway's Functional Interactions (FI) <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/20482850">https://www.ncbi.nlm.nih.gov/pubmed/20482850</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -198,9 +199,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.pathway_pe_drug_target">
-<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_pe_drug_target</code><span class="sig-paren">(</span><em class="sig-param">release='2019'</em>, <em class="sig-param">source='drugcentral'</em>, <em class="sig-param">pdId='507988'</em>, <em class="sig-param">peId='1220578'</em>, <em class="sig-param">pattern='R-HSA-'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_pe_drug_target" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">pathway_pe_drug_target</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">'2019'</span></em>, <em class="sig-param"><span class="n">source</span><span class="o">=</span><span class="default_value">'drugcentral'</span></em>, <em class="sig-param"><span class="n">pdId</span><span class="o">=</span><span class="default_value">'507988'</span></em>, <em class="sig-param"><span class="n">peId</span><span class="o">=</span><span class="default_value">'1220578'</span></em>, <em class="sig-param"><span class="n">pattern</span><span class="o">=</span><span class="default_value">'R-HSA-'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.pathway_pe_drug_target" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query drug-target interactions for a Physical Entity ex a complex within a pathway</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -217,7 +218,7 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.utils.sbgn_stids">
 <code class="sig-prename descclassname">reactome2py.utils.</code><code class="sig-name descname">sbgn_stids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.utils.sbgn_stids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retieves a list of lower-level (with hierarchy) pathways that have SBGNs <a class="reference external" href="https://reactome.org/about/news/110-sbgn-files-revamp">https://reactome.org/about/news/110-sbgn-files-revamp</a></p>
@@ -271,7 +272,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -288,7 +289,7 @@
       &copy;2020, Nasim Sanati.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
