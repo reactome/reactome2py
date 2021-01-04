@@ -1,17 +1,18 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Content Service &#8212; reactome2py 1.0.1 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Service &#8212; reactome2py 2.0.0 documentation</title>
     <link rel="stylesheet" href="static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
-    <script type="text/javascript" src="static/jquery.js"></script>
-    <script type="text/javascript" src="static/underscore.js"></script>
-    <script type="text/javascript" src="static/doctools.js"></script>
-    <script type="text/javascript" src="static/language_data.js"></script>
+    <script id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
+    <script src="static/jquery.js"></script>
+    <script src="static/underscore.js"></script>
+    <script src="static/doctools.js"></script>
+    <script src="static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Utils" href="utils.html" />
@@ -37,9 +38,9 @@
 <p>Content Service for Reactome knowledgebase.
 API calls are avaialble &#64; <a class="reference external" href="https://reactome.org/ContentService/#/">https://reactome.org/ContentService/#/</a></p>
 <p>Data model key classes for id query are available &#64; <a class="reference external" href="https://reactome.org/documentation/data-model">https://reactome.org/documentation/data-model</a></p>
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.discover">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">discover</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-446203'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.discover" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">discover</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-446203'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.discover" title="Permalink to this definition">¶</a></dt>
 <dd><p>For each event (reaction or pathway) this method generates a json representing the dataset object as defined
 by schema.org (http). This is mainly used by search engines in order to index the data</p>
 <dl class="field-list simple">
@@ -52,9 +53,9 @@ by schema.org (http). This is mainly used by search engines in order to index th
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.disease">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">disease</code><span class="sig-paren">(</span><em class="sig-param">doid=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.disease" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">disease</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doid</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.disease" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query list of diseases</p>
 <ol class="arabic simple">
 <li><dl class="simple">
@@ -82,9 +83,9 @@ by schema.org (http). This is mainly used by search engines in order to index th
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.entities_complex">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entities_complex</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-5674003'</em>, <em class="sig-param">exclude_structures=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entities_complex" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entities_complex</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-5674003'</span></em>, <em class="sig-param"><span class="n">exclude_structures</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entities_complex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the list of subunits that constitute any given complex.
 In case the complex comprises other complexes, this method recursively traverses the content returning each
 contained PhysicalEntity. Contained complexes and entity sets can be excluded setting the ‘exclude_structures’
@@ -102,9 +103,9 @@ optional parameter to ‘true’</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.entities_complexes">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entities_complexes</code><span class="sig-paren">(</span><em class="sig-param">id='P00533'</em>, <em class="sig-param">resource='UniProt'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entities_complexes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entities_complexes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'P00533'</span></em>, <em class="sig-param"><span class="n">resource</span><span class="o">=</span><span class="default_value">'UniProt'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entities_complexes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the list of complexes that contain a given (identifier, resource). The method deconstructs the complexes
 into all its participants to do so.</p>
 <dl class="field-list simple">
@@ -120,9 +121,9 @@ into all its participants to do so.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.entity_other_form">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entity_other_form</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-199420'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entity_other_form" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entity_other_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-199420'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entity_other_form" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves a list containing all other forms of the given PhysicalEntity.
 These other forms are PhysicalEntities that share the same ReferenceEntity identifier,
 ex. PTEN H93R[R-HSA-2318524] and PTEN C124R[R-HSA-2317439] are two forms of PTEN.</p>
@@ -136,9 +137,9 @@ ex. PTEN H93R[R-HSA-2318524] and PTEN C124R[R-HSA-2317439] are two forms of PTEN
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.entity_structures">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entity_structures</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-199420'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entity_structures" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">entity_structures</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-199420'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.entity_structures" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the list of structures (Complexes and Sets) that include the given entity as their component.
 It should be mentioned that the list includes only simplified entries (type, names, ids) and not full information
 about each item.</p>
@@ -152,9 +153,9 @@ about each item.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.event_ancestors">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">event_ancestors</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-5673001'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.event_ancestors" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">event_ancestors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-5673001'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.event_ancestors" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Reactome definition of events includes pathways and reactions.
 Although events are organised in a hierarchical structure, a single event can be in more than one location,
 i.e. a reaction can take part in different pathways while, in the same way, a sub-pathway can take part
@@ -170,9 +171,9 @@ top level pathway(s).</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.event_species">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">event_species</code><span class="sig-paren">(</span><em class="sig-param">species='9606'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.event_species" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">event_species</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'9606'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.event_species" title="Permalink to this definition">¶</a></dt>
 <dd><p>Events (pathways and reactions) in Reactome are organised in a hierarchical structure for every species.
 By following all ‘hasEvent’ relationships, this method retrieves the full event hierarchy for any given species.
 The result is a list of tree structures, one for each TopLevelPathway. Every event in these trees is represented
@@ -188,9 +189,9 @@ the diagram of the particular event.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.export_diagram">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_diagram</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-177929'</em>, <em class="sig-param">ext='png'</em>, <em class="sig-param">quality='5'</em>, <em class="sig-param">flag_interactors=False</em>, <em class="sig-param">title=True</em>, <em class="sig-param">margin='15'</em>, <em class="sig-param">ehld=True</em>, <em class="sig-param">diagram_profile='Modern'</em>, <em class="sig-param">resource='Total'</em>, <em class="sig-param">analysis_profile='Standard'</em>, <em class="sig-param">token=None</em>, <em class="sig-param">flag=None</em>, <em class="sig-param">sel=[]</em>, <em class="sig-param">exp_column=None</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_diagram" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_diagram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-177929'</span></em>, <em class="sig-param"><span class="n">ext</span><span class="o">=</span><span class="default_value">'png'</span></em>, <em class="sig-param"><span class="n">quality</span><span class="o">=</span><span class="default_value">'5'</span></em>, <em class="sig-param"><span class="n">flag_interactors</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">margin</span><span class="o">=</span><span class="default_value">'15'</span></em>, <em class="sig-param"><span class="n">ehld</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">diagram_profile</span><span class="o">=</span><span class="default_value">'Modern'</span></em>, <em class="sig-param"><span class="n">resource</span><span class="o">=</span><span class="default_value">'Total'</span></em>, <em class="sig-param"><span class="n">analysis_profile</span><span class="o">=</span><span class="default_value">'Standard'</span></em>, <em class="sig-param"><span class="n">token</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">flag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">exp_column</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">'report'</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_diagram" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>This method accepts identifiers for Event class instances.</dt><dd><ul class="simple">
 <li><p>When a diagrammed pathway is provided, the diagram is exported to the specified format.</p></li>
@@ -226,9 +227,9 @@ the diagram of the particular event.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.export_document">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_document</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-177929'</em>, <em class="sig-param">level='1'</em>, <em class="sig-param">diagram_profile='Modern'</em>, <em class="sig-param">resource='Total'</em>, <em class="sig-param">analysis_profile='Standard'</em>, <em class="sig-param">token=None</em>, <em class="sig-param">exp_column=None</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_document" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-177929'</span></em>, <em class="sig-param"><span class="n">level</span><span class="o">=</span><span class="default_value">'1'</span></em>, <em class="sig-param"><span class="n">diagram_profile</span><span class="o">=</span><span class="default_value">'Modern'</span></em>, <em class="sig-param"><span class="n">resource</span><span class="o">=</span><span class="default_value">'Total'</span></em>, <em class="sig-param"><span class="n">analysis_profile</span><span class="o">=</span><span class="default_value">'Standard'</span></em>, <em class="sig-param"><span class="n">token</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exp_column</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">'report'</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method accepts identifiers for Event class instances.
 The generated document contains the details for the given event and, optionally, its children (see level parameter).</p>
 <dl class="simple">
@@ -262,9 +263,9 @@ The generated document contains the details for the given event and, optionally,
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.export_event">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_event</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-177929'</em>, <em class="sig-param">format='sbgn'</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_event" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-177929'</span></em>, <em class="sig-param"><span class="n">format</span><span class="o">=</span><span class="default_value">'sbgn'</span></em>, <em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">'report'</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_event" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Exports a given pathway or reaction to the format requested:</dt><dd><ul class="simple">
 <li><p>Systems Biology Graphical Notation (SBGN)</p></li>
@@ -287,9 +288,9 @@ The generated document contains the details for the given event and, optionally,
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.export_fireworks">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_fireworks</code><span class="sig-paren">(</span><em class="sig-param">species='9606'</em>, <em class="sig-param">ext='png'</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em>, <em class="sig-param">quality='5'</em>, <em class="sig-param">flag=None</em>, <em class="sig-param">flag_interactors=False</em>, <em class="sig-param">sel=[]</em>, <em class="sig-param">title=True</em>, <em class="sig-param">margin='15'</em>, <em class="sig-param">resource='Total'</em>, <em class="sig-param">diagram_profile=''</em>, <em class="sig-param">coverage=False</em>, <em class="sig-param">token=None</em>, <em class="sig-param">exp_column=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_fireworks" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_fireworks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'9606'</span></em>, <em class="sig-param"><span class="n">ext</span><span class="o">=</span><span class="default_value">'png'</span></em>, <em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">'report'</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">quality</span><span class="o">=</span><span class="default_value">'5'</span></em>, <em class="sig-param"><span class="n">flag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">flag_interactors</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">sel</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">margin</span><span class="o">=</span><span class="default_value">'15'</span></em>, <em class="sig-param"><span class="n">resource</span><span class="o">=</span><span class="default_value">'Total'</span></em>, <em class="sig-param"><span class="n">diagram_profile</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">coverage</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">token</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exp_column</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_fireworks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exports a given pathway overview to the specified image format (png, jpg, jpeg, svg, gif)
 <a class="reference external" href="https://reactome.org/dev/pathways-overview/js">https://reactome.org/dev/pathways-overview/js</a></p>
 <dl class="field-list simple">
@@ -318,9 +319,9 @@ The generated document contains the details for the given event and, optionally,
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.export_reaction">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_reaction</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-6787403'</em>, <em class="sig-param">ext='png'</em>, <em class="sig-param">file='report'</em>, <em class="sig-param">path=''</em>, <em class="sig-param">quality='5'</em>, <em class="sig-param">flag=None</em>, <em class="sig-param">flag_interactors=False</em>, <em class="sig-param">sel=[]</em>, <em class="sig-param">title=True</em>, <em class="sig-param">margin='15'</em>, <em class="sig-param">resource='Total'</em>, <em class="sig-param">diagram_profile=''</em>, <em class="sig-param">coverage=False</em>, <em class="sig-param">token=None</em>, <em class="sig-param">exp_column=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_reaction" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">export_reaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-6787403'</span></em>, <em class="sig-param"><span class="n">ext</span><span class="o">=</span><span class="default_value">'png'</span></em>, <em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">'report'</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">quality</span><span class="o">=</span><span class="default_value">'5'</span></em>, <em class="sig-param"><span class="n">flag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">flag_interactors</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">sel</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">margin</span><span class="o">=</span><span class="default_value">'15'</span></em>, <em class="sig-param"><span class="n">resource</span><span class="o">=</span><span class="default_value">'Total'</span></em>, <em class="sig-param"><span class="n">diagram_profile</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">coverage</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">token</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exp_column</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.export_reaction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exports a given reaction to the specified image format (png, jpg, jpeg, svg, gif)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -348,9 +349,9 @@ The generated document contains the details for the given event and, optionally,
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_acc_pathways">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_acc_pathways</code><span class="sig-paren">(</span><em class="sig-param">acc='Q9BXM7-1'</em>, <em class="sig-param">species='Homo sapiens'</em>, <em class="sig-param">only_diagrammed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_acc_pathways" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_acc_pathways</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">acc</span><span class="o">=</span><span class="default_value">'Q9BXM7-1'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'Homo sapiens'</span></em>, <em class="sig-param"><span class="n">only_diagrammed</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_acc_pathways" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve a list of lower level pathways where the interacting molecules can be found</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -366,9 +367,9 @@ The generated document contains the details for the given event and, optionally,
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_form">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_form</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_form" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_form" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse file and retrieve a summary associated with a token</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -383,9 +384,9 @@ The generated document contains the details for the given event and, optionally,
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_psicquic_acc">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_psicquic_acc</code><span class="sig-paren">(</span><em class="sig-param">resource='MINT'</em>, <em class="sig-param">acc='Q13501'</em>, <em class="sig-param">by='details'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_psicquic_acc" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_psicquic_acc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">resource</span><span class="o">=</span><span class="default_value">'MINT'</span></em>, <em class="sig-param"><span class="n">acc</span><span class="o">=</span><span class="default_value">'Q13501'</span></em>, <em class="sig-param"><span class="n">by</span><span class="o">=</span><span class="default_value">'details'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_psicquic_acc" title="Permalink to this definition">¶</a></dt>
 <dd><ol class="arabic simple">
 <li><dl class="simple">
 <dt>if by details</dt><dd><ul class="simple">
@@ -417,9 +418,9 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_psicquic_accs">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_psicquic_accs</code><span class="sig-paren">(</span><em class="sig-param">proteins='EGFR'</em>, <em class="sig-param">resource='MINT'</em>, <em class="sig-param">by='details'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_psicquic_accs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_psicquic_accs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proteins</span><span class="o">=</span><span class="default_value">'EGFR'</span></em>, <em class="sig-param"><span class="n">resource</span><span class="o">=</span><span class="default_value">'MINT'</span></em>, <em class="sig-param"><span class="n">by</span><span class="o">=</span><span class="default_value">'details'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_psicquic_accs" title="Permalink to this definition">¶</a></dt>
 <dd><ol class="arabic simple">
 <li><dl class="simple">
 <dt>if by details</dt><dd><ul class="simple">
@@ -450,7 +451,7 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_psicquic_resources">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_psicquic_resources</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_psicquic_resources" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve a list of all Psicquic Registries services</p>
@@ -461,9 +462,9 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_psicquic_url">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_psicquic_url</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">psicquic_url</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_psicquic_url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_psicquic_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">psicquic_url</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_psicquic_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Registry custom PSICQUIC resource</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -478,9 +479,9 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_static_acc">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_static_acc</code><span class="sig-paren">(</span><em class="sig-param">acc='Q13501'</em>, <em class="sig-param">page='-1'</em>, <em class="sig-param">page_size='-1'</em>, <em class="sig-param">by='details'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_static_acc" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_static_acc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">acc</span><span class="o">=</span><span class="default_value">'Q13501'</span></em>, <em class="sig-param"><span class="n">page</span><span class="o">=</span><span class="default_value">'-1'</span></em>, <em class="sig-param"><span class="n">page_size</span><span class="o">=</span><span class="default_value">'-1'</span></em>, <em class="sig-param"><span class="n">by</span><span class="o">=</span><span class="default_value">'details'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_static_acc" title="Permalink to this definition">¶</a></dt>
 <dd><ol class="arabic simple">
 <li><dl class="simple">
 <dt>if by details:</dt><dd><ul class="simple">
@@ -512,9 +513,9 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_static_accs">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_static_accs</code><span class="sig-paren">(</span><em class="sig-param">accs='Q9BXM7-1'</em>, <em class="sig-param">by='details'</em>, <em class="sig-param">page='-1'</em>, <em class="sig-param">page_size='-1'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_static_accs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_static_accs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">accs</span><span class="o">=</span><span class="default_value">'Q9BXM7-1'</span></em>, <em class="sig-param"><span class="n">by</span><span class="o">=</span><span class="default_value">'details'</span></em>, <em class="sig-param"><span class="n">page</span><span class="o">=</span><span class="default_value">'-1'</span></em>, <em class="sig-param"><span class="n">page_size</span><span class="o">=</span><span class="default_value">'-1'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_static_accs" title="Permalink to this definition">¶</a></dt>
 <dd><ol class="arabic simple">
 <li><dl class="simple">
 <dt>if by details:</dt><dd><ul class="simple">
@@ -546,9 +547,9 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_upload_content">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_upload_content</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">content</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_upload_content" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_upload_content</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_upload_content" title="Permalink to this definition">¶</a></dt>
 <dd><p>Paste file content and get a summary associated with a token</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -563,9 +564,9 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.interactors_url">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_url</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">interactors_url</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">interactors_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">interactors_url</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.interactors_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send file via URL and get a summary associated with a token</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -580,9 +581,9 @@ use interactors_psicquic_resources to retrive all active resources</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.mapping">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">mapping</code><span class="sig-paren">(</span><em class="sig-param">id='PTEN'</em>, <em class="sig-param">resource='UniProt'</em>, <em class="sig-param">species='9606'</em>, <em class="sig-param">by='pathways'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.mapping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'PTEN'</span></em>, <em class="sig-param"><span class="n">resource</span><span class="o">=</span><span class="default_value">'UniProt'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'9606'</span></em>, <em class="sig-param"><span class="n">by</span><span class="o">=</span><span class="default_value">'pathways'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.mapping" title="Permalink to this definition">¶</a></dt>
 <dd><ol class="arabic simple">
 <li><dl class="simple">
 <dt>by pathways:</dt><dd><p>Entities play different roles in reactions, and reactions are events that conform a pathway. This method retrieves
@@ -614,9 +615,9 @@ Important Note - when identifier points to chemical, this becomes mandatory and 
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.orthology">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">orthology</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-6799198'</em>, <em class="sig-param">species='49633'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.orthology" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">orthology</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-6799198'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'49633'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.orthology" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reactome uses the set of manually curated human reactions to computationally infer reactions in
 twenty evolutionarily divergent eukaryotic species for which high-quality whole-genome sequence data
 are available, and hence a comprehensive and high-quality set of protein predictions exists.
@@ -634,9 +635,9 @@ Thus, this method retrieves the orthology for any given event or entity in the s
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.orthology_events">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">orthology_events</code><span class="sig-paren">(</span><em class="sig-param">ids='R-HSA-6799198</em>, <em class="sig-param">R-HSA-168256</em>, <em class="sig-param">R-HSA-168249'</em>, <em class="sig-param">species='49633'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.orthology_events" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">orthology_events</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ids</span><span class="o">=</span><span class="default_value">'R-HSA-6799198,R-HSA-168256,R-HSA-168249'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'49633'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.orthology_events" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reactome uses the set of manually curated human reactions to computationally infer reactions in
 twenty evolutionarily divergent eukaryotic species for which high-quality whole-genome sequence
 data are available, and hence a comprehensive and high-quality set of protein predictions exists.
@@ -654,9 +655,9 @@ Thus, this method retrieves the orthologies for any given set of events or entit
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.participants">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">participants</code><span class="sig-paren">(</span><em class="sig-param">id='5205685'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.participants" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">participants</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'5205685'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.participants" title="Permalink to this definition">¶</a></dt>
 <dd><p>Participants contains a PhysicalEntity (dbId, displayName) and a collection of ReferenceEntities (dbId, name, identifier, url)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -668,9 +669,9 @@ Thus, this method retrieves the orthologies for any given set of events or entit
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.participants_physical_entities">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">participants_physical_entities</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-5205685'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.participants_physical_entities" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">participants_physical_entities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-5205685'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.participants_physical_entities" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method retrieves all the PhysicalEntities that take part in a given event. It is worth mentioning that
 because a pathway can contain smaller pathways (subpathways), the method also recursively retrieves the
 PhysicalEntities from every constituent</p>
@@ -684,9 +685,9 @@ PhysicalEntities from every constituent</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.participants_reference_entities">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">participants_reference_entities</code><span class="sig-paren">(</span><em class="sig-param">id='5205685'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.participants_reference_entities" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">participants_reference_entities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'5205685'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.participants_reference_entities" title="Permalink to this definition">¶</a></dt>
 <dd><p>PhysicalEntity instances that represent, e.g., the same chemical in different compartments, or different
 post-translationally modified forms of a single protein, share numerous invariant features such as names,
 molecular structure and links to external databases like UniProt or ChEBI. To enable storage of this shared
@@ -706,9 +707,9 @@ ReferenceEntities for all PhysicalEntities in every constituent pathway.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.pathway_contained_event">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathway_contained_event</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-5673001'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathway_contained_event" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathway_contained_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-5673001'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathway_contained_event" title="Permalink to this definition">¶</a></dt>
 <dd><p>Events are the building blocks used in Reactome to represent all biological processes,
 and they include pathways and reactions. Typically, an event can contain other events. For example,
 a pathway can contain smaller pathways and reactions. This method recursively retrieves all the events
@@ -723,9 +724,9 @@ contained in any given event.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.pathway_contained_event_atttibute">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathway_contained_event_atttibute</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-5673001'</em>, <em class="sig-param">attribute='stId'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathway_contained_event_atttibute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathway_contained_event_atttibute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-5673001'</span></em>, <em class="sig-param"><span class="n">attribute</span><span class="o">=</span><span class="default_value">'stId'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathway_contained_event_atttibute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Events are the building blocks used in Reactome to represent all biological processes, and they
 include pathways and reactions. Typically, an event can contain other events. For example, a pathway
 can contain smaller pathways (subpathways) and reactions. This method recursively retrieves a single attribute for
@@ -743,9 +744,9 @@ each of the events contained in the given event.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.pathways_low_diagram">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathways_low_diagram</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-199420'</em>, <em class="sig-param">species=None</em>, <em class="sig-param">all_forms=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathways_low_diagram" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathways_low_diagram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-199420'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">all_forms</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathways_low_diagram" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method traverses the event hierarchy and retrieves the list of all lower level pathways that have a
 diagram and contain the given PhysicalEntity or Event.</p>
 <ul class="simple">
@@ -765,9 +766,9 @@ diagram and contain the given PhysicalEntity or Event.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.pathways_low_entity">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathways_low_entity</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-199420'</em>, <em class="sig-param">species=None</em>, <em class="sig-param">all_forms=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathways_low_entity" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathways_low_entity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-199420'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">all_forms</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathways_low_entity" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method traverses the event hierarchy and retrieves the list of all lower level pathways that contain
 the given PhysicalEntity or Event.</p>
 <ul class="simple">
@@ -787,9 +788,9 @@ the given PhysicalEntity or Event.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.pathways_top_level">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathways_top_level</code><span class="sig-paren">(</span><em class="sig-param">species='9606'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathways_top_level" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">pathways_top_level</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'9606'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.pathways_top_level" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method retrieves the list of top level pathways for the given species</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -801,9 +802,9 @@ the given PhysicalEntity or Event.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.person_id">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">person_id</code><span class="sig-paren">(</span><em class="sig-param">id='0000-0001-5807-0069'</em>, <em class="sig-param">by=None</em>, <em class="sig-param">attribute=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.person_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">person_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'0000-0001-5807-0069'</span></em>, <em class="sig-param"><span class="n">by</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attribute</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.person_id" title="Permalink to this definition">¶</a></dt>
 <dd><ol class="arabic simple">
 <li><dl class="simple">
 <dt>With only id parameter declared,</dt><dd><ul class="simple">
@@ -842,9 +843,9 @@ the given PhysicalEntity or Event.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.person_name">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">person_name</code><span class="sig-paren">(</span><em class="sig-param">name='Steve Jupe'</em>, <em class="sig-param">exact=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.person_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">person_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'Steve Jupe'</span></em>, <em class="sig-param"><span class="n">exact</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.person_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves a list of people in Reactome with either their first or last name partly matching the given name (string).</p>
 <ul class="simple">
 <li><p>If exact is set to true, retrieves a list of people in Reactome with either their first or last name matching exactly the given name (string).</p></li>
@@ -862,9 +863,9 @@ the given PhysicalEntity or Event.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.query_id">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">query_id</code><span class="sig-paren">(</span><em class="sig-param">id='R-HSA-60140'</em>, <em class="sig-param">enhanced=False</em>, <em class="sig-param">attribute=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.query_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">query_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'R-HSA-60140'</span></em>, <em class="sig-param"><span class="n">enhanced</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">attribute</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.query_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method queries for an entry in Reactome knowledgebase based on the given identifier, i.e. stable id or
 database id. It is worth mentioning that the retrieved database object has all its properties and direct
 relationships (relationships of depth 1) filled.</p>
@@ -886,9 +887,9 @@ relationships (relationships of depth 1) filled.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.query_ids">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">query_ids</code><span class="sig-paren">(</span><em class="sig-param">ids='R-HSA-60140'</em>, <em class="sig-param">mapping=False</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.query_ids" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">query_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ids</span><span class="o">=</span><span class="default_value">'R-HSA-60140'</span></em>, <em class="sig-param"><span class="n">mapping</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.query_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method queries for a set of entries in Reactome knowledgebase based on the given list of identifiers.
 The provided list of identifiers can include stable ids, database ids or a mixture of both. It should be
 underlined that any duplicated ids are eliminated while only requests containing up to 20 ids are processed.</p>
@@ -908,9 +909,9 @@ underlined that any duplicated ids are eliminated while only requests containing
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.references">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">references</code><span class="sig-paren">(</span><em class="sig-param">id='15377'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.references" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">references</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">'15377'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.references" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves a list containing all the reference entities for a given identifier.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -922,9 +923,9 @@ underlined that any duplicated ids are eliminated while only requests containing
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.schema">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">schema</code><span class="sig-paren">(</span><em class="sig-param">name='Pathway'</em>, <em class="sig-param">by='count'</em>, <em class="sig-param">species='9606'</em>, <em class="sig-param">page='-1'</em>, <em class="sig-param">offset='20000'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.schema" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">schema</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'Pathway'</span></em>, <em class="sig-param"><span class="n">by</span><span class="o">=</span><span class="default_value">'count'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'9606'</span></em>, <em class="sig-param"><span class="n">page</span><span class="o">=</span><span class="default_value">'-1'</span></em>, <em class="sig-param"><span class="n">offset</span><span class="o">=</span><span class="default_value">'20000'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.schema" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method retrieves the list of entries in Reactome that belong to the specified schema class.
 Please take into account that if species is specified to filter the results, schema class needs to be an
 instance of Event or PhysicalEntity. Additionally, paging is required, while a maximum of 25 entries can be
@@ -968,9 +969,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_diagram">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_diagram</code><span class="sig-paren">(</span><em class="sig-param">diagram='R-HSA-8848021'</em>, <em class="sig-param">query='MAD'</em>, <em class="sig-param">types=[]</em>, <em class="sig-param">start=None</em>, <em class="sig-param">rows=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_diagram" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_diagram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">diagram</span><span class="o">=</span><span class="default_value">'R-HSA-8848021'</span></em>, <em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">'MAD'</span></em>, <em class="sig-param"><span class="n">types</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rows</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_diagram" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs a Apache Solr query (diagram widget scoped) for a given QueryObject</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -988,9 +989,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_diagram_instance">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_diagram_instance</code><span class="sig-paren">(</span><em class="sig-param">diagram='R-HSA-68886'</em>, <em class="sig-param">instance='R-HSA-141433'</em>, <em class="sig-param">types=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_diagram_instance" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_diagram_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">diagram</span><span class="o">=</span><span class="default_value">'R-HSA-68886'</span></em>, <em class="sig-param"><span class="n">instance</span><span class="o">=</span><span class="default_value">'R-HSA-141433'</span></em>, <em class="sig-param"><span class="n">types</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_diagram_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs a Apache Solr query (diagram widget scoped) for a given QueryObject</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1006,9 +1007,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_diagram_pathway_flag">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_diagram_pathway_flag</code><span class="sig-paren">(</span><em class="sig-param">diagram='R-HSA-446203'</em>, <em class="sig-param">query='CTSA'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_diagram_pathway_flag" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_diagram_pathway_flag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">diagram</span><span class="o">=</span><span class="default_value">'R-HSA-446203'</span></em>, <em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">'CTSA'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_diagram_pathway_flag" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method traverses the content and checks not only for the main identifier but also for all the cross-references to find the flag targets</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1023,7 +1024,7 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_facet">
 <code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_facet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_facet" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method retrieves faceting information on the whole Reactome search data.</p>
@@ -1034,9 +1035,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_facet_query">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_facet_query</code><span class="sig-paren">(</span><em class="sig-param">query='TP53'</em>, <em class="sig-param">species=[]</em>, <em class="sig-param">types=[]</em>, <em class="sig-param">compartments=[]</em>, <em class="sig-param">keywords=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_facet_query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_facet_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">'TP53'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">types</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">compartments</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">keywords</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_facet_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method retrieves faceting information on a specific query</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1054,9 +1055,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_fireworks">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_fireworks</code><span class="sig-paren">(</span><em class="sig-param">query='BRAF'</em>, <em class="sig-param">species='Homo sapiens'</em>, <em class="sig-param">types=[]</em>, <em class="sig-param">start=None</em>, <em class="sig-param">rows=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_fireworks" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_fireworks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">'BRAF'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'Homo sapiens'</span></em>, <em class="sig-param"><span class="n">types</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rows</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_fireworks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs a Apache Solr query (fireworks widget scoped) for a given QueryObject</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1074,9 +1075,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_fireworks_flag">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_fireworks_flag</code><span class="sig-paren">(</span><em class="sig-param">query='KNTC1'</em>, <em class="sig-param">species='Homo sapiens'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_fireworks_flag" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_fireworks_flag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">'KNTC1'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">'Homo sapiens'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_fireworks_flag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs a Apache Solr query (fireworks widget scoped) for a given QueryObject</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1091,9 +1092,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_query">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_query</code><span class="sig-paren">(</span><em class="sig-param">query='Biological oxidations'</em>, <em class="sig-param">species=[]</em>, <em class="sig-param">types=[]</em>, <em class="sig-param">compartments=[]</em>, <em class="sig-param">keywords=[]</em>, <em class="sig-param">cluster=True</em>, <em class="sig-param">start=None</em>, <em class="sig-param">rows=None</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">'Biological oxidations'</span></em>, <em class="sig-param"><span class="n">species</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">types</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">compartments</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">keywords</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">cluster</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rows</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method performs a Solr query on the Reactome knowledgebase. Results can be provided in a paginated format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1114,9 +1115,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_spellcheck">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_spellcheck</code><span class="sig-paren">(</span><em class="sig-param">query='repoduction'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_spellcheck" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_spellcheck</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">'repoduction'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_spellcheck" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method retrieves a list of spell-check suggestions for a given search term.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1128,9 +1129,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.search_suggest">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_suggest</code><span class="sig-paren">(</span><em class="sig-param">query='platele'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_suggest" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">search_suggest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">'platele'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.search_suggest" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method retrieves a list of suggestions for a given search term.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1142,9 +1143,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.species">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">species</code><span class="sig-paren">(</span><em class="sig-param">by='all'</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.species" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">species</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">by</span><span class="o">=</span><span class="default_value">'all'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.species" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Query species by:</dt><dd><ul class="simple">
 <li><p>all, returns list of all species in Reactome</p></li>
@@ -1162,9 +1163,9 @@ returned per request.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="reactome2py.content.token_interactors">
-<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">token_interactors</code><span class="sig-paren">(</span><em class="sig-param">token</em>, <em class="sig-param">proteins</em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.token_interactors" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">reactome2py.content.</code><code class="sig-name descname">token_interactors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token</span></em>, <em class="sig-param"><span class="n">proteins</span></em><span class="sig-paren">)</span><a class="headerlink" href="#reactome2py.content.token_interactors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve custom interactions associated with a token</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1223,7 +1224,7 @@ returned per request.</p>
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -1240,7 +1241,7 @@ returned per request.</p>
       &copy;2020, Nasim Sanati.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
