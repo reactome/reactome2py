@@ -1,5 +1,6 @@
 """
-Utility functions for Reactome data-fetch, mappings, and overlay networks in human.
+ Human functional protein interactions (FI) services api calls
+ and utility functions for Reactome data-fetch, mappings, and overlay networks in human.
 """
 from requests.exceptions import ConnectionError
 import requests
