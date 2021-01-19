@@ -46,6 +46,10 @@ Try it on the fly with google coolab - NOTE: click on folder/file icon to find r
 - Pathway Analysis Service: https://reactome.org/AnalysisService/#/
 - Content Service: https://reactome.org/ContentService/#/
 
+#### Reactome EBI Training Course 
+
+https://www.ebi.ac.uk/training-beta/online/courses/reactome-tools-for-analysing-biological-pathways/
+
 #### Reactome Pathway Browser Tour 
 
 This video is useful in understanding how to fully use and interpret Reactome pathway browser features.  
