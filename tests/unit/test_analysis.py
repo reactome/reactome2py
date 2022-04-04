@@ -24,19 +24,19 @@ def test_result2json():
 def test_pathway2df():
     token = pytest.global_variable_token
     df = analysis.pathway2df(token)
-    assert type(df) == pandas.core.frame.DataFrame
+    assert type(df) == pandas.DataFrame
 
 
 def test_found_entities():
     token = pytest.global_variable_token
     df = analysis.found_entities(token)
-    assert type(df) == pandas.core.frame.DataFrame
+    assert type(df) == pandas.DataFrame
 
 
 def test_unfound_entities():
     token = pytest.global_variable_token
     df = analysis.unfound_entities(token)
-    assert type(df) == pandas.core.frame.DataFrame
+    assert type(df) == pandas.DataFrame
 
 
 def test_db_name():

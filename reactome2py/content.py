@@ -3,11 +3,11 @@ Content Service for Reactome knowledgebase.
 API calls are avaialble @ https://reactome.org/ContentService/#/   \n
 Data model key classes for id query are available @ https://reactome.org/documentation/data-model
 """
-from requests.exceptions import ConnectionError
-import requests
+from typing import *
 
+from . import util
 
-NumberTypes = (int, float, complex)
+_SERVICE = "https://reactome.org/ContentService/"
 
 
 def discover(id='R-HSA-446203'):
@@ -18,22 +18,7 @@ def discover(id='R-HSA-446203'):
     :param id: An event identifier ex. pathway stable identifier (stId) of pathway
     :return: Json dictionary object of The schema.org for an Event in Reactome knowledgebase
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/discover/%s' % id
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/discover/{id}')
 
 
 def disease(doid=False):
@@ -49,25 +34,7 @@ def disease(doid=False):
     :param doid: Boolean param, if set to true - function returns a list of disease DOID
     :return: Json list object of diseases or disease DOID(s)
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if doid:
-        url = 'https://reactome.org/ContentService/data/diseases/doid'
-    else:
-        url = 'https://reactome.org/ContentService/data/diseases'
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/diseases/{"doid" if doid else ""}')
 
 
 def entities_complex(id='R-HSA-5674003', exclude_structures=False):
@@ -82,30 +49,7 @@ def entities_complex(id='R-HSA-5674003', exclude_structures=False):
     :return: Json list object with the entities contained in a given complex
     """
 
-    if exclude_structures:
-        exclude_structures = 'true'
-    else:
-        exclude_structures = 'false'
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('excludeStructures', exclude_structures),
-    )
-
-    url = 'https://reactome.org/ContentService/data/complex/%s/subunits' % id
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/complex/{id}/subunits', params={'excludeStructures': exclude_structures})
 
 
 def entities_complexes(id='P00533', resource='UniProt'):
@@ -118,21 +62,7 @@ def entities_complexes(id='P00533', resource='UniProt'):
     :return: Json list object of complexes containing the pair (identifier, resource)
     """
 
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/complexes/%s/%s' % (resource, id)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/complexes/{resource}/{id}')
 
 
 def entity_structures(id='R-HSA-199420'):
@@ -144,22 +74,7 @@ def entity_structures(id='R-HSA-199420'):
     :param id: stable Identifier (stID) of a PhysicalEntity ex. PTEN [cytosol] R-HSA-199420'
     :return: Json list object of larger structures containing the entity
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/entity/%s/componentOf' % id
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/entity/{id}/componentOf')
 
 
 def entity_other_form(id='R-HSA-199420'):
@@ -171,22 +86,7 @@ def entity_other_form(id='R-HSA-199420'):
     :param id: dbId or stId of a PhysicalEntity
     :return: Json list object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/entity/%s/otherForms' % id
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/entity/{id}/otherForms')
 
 
 def event_ancestors(id='R-HSA-5673001'):
@@ -200,22 +100,7 @@ def event_ancestors(id='R-HSA-5673001'):
     :param id: The event for which the ancestors are requested
     :return: Json list object of the ancestors of a given event
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/event/%s/ancestors' % id
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/event/{id}/ancestors')
 
 
 def event_species(species='9606'):
@@ -229,26 +114,14 @@ def event_species(species='9606'):
     :param species: Species name (ex: Homo sapiens) or species taxId (ex: 9606)
     :return: Json list object of the full event hierarchy for a given species
     """
-    headers = {
-        'accept': 'application/json',
-    }
 
-    url = 'https://reactome.org/ContentService/data/eventsHierarchy/%s' % species
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/eventsHierarchy/{species}')
 
 
 def export_diagram(id='R-HSA-177929', ext='png', quality='5', flag_interactors=False, title=True, margin='15',
-                   ehld=True, diagram_profile='Modern', resource='Total', analysis_profile='Standard', token=None,
-                   flag=None, sel=[], exp_column=None, file='report', path=''):
+                   ehld=True, diagram_profile='Modern', resource='Total', analysis_profile='Standard',
+                   token: str = None,
+                   flag: str = None, sel: List[str] = None, exp_column: str = None, file='report', path=''):
     """
     This method accepts identifiers for Event class instances.
         * When a diagrammed pathway is provided, the diagram is exported to the specified format.
@@ -274,59 +147,29 @@ def export_diagram(id='R-HSA-177929', ext='png', quality='5', flag_interactors=F
     :return: Exports a given pathway diagram to the specified image format (png, jpg, jpeg, svg, gif)
     """
 
-    if flag_interactors:
-        flag_interactors = 'true'
-    else:
-        flag_interactors = 'false'
-
-    if title:
-        title = 'true'
-    else:
-        title = 'false'
-
-    if ehld:
-        ehld = 'true'
-    else:
-        ehld = 'false'
-
-    headers = {
-        'accept': 'image/png',
-    }
-
-    params = (
-        ('token', token),
-        ('flg', flag),
-        ('sel', sel),
-        ('expColumn', exp_column),
-        ('quality', quality),
-        ('flgInteractors', flag_interactors),
-        ('title', title),
-        ('margin', margin),
-        ('ehld', ehld),
-        ('diagramProfile', diagram_profile),
-        ('resource', resource),
-        ('analysisProfile', analysis_profile),
+    return util.download(
+        path, file, ext,
+        url=f'{_SERVICE}/exporter/diagram/{id}.{ext}',
+        headers={'accept': f'image/{ext}'},
+        params={
+            'token': token,
+            'flg': flag,
+            'sel': sel,
+            'expColumn': exp_column,
+            'quality': quality,
+            'flgInteractors': flag_interactors,
+            'title': title,
+            'margin': margin,
+            'ehld': ehld,
+            'diagramProfile': diagram_profile,
+            'resource': resource,
+            'analysisProfile': analysis_profile,
+        }
     )
-
-    url = ".".join(['https://reactome.org/ContentService/exporter/diagram/%s' % id, ext])
-
-    path = "".join([path, ".".join([file, ext])])
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        with open(path, 'wb') as f:
-            for chunk in response:
-                f.write(chunk)
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def export_document(id='R-HSA-177929', level='1', diagram_profile='Modern', resource='Total',
-                    analysis_profile='Standard', token=None, exp_column=None, file='report', path=''):
+                    analysis_profile='Standard', token: str = None, exp_column: str = None, file='report', path=''):
     """
     This method accepts identifiers for Event class instances.
     The generated document contains the details for the given event and, optionally, its children (see level parameter).
@@ -352,34 +195,19 @@ def export_document(id='R-HSA-177929', level='1', diagram_profile='Modern', reso
     :return: Exports the content of a given event (pathway or reaction) to a PDF document
     """
 
-    headers = {
-        'accept': 'application/pdf',
-    }
-
-    params = (
-        ('token', token),
-        ('expColumn', exp_column),
-        ('level [0 - 1]', level),
-        ('diagramProfile', diagram_profile),
-        ('resource', resource),
-        ('analysisProfile', analysis_profile),
+    return util.download(
+        path, file, 'pdf',
+        f'{_SERVICE}/exporter/document/event/{id}.pdf',
+        headers={'accept': 'application/pdf'},
+        params={
+            'token': token,
+            'expColumn': exp_column,
+            'level [0 - 1]': level,
+            'diagramProfile': diagram_profile,
+            'resource': resource,
+            'analysisProfile': analysis_profile,
+        }
     )
-
-    url = 'https://reactome.org/ContentService/exporter/document/event/%s.pdf' % id
-
-    path = "".join([path, ".".join([file, 'pdf'])])
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        with open(path, 'wb') as f:
-            for chunk in response:
-                f.write(chunk)
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def export_event(id='R-HSA-177929', format='sbgn', file='report', path=''):
@@ -394,35 +222,19 @@ def export_event(id='R-HSA-177929', format='sbgn', file='report', path=''):
     :param path: Absolute path to save the file
     :return: Exports a given pathway or reaction to SBGN
     """
-
-    headers = {
-        'accept': '*/*',
-    }
-
-    if format in 'sbml':
-        ext = 'sbml'
-    if format in 'sbgn':
-        ext = 'sbgn'
-
-    url = ".".join(['https://reactome.org/ContentService/exporter/event/%s' % id, ext])
-
-    path = "".join([path, ".".join([file, ext])])
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        with open(path, 'wb') as f:
-            for chunk in response:
-                f.write(chunk)
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    assert format in ("sbgn", "sbml")
+    return util.download(
+        path, file, format,
+        f'{_SERVICE}/exporter/event/{id}.{format}',
+        headers={'accept': '*/*'}
+    )
 
 
-def export_fireworks(species='9606', ext='png', file='report', path='', quality='5', flag=None, flag_interactors=False,
-                     sel=[], title=True, margin='15', resource='Total', diagram_profile='', coverage=False, token=None,
+def export_fireworks(species='9606', ext='png', file='report', path='', quality='5', flag: str = None,
+                     flag_interactors=False,
+                     sel: List[str] = None, title=True, margin='15', resource='Total', diagram_profile='',
+                     coverage=False,
+                     token=None,
                      exp_column=None):
     """
     Exports a given pathway overview to the specified image format (png, jpg, jpeg, svg, gif)
@@ -447,59 +259,31 @@ def export_fireworks(species='9606', ext='png', file='report', path='', quality=
     :return: Exports a given pathway overview to the specified image format (png, jpg, jpeg, svg, gif)
     """
 
-    if flag_interactors:
-        flag_interactors = 'true'
-    else:
-        flag_interactors = 'false'
-
-    if title:
-        title = 'true'
-    else:
-        title = 'false'
-
-    if coverage:
-        coverage = 'true'
-    else:
-        coverage = 'false'
-
-    headers = {
-        'accept': 'image/png',
-    }
-
-    params = (
-        ('quality', quality),
-        ('flg', flag),
-        ('flgInteractors', flag_interactors),
-        ('sel', sel),
-        ('title', title),
-        ('margin', margin),
-        ('diagramProfile', diagram_profile),
-        ('resource', resource),
-        ('coverage', coverage),
-        ('token', token),
-        ('expColumn', exp_column),
+    return util.download(
+        path, file, ext,
+        f'{_SERVICE}/exporter/fireworks/{species}.{ext}',
+        headers={'accept': f'image/{ext}'},
+        params={
+            'quality': quality,
+            'flg': flag,
+            'flgInteractors': flag_interactors,
+            'sel': sel,
+            'title': title,
+            'margin': margin,
+            'diagramProfile': diagram_profile,
+            'resource': resource,
+            'coverage': coverage,
+            'token': token,
+            'expColumn': exp_column,
+        }
     )
 
-    url = ".".join(['https://reactome.org/ContentService/exporter/fireworks/%s' % species, ext])
 
-    path = "".join([path, ".".join([file, ext])])
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        with open(path, 'wb') as f:
-            for chunk in response:
-                f.write(chunk)
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def export_reaction(id='R-HSA-6787403', ext='png', file='report', path='', quality='5', flag=None, flag_interactors=False,
-                     sel=[], title=True, margin='15', resource='Total', diagram_profile='', coverage=False, token=None,
-                     exp_column=None):
+def export_reaction(id='R-HSA-6787403', ext='png', file='report', path='', quality='5', flag=None,
+                    flag_interactors=False,
+                    sel: List[str] = None, title=True, margin='15', resource='Total', diagram_profile='',
+                    coverage=False, token=None,
+                    exp_column=None):
     """
     Exports a given reaction to the specified image format (png, jpg, jpeg, svg, gif)
 
@@ -521,54 +305,24 @@ def export_reaction(id='R-HSA-6787403', ext='png', file='report', path='', quali
     :return:
     """
 
-    if flag_interactors:
-        flag_interactors = 'true'
-    else:
-        flag_interactors = 'false'
-
-    if title:
-        title = 'true'
-    else:
-        title = 'false'
-
-    if coverage:
-        coverage = 'true'
-    else:
-        coverage = 'false'
-
-    headers = {
-        'accept': 'image/png',
-    }
-
-    params = (
-        ('quality', quality),
-        ('flg', flag),
-        ('flgInteractors', flag_interactors),
-        ('sel', sel),
-        ('title', title),
-        ('margin', margin),
-        ('diagramProfile', diagram_profile),
-        ('resource', resource),
-        ('coverage', coverage),
-        ('token', token),
-        ('expColumn', exp_column),
+    return util.download(
+        path, file, ext,
+        f'{_SERVICE}/exporter/reaction/{id}.{ext}',
+        headers={'accept': f'image/{ext}'},
+        params={
+            'quality': quality,
+            'flg': flag,
+            'flgInteractors': flag_interactors,
+            'sel': sel,
+            'title': title,
+            'margin': margin,
+            'diagramProfile': diagram_profile,
+            'resource': resource,
+            'coverage': coverage,
+            'token': token,
+            'expColumn': exp_column,
+        }
     )
-
-    url = ".".join(['https://reactome.org/ContentService/exporter/reaction/%s' % id, ext])
-
-    path = "".join([path, ".".join([file, ext])])
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        with open(path, 'wb') as f:
-            for chunk in response:
-                f.write(chunk)
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def interactors_psicquic_acc(resource='MINT', acc='Q13501', by='details'):
@@ -584,25 +338,8 @@ def interactors_psicquic_acc(resource='MINT', acc='Q13501', by='details'):
     :param by: details or summary (returns counts of details available)
     :return: Json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if by in 'details':
-        url = 'https://reactome.org/ContentService/interactors/psicquic/molecule/%s/%s/details' % (resource, acc)
-    if by in 'summary':
-        url = 'https://reactome.org/ContentService/interactors/psicquic/molecule/%s/%s/summary' % (resource, acc)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    assert by in ("details", "summary")
+    return util.get_json(f'{_SERVICE}/interactors/psicquic/molecule/{resource}/{acc}/{by}')
 
 
 def interactors_psicquic_accs(proteins='EGFR', resource='MINT', by='details'):
@@ -617,28 +354,8 @@ def interactors_psicquic_accs(proteins='EGFR', resource='MINT', by='details'):
         use interactors_psicquic_resources to retrive all active resources
     :return: Json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    data = proteins
-
-    if by in 'details':
-        url = 'https://reactome.org/ContentService/interactors/psicquic/molecules/%s/details' % resource
-    if by in 'summary':
-        url = 'https://reactome.org/ContentService/interactors/psicquic/molecules/%s/summary' % resource
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    assert by in ("details", "summary")
+    return util.post_json(f'{_SERVICE}/interactors/psicquic/molecules/{resource}/{by}', data=proteins)
 
 
 def interactors_psicquic_resources():
@@ -647,22 +364,7 @@ def interactors_psicquic_resources():
 
     :return: Json list object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/interactors/psicquic/resources'
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/interactors/psicquic/resources')
 
 
 def interactors_static_acc(acc='Q13501', page='-1', page_size='-1', by='details'):
@@ -678,36 +380,12 @@ def interactors_static_acc(acc='Q13501', page='-1', page_size='-1', by='details'
     :param by: details or summary (returns counts of details available)
     :return: Json dictionary object
     """
+    assert by in ("details", "summary")
 
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('page', page),
-        ('pageSize', page_size),
+    return util.get_json(
+        f'{_SERVICE}/interactors/static/molecule/{acc}/{by}',
+        params={'page': page, 'pageSize': page_size, } if by == 'details' else None
     )
-
-    if by in 'details':
-        url = 'https://reactome.org/ContentService/interactors/static/molecule/%s/details' % acc
-    if by in 'summary':
-        url = 'https://reactome.org/ContentService/interactors/static/molecule/%s/summary' % acc
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def interactors_acc_pathways(acc='Q9BXM7-1', species='Homo sapiens', only_diagrammed=False):
@@ -720,26 +398,13 @@ def interactors_acc_pathways(acc='Q9BXM7-1', species='Homo sapiens', only_diagra
     :return: Json list object
     """
 
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('species', species),
-        ('onlyDiagrammed', only_diagrammed),
+    return util.get_json(
+        f'{_SERVICE}/interactors/static/molecule/{acc}/pathways',
+        params={
+            'species': species,
+            'onlyDiagrammed': only_diagrammed,
+        }
     )
-
-    url = 'https://reactome.org/ContentService/interactors/static/molecule/%s/pathways' % acc
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def interactors_static_accs(accs='Q9BXM7-1', by='details', page='-1', page_size='-1'):
@@ -755,43 +420,14 @@ def interactors_static_accs(accs='Q9BXM7-1', by='details', page='-1', page_size=
     :param page_size: Number of results to be retrieved
     :return: Json dictionary object
     """
-
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    data = accs
-
-    if by in 'details':
-        url = 'https://reactome.org/ContentService/interactors/static/molecules/details'
-        params = (
-            ('page', page),
-            ('pageSize', page_size),
-        )
-
-    if by in 'summary':
-        url = 'https://reactome.org/ContentService/interactors/static/molecules/summary'
-        params = None
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    assert by in ("details", "summary")
+    return util.post_json(
+        f'{_SERVICE}/interactors/static/molecules/{by}',
+        data=accs, params={'page': page, 'pageSize': page_size, } if by == 'details' else None
+    )
 
 
-def token_interactors(token, proteins):
+def token_interactors(token: str, proteins: Union[str, List[str]]):
     """
     Retrieve custom interactions associated with a token
 
@@ -799,28 +435,10 @@ def token_interactors(token, proteins):
     :param proteins: Interactors accessions
     :return:  Retrieve custom interactions associated with a token
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    data = proteins
-
-    url = 'https://reactome.org/ContentService/interactors/token/%s' % token
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.post_json(f'{_SERVICE}/interactors/token/{token}', data=proteins)
 
 
-def interactors_psicquic_url(name, psicquic_url):
+def interactors_psicquic_url(name: str, psicquic_url: str):
     """
     Registry custom PSICQUIC resource
 
@@ -828,32 +446,13 @@ def interactors_psicquic_url(name, psicquic_url):
     :param psicquic_url: A URL pointing to the Custom PSICQUIC Resource
     :return: Registry custom PSICQUIC resource
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    params = (
-        ('name', name),
+    return util.post_json(
+        f'{_SERVICE}/interactors/upload/psicquic/url', data=psicquic_url,
+        params={'name': name},
     )
 
-    data = psicquic_url
 
-    url = 'https://reactome.org/ContentService/interactors/upload/psicquic/url'
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def interactors_upload_content(name, content):
+def interactors_upload_content(name: str, content: str):
     """
     Paste file content and get a summary associated with a token
 
@@ -861,65 +460,24 @@ def interactors_upload_content(name, content):
     :param content: Paste custom interactors file content
     :return: Paste file content and get a summary associated with a token
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    params = (
-        ('name', name),
-    )
-
-    data = content
-
-    url = 'https://reactome.org/ContentService/interactors/upload/tuple/content'
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.post_json(f'{_SERVICE}/interactors/upload/tuple/content', data=content, params={'name': name}, )
 
 
-def interactors_form(path, name):
+def interactors_form(path: str, name: str):
     """
     Parse file and retrieve a summary associated with a token
 
     :param path: Absolute path to file to be read with custom interactor
     :param name: Name which identifies the sample
-    :return: 
+    :return:
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    params = (
-        ('name', name),
+    return util.post_json(
+        f'{_SERVICE}/interactors/upload/tuple/form',
+        data=open(path, 'rb').read(), params={'name': name}
     )
 
-    url = 'https://reactome.org/ContentService/interactors/upload/tuple/form'
 
-    data = open(path, 'rb').read()
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def interactors_url(name, interactors_url):
+def interactors_url(name: str, interactors_url: str):
     """
     Send file via URL and get a summary associated with a token
 
@@ -927,29 +485,7 @@ def interactors_url(name, interactors_url):
     :param interactors_url: A URL pointing to the Interactors file
     :return:
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    params = (
-        ('name', name),
-    )
-
-    url = 'https://reactome.org/ContentService/interactors/upload/tuple/url'
-
-    data = interactors_url
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.post_json(f'{_SERVICE}/interactors/upload/tuple/url', data=interactors_url, params={'name': name})
 
 
 def mapping(id='PTEN', resource='UniProt', species='9606', by='pathways'):
@@ -970,29 +506,9 @@ def mapping(id='PTEN', resource='UniProt', species='9606', by='pathways'):
     :param by: pathways or reactions
     :return: Json list object
     """
+    assert by in ("pathways", "reactions")
 
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('species', species),
-    )
-
-    if by in 'pathways':
-        url = 'https://reactome.org/ContentService/data/mapping/%s/%s/pathways' % (resource, id)
-    if by in 'reactions':
-        url = 'https://reactome.org/ContentService/data/mapping/%s/%s/reactions' % (resource, id)
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/mapping/{resource}/{id}/{by}', params={'species': species})
 
 
 def orthology_events(ids='R-HSA-6799198,R-HSA-168256,R-HSA-168249', species='49633'):
@@ -1006,25 +522,7 @@ def orthology_events(ids='R-HSA-6799198,R-HSA-168256,R-HSA-168249', species='496
     :param species: The species id for which the orthology is requested
     :return: Json dictionary object of the orthologies of a given set of events or entities
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    data = ids
-
-    url = 'https://reactome.org/ContentService/data/orthologies/ids/species/%s' % species
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.post_json(f'{_SERVICE}/data/orthologies/ids/species/{species}', data=ids)
 
 
 def orthology(id='R-HSA-6799198', species='49633'):
@@ -1038,23 +536,7 @@ def orthology(id='R-HSA-6799198', species='49633'):
     :param species: The species id for which the orthology is requested
     :return: Json dictionary object of the orthology for a given event or entity
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    url = 'https://reactome.org/ContentService/data/orthology/%s/species/%s' % (id, species)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/orthology/{id}/species/{species}')
 
 
 def participants(id='5205685'):
@@ -1064,22 +546,7 @@ def participants(id='5205685'):
     :param id: dbId or stId of a PhysicalEntity
     :return: Json list obj of participants for a given event
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/participants/%s' % id
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/participants/{id}')
 
 
 def participants_physical_entities(id='R-HSA-5205685'):
@@ -1091,22 +558,7 @@ def participants_physical_entities(id='R-HSA-5205685'):
     :param id: The event for which the participating PhysicalEntities are requested
     :return: Json list object of participating PhysicalEntities for a given event
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/participants/%s/participatingPhysicalEntities' % id
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/participants/{id}/participatingPhysicalEntities')
 
 
 def participants_reference_entities(id='5205685'):
@@ -1124,25 +576,10 @@ def participants_reference_entities(id='5205685'):
     :param id: The event for which the participating ReferenceEntities are requested
     :return: Json list object of participating ReferenceEntities for a given event
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/participants/%s/referenceEntities' % id
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/participants/{id}/referenceEntities')
 
 
-def pathway_contained_event(id='R-HSA-5673001'):
+def pathway_contained_event(id='R-HSA-5673001') -> List[Dict]:
     """
     Events are the building blocks used in Reactome to represent all biological processes,
     and they include pathways and reactions. Typically, an event can contain other events. For example,
@@ -1152,25 +589,10 @@ def pathway_contained_event(id='R-HSA-5673001'):
     :param id: The event for which the contained events are requested
     :return: Json list object of all the events contained in the given event
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/pathway/%s/containedEvents' % id
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/pathway/{id}/containedEvents')
 
 
-def pathway_contained_event_atttibute(id='R-HSA-5673001', attribute='stId'):
+def pathway_contained_event_attribute(id='R-HSA-5673001', attribute='stId') -> List[Any]:
     """
     Events are the building blocks used in Reactome to represent all biological processes, and they
     include pathways and reactions. Typically, an event can contain other events. For example, a pathway
@@ -1181,25 +603,11 @@ def pathway_contained_event_atttibute(id='R-HSA-5673001', attribute='stId'):
     :param attribute: Attribute to be filtered
     :return: List object of a single property for each event contained in the given event
     """
-
-    headers = {
-        'accept': 'text/plain',
-    }
-
-    url = 'https://reactome.org/ContentService/data/pathway/%s/containedEvents/%s' % (id, attribute)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.text.strip('][').split(', ')
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get(f'{_SERVICE}/data/pathway/{id}/containedEvents/{attribute}', headers={'accept': '*/*'}) \
+        .text.strip('[]').split(', ')
 
 
-def pathways_low_diagram(id='R-HSA-199420', species=None, all_forms=False):
+def pathways_low_diagram(id='R-HSA-199420', species=None, all_forms=False) -> List[Dict]:
     """
     This method traverses the event hierarchy and retrieves the list of all lower level pathways that have a
     diagram and contain the given PhysicalEntity or Event.
@@ -1211,32 +619,13 @@ def pathways_low_diagram(id='R-HSA-199420', species=None, all_forms=False):
     :param all_forms: If true, it retrieves the given PhysicalEntity in any of its variant forms.
     :return: Json list object of lower level pathways with diagram containing a given entity or event
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('species', species),
+    return util.get_json(
+        f'{_SERVICE}/data/pathways/low/diagram/entity/{id}{"/allForms" if all_forms else ""}',
+        params={'species': species},
     )
 
-    if all_forms:
-        url = 'https://reactome.org/ContentService/data/pathways/low/diagram/entity/%s/allForms' % id
-    else:
-        url = 'https://reactome.org/ContentService/data/pathways/low/diagram/entity/%s' % id
 
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def pathways_low_entity(id='R-HSA-199420', species=None, all_forms=False):
+def pathways_low_entity(id='R-HSA-199420', species=None, all_forms=False) -> List[Dict]:
     """
     This method traverses the event hierarchy and retrieves the list of all lower level pathways that contain
     the given PhysicalEntity or Event.
@@ -1248,57 +637,23 @@ def pathways_low_entity(id='R-HSA-199420', species=None, all_forms=False):
     :param all_forms: If set to true, it retrieves the list of all lower level pathways that contain the given PhysicalEntity in any of its variant forms.
     :return: Json list object of lower level pathways containing a given entity or event
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('species', species),
+    return util.get_json(
+        f'{_SERVICE}/data/pathways/low/entity/{id}{"/allForms" if all_forms else ""}',
+        params={'species': species},
     )
 
-    if all_forms:
-        url = 'https://reactome.org/ContentService/data/pathways/low/entity/%s' % id
-    else:
-        url = 'https://reactome.org/ContentService/data/pathways/low/entity/%s/allForms' % id
 
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def pathways_top_level(species='9606'):
+def pathways_top_level(species='9606') -> List[Dict]:
     """
     This method retrieves the list of top level pathways for the given species
 
     :param species: Specifies the species by the taxonomy identifier (eg: 9606) or species name (eg: ‘Homo+sapiens’)
     :return: Json list object of all Reactome top level pathways
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/data/pathways/top/%s' % species
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/pathways/top/{species}')
 
 
-def person_name(name='Steve Jupe', exact=False):
+def person_name(name='Steve Jupe', exact=False) -> List[Dict]:
     """
     Retrieves a list of people in Reactome with either their first or last name partly matching the given name (string).
 
@@ -1308,28 +663,10 @@ def person_name(name='Steve Jupe', exact=False):
     :param exact:
     :return: Json list object of people with first or last name partly or exactly matching a given name (string)
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if exact:
-        url = 'https://reactome.org/ContentService/data/people/name/%s/exact' % name
-    else:
-        url = 'https://reactome.org/ContentService/data/people/name/%s' % name
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/data/people/name/{name}{"/exact" if exact else ""}')
 
 
-def person_id(id='0000-0001-5807-0069', by=None, attribute=None):
+def person_id(id='0000-0001-5807-0069', by=None, attribute=None) -> Union[dict, Any]:
     """
     1. With only id parameter declared,
         * Retrieves a person in Reactome by his/her OrcidId or DbId.
@@ -1342,40 +679,22 @@ def person_id(id='0000-0001-5807-0069', by=None, attribute=None):
         * Retrieves a specific person’s property by his/her OrcidId or DbId.
 
     :param id: Person identifier - Can be OrcidId or DbId
-    :param by: if not None, query by authored: pathways or publications
+    :param by: if not None, query for authored: pathways or publications
     :param attribute: Attribute to be filtered ex. displayName
     :return: Json dictionary object
     """
+    assert by in ("pathways", "publications", None)
 
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if id and by is None and attribute is None:
-        url = 'https://reactome.org/ContentService/data/person/%s' % id
-
-    if id and by and attribute is None:
-        by = by.lower()
-        if by in 'publication':
-            url = 'https://reactome.org/ContentService/data/person/%s/publications' % id
-        if by in 'pathway':
-            url = 'https://reactome.org/ContentService/data/person/%s/authoredPathways' % id
-
-    if id and attribute:
-        url = 'https://reactome.org/ContentService/data/person/%s/%s' % (id, attribute)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
+    if attribute:
+        return util.get(f'{_SERVICE}/data/person/{id}/{attribute}').text
+    elif by:
+        return util.get_json(f'{_SERVICE}/data/person/{id}/'
+                             f'{"publications" if "publication" in by else "authoredPathways"}')
     else:
-        print('Status code returned a value of %s' % response.status_code)
+        return util.get_json(f'{_SERVICE}/data/person/{id}')
 
 
-def query_id(id='R-HSA-60140', enhanced=False, attribute=None):
+def query_id(id='R-HSA-60140', enhanced=False, attribute=None) -> Union[dict, Any]:
     """
     This method queries for an entry in Reactome knowledgebase based on the given identifier, i.e. stable id or
     database id. It is worth mentioning that the retrieved database object has all its properties and direct
@@ -1389,32 +708,15 @@ def query_id(id='R-HSA-60140', enhanced=False, attribute=None):
     :param attribute: Attribute to be queried
     :return: Json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if id and enhanced is False and attribute is None:
-        url = 'https://reactome.org/ContentService/data/query/%s' % id
-
-    if id and enhanced:
-        url = 'https://reactome.org/ContentService/data/query/enhanced/%s' % id
-
-    if id and attribute:
-        url = 'https://reactome.org/ContentService/data/query/%s/%s' % (id, attribute)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
+    if enhanced:
+        return util.get_json(f'{_SERVICE}/data/query/enhanced/{id}')
+    elif attribute:
+        return util.get(f'{_SERVICE}/data/query/{id}/{attribute}').text
     else:
-        print('Status code returned a value of %s' % response.status_code)
+        return util.get_json(f'{_SERVICE}/data/query/{id}')
 
 
-def query_ids(ids='R-HSA-60140', mapping=False):
+def query_ids(ids='R-HSA-60140', mapping=False) -> Union[List[Dict], Dict[str, Dict]]:
     """
     This method queries for a set of entries in Reactome knowledgebase based on the given list of identifiers.
     The provided list of identifiers can include stable ids, database ids or a mixture of both. It should be
@@ -1426,53 +728,17 @@ def query_ids(ids='R-HSA-60140', mapping=False):
     :param mapping: If set to true, retrieves a list of entries with their mapping to the provided identifiers
     :return: Json list object
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    data = ids
-
-    if mapping:
-        url = 'https://reactome.org/ContentService/data/query/ids/map'
-    else:
-        url = 'https://reactome.org/ContentService/data/query/ids'
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.post_json(f'{_SERVICE}/data/query/ids{"/map" if mapping else ""}', data=ids)
 
 
-def references(id='15377'):
+def references(id='15377') -> List[Dict]:
     """
     Retrieves a list containing all the reference entities for a given identifier.
 
     :param id: Identifier for a given entity
     :return: Json list obkect of all ReferenceEntities for a given identifier
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/references/mapping/%s' % id
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/references/mapping/{id}')
 
 
 def species(by='all'):
@@ -1484,30 +750,25 @@ def species(by='all'):
     :param by: all or main
     :return: Json list object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    by = by.lower()
-
-    if by in 'all':
-        url = 'https://reactome.org/ContentService/data/species/all'
-    if by in 'main':
-        url = 'https://reactome.org/ContentService/data/species/main'
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    assert by in ("all", "main")
+    return util.get_json(f'{_SERVICE}/data/species/{by}')
 
 
-def schema(name='Pathway', by='count', species='9606', page='-1', offset='20000'):
+def hierarchical_schema_classes() -> Dict:
+    """
+    Fetch the current hierarchical structure of Reactome models in JSON, and counts the number of instances
+
+    :return: Hierarchical structure of Reactome models in JSON
+    """
+    return util.get_json(f"{_SERVICE}/data/schema/")
+
+
+def schema(name='Pathway',
+           by: Optional[str] = 'count',
+           species='9606',
+           page='1',
+           offset='20000'
+           ) -> Union[List[Dict], int]:
     """
     This method retrieves the list of entries in Reactome that belong to the specified schema class.
     Please take into account that if species is specified to filter the results, schema class needs to be an
@@ -1528,64 +789,23 @@ def schema(name='Pathway', by='count', species='9606', page='-1', offset='20000'
     :param page: Page to be returned
     :return: int if by = count, json list if by = min or reference
     """
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    if isinstance(offset, NumberTypes):
-        offset = str(offset)
-
-    headers = {
-        'accept': 'application/json',
+    params = {
+        'species': species,
+        'page': page,
+        'offset': offset
     }
-
     if by is None:
-        url = 'https://reactome.org/ContentService/data/schema/%s' % name
-
-        params = (
-            ('species', species),
-            ('page', page),
-            ('offset', offset),
-        )
-
-    if by and by.lower() in 'count':
-        url = 'https://reactome.org/ContentService/data/schema/%s/count' % name
-
-        params = (
-            ('species', species),
-        )
-
-    if by and by.lower() in 'min':
-        url = 'https://reactome.org/ContentService/data/schema/%s/min' % name
-
-        params = (
-            ('species', species),
-            ('page', page),
-            ('offset', offset),
-        )
-
-    if by and by.lower() in 'reference':
-        url = 'https://reactome.org/ContentService/data/schema/%s/reference' % name
-
-        params = (
-            ('page', page),
-            ('offset', offset),
-        )
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
+        return util.get_json(f'{_SERVICE}/data/schema/{name}', params=params)
+    elif "count" in by:
+        return int(util.get(f'{_SERVICE}/data/schema/{name}/{by}', params=params).text)
     else:
-        print('Status code returned a value of %s' % response.status_code)
+        return util.get_json(f'{_SERVICE}/data/schema/{name}/{by}', params=params)
 
 
-def search_diagram(diagram='R-HSA-8848021', query='MAD', types=[], start=None, rows=None):
+def search_diagram(diagram='R-HSA-8848021', query='MAD',
+                   types: list = None, start: int = None, rows: int = None) -> Dict:
     """
-    Performs a Apache Solr query (diagram widget scoped) for a given QueryObject
+    Performs an Apache Solr query (diagram widget scoped) for a given QueryObject
 
     :param diagram: diagram/pathway stable id
     :param query: query names by this string
@@ -1594,32 +814,18 @@ def search_diagram(diagram='R-HSA-8848021', query='MAD', types=[], start=None, r
     :param rows: number of rows to include
     :return: Json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('query', query),
-        ('types', types),
-        ('start', start),
-        ('rows', rows),
+    return util.get_json(
+        f'{_SERVICE}/search/diagram/{diagram}',
+        params={
+            'query': query,
+            'types': types,
+            'start': start,
+            'rows': rows,
+        }
     )
 
-    url = 'https://reactome.org/ContentService/search/diagram/%s' % diagram
 
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def search_diagram_instance(diagram='R-HSA-68886', instance='R-HSA-141433', types=[]):
+def search_diagram_instance(diagram='R-HSA-68886', instance='R-HSA-141433', types=None) -> Dict:
     """
     Performs a Apache Solr query (diagram widget scoped) for a given QueryObject
 
@@ -1628,29 +834,10 @@ def search_diagram_instance(diagram='R-HSA-68886', instance='R-HSA-141433', type
     :param types: types to filter
     :return: Json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('types', types),
-    )
-
-    url = 'https://reactome.org/ContentService/search/diagram/%s/occurrences/%s' % (diagram, instance)
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/search/diagram/{diagram}/occurrences/{instance}', params={'types': types})
 
 
-def search_diagram_pathway_flag(diagram='R-HSA-446203', query='CTSA'):
+def search_diagram_pathway_flag(diagram='R-HSA-446203', query='CTSA') -> Dict:
     """
     This method traverses the content and checks not only for the main identifier but also for all the cross-references to find the flag targets
 
@@ -1658,26 +845,7 @@ def search_diagram_pathway_flag(diagram='R-HSA-446203', query='CTSA'):
     :param query: query names by this string
     :return: Json dictionary object of diagram entities plus pathways from the provided list containing the specified identifier
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('query', query),
-    )
-
-    url = 'https://reactome.org/ContentService/search/diagram/%s/flag' % diagram
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/search/diagram/{diagram}/flag', params={'query': query})
 
 
 def search_facet():
@@ -1686,25 +854,11 @@ def search_facet():
 
     :return: Json dictionary object of all facets corresponding to the whole Reactome search data
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/ContentService/search/facet'
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/search/facet')
 
 
-def search_facet_query(query='TP53', species=[], types=[], compartments=[], keywords=[]):
+def search_facet_query(query='TP53', species: list = None, types: list = None, compartments: list = None,
+                       keywords: list = None) -> Dict:
     """
     This method retrieves faceting information on a specific query
 
@@ -1715,33 +869,20 @@ def search_facet_query(query='TP53', species=[], types=[], compartments=[], keyw
     :param keywords: keywords - python list of strings
     :return: Json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('query', query),
-        ('species', species),
-        ('types', types),
-        ('compartments', compartments),
-        ('keywords', keywords),
+    return util.get_json(
+        f'{_SERVICE}/search/facet_query',
+        params={
+            'query': query,
+            'species': species,
+            'types': types,
+            'compartments': compartments,
+            'keywords': keywords,
+        }
     )
 
-    url = 'https://reactome.org/ContentService/search/facet_query'
 
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def search_fireworks(query='BRAF', species='Homo sapiens', types=[], start=None, rows=None):
+def search_fireworks(query='BRAF', species='Homo sapiens',
+                     types: list = None, start: int = None, rows: int = None) -> Dict:
     """
     Performs a Apache Solr query (fireworks widget scoped) for a given QueryObject
 
@@ -1752,33 +893,19 @@ def search_fireworks(query='BRAF', species='Homo sapiens', types=[], start=None,
     :param rows: Number of rows to include
     :return: Json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('query', query),
-        ('species', species),
-        ('types', types),
-        ('start', start),
-        ('rows', rows),
+    return util.get_json(
+        f'{_SERVICE}/search/fireworks',
+        params={
+            'query': query,
+            'species': species,
+            'types': types,
+            'start': start,
+            'rows': rows,
+        }
     )
 
-    url = 'https://reactome.org/ContentService/search/fireworks'
 
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def search_fireworks_flag(query='KNTC1', species='Homo sapiens'):
+def search_fireworks_flag(query='KNTC1', species='Homo sapiens') -> Dict:
     """
     Performs a Apache Solr query (fireworks widget scoped) for a given QueryObject
 
@@ -1787,30 +914,12 @@ def search_fireworks_flag(query='KNTC1', species='Homo sapiens'):
     :return: Json dictionary object
     """
 
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('query', query),
-        ('species', species),
-    )
-
-    url = 'https://reactome.org/ContentService/search/fireworks/flag'
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/search/fireworks/flag', params={'query': query, 'species': species})
 
 
-def search_query(query='Biological oxidations', species=[], types=[], compartments=[], keywords=[], cluster=True,
-                 start=None, rows=None):
+def search_query(query='Biological oxidations',
+                 species: list = None, types: list = None, compartments: list = None, keywords: list = None,
+                 cluster=True, start: int = None, rows: int = None, force_filters=False) -> Dict:
     """
     This method performs a Solr query on the Reactome knowledgebase. Results can be provided in a paginated format.
 
@@ -1822,35 +931,59 @@ def search_query(query='Biological oxidations', species=[], types=[], compartmen
     :param cluster: Cluster results
     :param start: Start row
     :param rows: number of rows to include
+    :param force_filters: In case where applied filters yield to no results, filters are removed by default to grant results as much as possible. Set Force filters to true to avoid this behaviour
     :return: Json dictionary object
     """
 
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('query', query),
-        ('species', species),
-        ('types', types),
-        ('compartments', compartments),
-        ('keywords', keywords),
-        ('cluster', cluster),
-        ('Start row', start),
-        ('rows', rows),
+    return util.get_json(
+        f'{_SERVICE}/search/query',
+        params={
+            'query': query,
+            'species': species,
+            'types': types,
+            'compartments': compartments,
+            'keywords': keywords,
+            'cluster': cluster,
+            'Start row': start,
+            'rows': rows,
+            'Force filters': force_filters,
+        }
     )
 
-    url = 'https://reactome.org/ContentService/search/query'
 
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
+def search_query_paginated(query='Biological oxidations',
+                           species: list = None, types: list = None, compartments: list = None, keywords: list = None,
+                           cluster=True, page: int = None, page_size: Union[int, str] = None,
+                           force_filters=False) -> Dict:
+    """
+    This method performs a Solr query on the Reactome knowledgebase. Results are in a paginated format, pages count starting from 1.
 
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    :param query: term to search
+    :param species: list of species - python list of strings
+    :param types: Types to filter by - python list of strings
+    :param compartments: Compartments - python list of strings
+    :param keywords: Keywords - python list of strings
+    :param cluster: Cluster results
+    :param page: Page number, should be strictly positive
+    :param page_size: Rows per page
+    :param force_filters: In case where applied filters yield to no results, filters are removed by default to grant results as much as possible. Set Force filters to true to avoid this behaviour
+    :return: Json dictionary object
+    """
+
+    return util.get_json(
+        f'{_SERVICE}/search/query',
+        params={
+            'query': query,
+            'species': species,
+            'types': types,
+            'compartments': compartments,
+            'keywords': keywords,
+            'cluster': cluster,
+            'page': page,
+            'rowCount': page_size,
+            'Force filters': force_filters,
+        }
+    )
 
 
 def search_spellcheck(query='repoduction'):
@@ -1860,25 +993,7 @@ def search_spellcheck(query='repoduction'):
     :param query: term to search
     :return: list of matched elements
     """
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('query', query),
-    )
-
-    url = 'https://reactome.org/ContentService/search/spellcheck'
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/search/spellcheck', params={'query': query})
 
 
 def search_suggest(query='platele'):
@@ -1888,23 +1003,4 @@ def search_suggest(query='platele'):
     :param query: term to search
     :return: list of matched elements
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('query', query),
-    )
-
-    url = 'https://reactome.org/ContentService/search/suggest'
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/search/suggest', params={'query': query})

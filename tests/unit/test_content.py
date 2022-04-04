@@ -96,7 +96,7 @@ def test_pathway_contained_event():
 
 
 def test_pathway_contained_event_atttibute():
-    assert type(content.pathway_contained_event_atttibute()) == list
+    assert type(content.pathway_contained_event_attribute()) == list
 
 
 def test_pathways_low_diagram():
@@ -136,7 +136,10 @@ def test_species():
 
 
 def test_schema():
-    assert type(content.schema(name='ReferenceMolecule', by='reference')) == list
+    assert type(content.schema(by=None)) == list
+    assert type(content.schema(by="count")) == int
+    assert type(content.schema(by="min")) == list
+    assert type(content.schema(by="reference", name="ReferenceMolecule")) == list
 
 
 def test_search_diagram():

@@ -2,33 +2,29 @@
  Human functional protein interactions (FI) services api calls
  and utility functions for Reactome data-fetch, mappings, and overlay networks in human.
 """
-from requests.exceptions import ConnectionError
-import requests
 import io
 import tarfile
 import zipfile
+from typing import *
+
+import requests
+from requests.exceptions import ConnectionError
+
+from . import util
+
+_CPWS = "http://cpws.reactome.org/caBigR3WebApp"
 
 
-def ehld_stids():
+def ehld_stids() -> List[str]:
     """
     Retrieves a list of high-level hierarchy pathway with Enhanced High Level Diagrams (EHLD) https://reactome.org/icon-info/ehld-specs-guideline
 
     :return: list of pathway stIds
     """
-
-    url = "https://reactome.org/download/current/ehld/svgsummary.txt"
-
-    try:
-        response = requests.get(url=url)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        content_list = response.text.splitlines()
-        st_ids = [stId for stId in content_list if 'R-' in stId]
-        return st_ids
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return [
+        stId for stId in util.get("https://reactome.org/download/current/ehld/svgsummary.txt").text.splitlines()
+        if 'R-' in stId
+    ]
 
 
 def sbgn_stids():
@@ -42,19 +38,18 @@ def sbgn_stids():
 
     try:
         response = requests.get(url=url)
+        if response.status_code == 200:
+            tar_file = tarfile.open(fileobj=io.BytesIO(response.content))
+            file_names = tar_file.getnames()
+            ehlds = ehld_stids()
+            sbgns = [f.replace('.sbgn', '').replace('./', '') for f in file_names]
+
+            sbgn_only = list(set(sbgns) - set(ehlds))
+            return sbgn_only
+        else:
+            print(f'Status code returned a value of {response.status_code}')
     except ConnectionError as e:
         print(e)
-
-    if response.status_code == 200:
-        tar_file = tarfile.open(fileobj=io.BytesIO(response.content))
-        file_names = tar_file.getnames()
-        ehlds = ehld_stids()
-        sbgns = [f.replace('.sbgn', '').replace('./', '') for f in file_names]
-
-        sbgn_only = list(set(sbgns) - set(ehlds))
-        return sbgn_only
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def _yield_zip(response):
@@ -93,52 +88,34 @@ def gene_mappings():
 
     try:
         response = requests.get(url=url)
+        if response.status_code == 200:
+            gm = _read_ziplines(response)
+            relations = []
+
+            for i, e in enumerate(gm):
+                gm[i] = [s.strip() for s in gm[i]]
+                d = dict(name=gm[i][0], stId=gm[i][1], genes=gm[i][2:len(gm[i])])
+                relations.append(d)
+
+            return relations
+        else:
+            print(f'Status code returned a value of {response.status_code}')
     except ConnectionError as e:
         print(e)
 
-    if response.status_code == 200:
-        gm = _read_ziplines(response)
-        relations = []
 
-        for i, e in enumerate(gm):
-            gm[i] = [s.strip() for s in gm[i]]
-            d = dict(name=gm[i][0], stId=gm[i][1], genes=gm[i][2:len(gm[i])])
-            relations.append(d)
-
-        return relations
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def pathway_fi(release="2019", stId="R-HSA-177929", pattern="R-HSA-"):
+def pathway_fi(release="2019", st_id="R-HSA-177929", pattern="R-HSA-"):
     """
     Fetch Pathway's Functional Interactions (FI) https://www.ncbi.nlm.nih.gov/pubmed/20482850
 
     :param release: release year for Functional Interactions (FI) data
-    :param stId: stable Identifier (stID) of a pathway
+    :param st_id: stable Identifier (stID) of a pathway
     :param pattern: reactome's stable Identifier (stID) string tag for Human "R-HSA-"
 
     :return: json dictionary object
     """
 
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if pattern in stId:
-        stId = stId.replace(pattern, "")
-
-    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/network/convertPathwayToFIs/%s" % (release, stId)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_CPWS}{release}/FIService/network/convertPathwayToFIs/{st_id.replace(pattern, "")}')
 
 
 def genelist_fi(release="2019", ids="EGF,EGFR"):
@@ -150,89 +127,35 @@ def genelist_fi(release="2019", ids="EGF,EGFR"):
 
     :return: json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if "," in ids:
-        ids = ids.replace(",", "\t")
-
-    data = ids
-
-    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/network/queryEdge" % release
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
+    return util.post_json(f"{_CPWS}{release}/FIService/network/queryEdge", data=ids.replace(',', '\t'))
 
 
-def pathway_boolean_network(release="2019", stId="R-HSA-177929", pattern="R-HSA-"):
+def pathway_boolean_network(release="2019", st_id="R-HSA-177929", pattern="R-HSA-"):
     """
     Fetch Pathway as a boolean network
 
     :param release: release year for Functional Interactions (FI) data
-    :param stId: stable Identifier (stID) of a pathway
+    :param st_id: stable Identifier (stID) of a pathway
     :param pattern: reactome's stable Identifier (stID) string tag for Human "R-HSA-"
 
     :return: json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if pattern in stId:
-        stId = stId.replace(pattern, "")
-
-    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/network/convertPathwayToBooleanNetwork/%s" % (release, stId)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    db_id = st_id.replace(pattern, "")
+    return util.get_json(f'{_CPWS}{release}/FIService/network/convertPathwayToBooleanNetwork/{db_id}')
 
 
-def pathway_factor_graph(release="2019", stId="R-HSA-177929", pattern="R-HSA-"):
+def pathway_factor_graph(release="2019", st_id="R-HSA-177929", pattern="R-HSA-"):
     """
     Fetch Pathway as a factor graph
 
     :param release: release year for Functional Interactions (FI) data
-    :param stId: stable Identifier (stID) of a pathway
+    :param st_id: stable Identifier (stID) of a pathway
     :param pattern: reactome's stable Identifier (stID) string tag for Human "R-HSA-"
 
     :return: json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if pattern in stId:
-        stId = stId.replace(pattern, "")
-
-    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/network/convertPathwayToFactorGraph/%s" % (release, stId)
-
-    try:
-        response = requests.post(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    db_id = st_id.replace(pattern, "")
+    return util.post_json(f'{_CPWS}{release}/FIService/network/convertPathwayToFactorGraph/{db_id}', data="")
 
 
 def drug_data_source(release="2019", source="drugcentral"):
@@ -244,22 +167,7 @@ def drug_data_source(release="2019", source="drugcentral"):
 
     :return: json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/listDrugs/%s" % (release, source)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_CPWS}{release}/FIService/drug/listDrugs/{source}')
 
 
 def genelist_drug_target(release="2019", ids="EGFR,ESR1,BRAF", source="drugcentral"):
@@ -272,95 +180,44 @@ def genelist_drug_target(release="2019", ids="EGFR,ESR1,BRAF", source="drugcentr
 
     :return: json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if "," in ids:
-        ids = ids.replace(",", "\n")
-
-    data = ids
-
-    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/queryDrugTargetInteractions/%s" % (release, source)
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
+    return util.post_json(
+        f'{_CPWS}{release}/FIService/drug/queryDrugTargetInteractions/{source}',
+        data=ids.replace(",", "\n")
+    )
 
 
-def pathway_pe_drug_target(release="2019", source="drugcentral", pdId="507988", peId="1220578", pattern="R-HSA-"):
+def pathway_pe_drug_target(release="2019", source="drugcentral", pd_id="507988", pe_id="1220578", pattern="R-HSA-"):
     """
     Query drug-target interactions for a Physical Entity ex a complex within a pathway
 
     :param release: release year for Functional Interactions (FI) data
     :param source: drugcentral or targetome
-    :param pdId: stable Identifier (stID) of a pathway
-    :param peId: stable Identifier (stID) of a PhysicalEntity ex. EGF:Ligand-responsive R-HSA-1220578' within human context
+    :param pd_id: stable Identifier (stID) of a pathway
+    :param pe_id: stable Identifier (stID) of a PhysicalEntity ex. EGF:Ligand-responsive R-HSA-1220578' within human context
 
     :return: json dictionary object
     """
+    pd_id = pd_id.replace(pattern, "")
+    pe_id = pe_id.replace(pattern, "")
+    ids = "/".join([pd_id, pe_id])
 
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if pattern in pdId:
-        pdId = pdId.replace(pattern, "")
-
-    if pattern in peId:
-        peId = peId.replace(pattern, "")
-
-    ids = "/".join([pdId, peId])
-
-    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/queryInteractionsForPEInDiagram/%s/%s" % (release, source, ids)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(
+        f"{_CPWS}{release}/FIService/drug/queryInteractionsForPEInDiagram/{source}/{ids}"
+    )
 
 
-def pathway_drug_target(release="2019", source="drugcentral", pdId="507988", pattern="R-HSA-"):
+def pathway_drug_target(release="2019", source="drugcentral", pd_id="507988", pattern="R-HSA-"):
     """
     Query drug-target interactions for a  PhysicalEntity
 
     :param release: release year for Functional Interactions (FI) data
     :param source: drugcentral or targetome
-    :param pdId: stable Identifier (stID) of a pathway
+    :param pd_id: stable Identifier (stID) of a pathway
 
     :return: json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if pattern in pdId:
-        pdId = pdId.replace(pattern, "")
-
-    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/queryInteractionsForDiagram/%s/%s" % (release, source, pdId)
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    pd_id = pd_id.replace(pattern, "")
+    return util.get_json(f'{_CPWS}{release}/FIService/drug/queryInteractionsForDiagram/{source}/{pd_id}')
 
 
 def drug_targets(release="2019", drug="Gefitinib", source="drugcentral"):
@@ -368,26 +225,8 @@ def drug_targets(release="2019", drug="Gefitinib", source="drugcentral"):
     Query known/available drug-target interactions for a drug
 
     :param release: release year for Functional Interactions (FI) data
-    :param ids: String of comma separated Gene names (HGNC)
     :param source: drugcentral or targetome
 
     :return: json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    data = drug
-
-    url = "http://cpws.reactome.org/caBigR3WebApp%s/FIService/drug/queryInteractionsForDrugs/%s" % (release, source)
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
+    return util.post_json(f'{_CPWS}{release}/FIService/drug/queryInteractionsForDrugs/{source}', data=drug)

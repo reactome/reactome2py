@@ -4,15 +4,12 @@ Provides pathway over-representation and expression analysis as well as species 
 API calls are avaialble @ https://reactome.org/AnalysisService/#/ \n
 Data model key classes for id query are available @ https://reactome.org/documentation/data-model
 """
-from __future__ import print_function
-from __future__ import unicode_literals
-from requests.exceptions import ConnectionError
-import csv
-import requests
+
 import pandas
 
+from . import util
 
-NumberTypes = (int, float, complex)
+_SERVICE = 'https://reactome.org/AnalysisService'
 
 
 def identifier(id='EGFR', interactors=False, page_size='1', page='1', species='Homo Sapiens', sort_by='ENTITIES_FDR',
@@ -40,66 +37,22 @@ def identifier(id='EGFR', interactors=False, page_size='1', page='1', species='H
     :param min_entities: Minimum number of contained entities per pathway (takes into account the resource)
     :return: Json dictionary object
     """
-
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    if isinstance(min_entities, NumberTypes):
-        min_entities = str(min_entities)
-
-    if isinstance(max_entities, NumberTypes):
-        max_entities = str(max_entities)
-
-    if interactors:
-        interactors = 'true'
-    else:
-        interactors = 'false'
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('interactors', interactors),
-        ('pageSize', page_size),
-        ('page', page),
-        ('sortBy', sort_by),
-        ('order', order),
-        ('species', species),
-        ('resource', resource),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
-        ('min', min_entities),
-        ('max', max_entities),
+    return util.get_json(
+        f'{_SERVICE}/identifier/{id}/{"projection" if projection else ""}',
+        params={
+            'interactors': interactors,
+            'pageSize': page_size,
+            'page': page,
+            'sortBy': sort_by,
+            'order': order,
+            'species': species,
+            'resource': resource,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+            'min': min_entities,
+            'max': max_entities,
+        }
     )
-
-    url = 'https://reactome.org/AnalysisService/identifier/'
-
-    if projection:
-        url_gene = "".join([url, id, "/projection"])
-    else:
-        url_gene = "".join([url, id])
-
-    try:
-        response = requests.get(url=url_gene, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def identifiers(ids='EGF,EGFR', interactors=False, page_size='1', page='1', species='Homo Sapiens',
@@ -124,71 +77,28 @@ def identifiers(ids='EGF,EGFR', interactors=False, page_size='1', page='1', spec
     :param min_entities: minimum number of contained entities per pathway (takes into account the resource)
     :return: Json dictionary object
     """
-
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    if isinstance(min_entities, NumberTypes):
-        min_entities = str(min_entities)
-
-    if isinstance(max_entities, NumberTypes):
-        max_entities = str(max_entities)
-
-    if interactors:
-        interactors = 'true'
-    else:
-        interactors = 'false'
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    params = (
-        ('interactors', interactors),
-        ('pageSize', page_size),
-        ('page', page),
-        ('sortBy', sort_by),
-        ('order', order),
-        ('species',  species),
-        ('resource', resource),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
-        ('min', min_entities),
-        ('max', max_entities),
+    return util.post_json(
+        f'{_SERVICE}/identifiers/{"projection" if projection else ""}',
+        data=ids,
+        params={
+            'interactors': interactors,
+            'pageSize': page_size,
+            'page': page,
+            'sortBy': sort_by,
+            'order': order,
+            'species': species,
+            'resource': resource,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+            'min': min_entities,
+            'max': max_entities,
+        }
     )
-
-    if projection:
-        url = 'https://reactome.org/AnalysisService/identifiers/projection'
-    else:
-        url = 'https://reactome.org/AnalysisService/identifiers/'
-
-    data = ids
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def identifiers_form(path, interactors=False, page_size='1', page='1', species='Homo Sapiens', sort_by='ENTITIES_FDR',
-                     order='ASC', resource='TOTAL', p_value='1', include_disease=True, min_entities=None, max_entities=None,
+                     order='ASC', resource='TOTAL', p_value='1', include_disease=True, min_entities=None,
+                     max_entities=None,
                      projection=False):
     """
     Given a file path with a list of identifiers conducts reactome pathway enrichment analysis
@@ -211,70 +121,29 @@ def identifiers_form(path, interactors=False, page_size='1', page='1', species='
     :param min_entities: minimum number of contained entities per pathway (takes into account the resource)
     :return:
     """
-
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    if isinstance(min_entities, NumberTypes):
-        min_entities = str(min_entities)
-
-    if isinstance(max_entities, NumberTypes):
-        max_entities = str(max_entities)
-
-    if interactors:
-        interactors = 'true'
-    else:
-        interactors = 'false'
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'Content-Type': 'text/plain',
-    }
-
-    params = (
-        ('interactors', interactors),
-        ('pageSize', page_size),
-        ('page', page),
-        ('sortBy', sort_by),
-        ('order', order),
-        ('species',  species),
-        ('resource', resource),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
-        ('min', min_entities),
-        ('max', max_entities),
+    return util.post_json(
+        f'{_SERVICE}/identifiers/form{"/projection" if projection else ""}',
+        data=open(path, 'rb').read(),
+        params={
+            'interactors': interactors,
+            'pageSize': page_size,
+            'page': page,
+            'sortBy': sort_by,
+            'order': order,
+            'species': species,
+            'resource': resource,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+            'min': min_entities,
+            'max': max_entities,
+        }
     )
 
-    if projection:
-        url = 'https://reactome.org/AnalysisService/identifiers/form/projection'
-    else:
-        url = 'https://reactome.org/AnalysisService/identifiers/form/'
 
-    data = open(path, 'rb').read()
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def identifiers_url(external_url, interactors=False, page_size='1', page='1', species='Homo Sapiens', sort_by='ENTITIES_FDR',
-                    order='ASC', resource='TOTAL', p_value='1', include_disease=True, min_entities=None, max_entities=None,
+def identifiers_url(external_url, interactors=False, page_size='1', page='1', species='Homo Sapiens',
+                    sort_by='ENTITIES_FDR',
+                    order='ASC', resource='TOTAL', p_value='1', include_disease=True, min_entities=None,
+                    max_entities=None,
                     projection=False):
     """
     Given a url with a list of identifiers conducts reactome pathway enrichment analysis
@@ -297,69 +166,26 @@ def identifiers_url(external_url, interactors=False, page_size='1', page='1', sp
     :param min_entities: Minimum number of contained entities per pathway (takes into account the resource)
     :return:
     """
-
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    if isinstance(min_entities, NumberTypes):
-        min_entities = str(min_entities)
-
-    if isinstance(max_entities, NumberTypes):
-        max_entities = str(max_entities)
-
-    if interactors:
-        interactors = 'true'
-    else:
-        interactors = 'false'
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'Content-Type': 'text/plain',
-    }
-
-    params = (
-        ('interactors', interactors),
-        ('pageSize', page_size),
-        ('page', page),
-        ('sortBy', sort_by),
-        ('order', order),
-        ('species',  species),
-        ('resource', resource),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
-        ('min', min_entities),
-        ('max', max_entities),
+    return util.post_json(
+        f'{_SERVICE}/identifiers/url/form{"/projection" if projection else ""}',
+        data=external_url,
+        params={
+            'interactors': interactors,
+            'pageSize': page_size,
+            'page': page,
+            'sortBy': sort_by,
+            'order': order,
+            'species': species,
+            'resource': resource,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+            'min': min_entities,
+            'max': max_entities,
+        }
     )
 
-    if projection:
-        url = 'https://reactome.org/AnalysisService/identifiers/url/projection'
-    else:
-        url = 'https://reactome.org/AnalysisService/identifiers/url/'
 
-    data = external_url
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def result2json(token, path='', file='result.json', save=False, gzip=False, chunk_size=128):
+def result2json(token, path='', file='result', save=False, gzip=False, chunk_size=128):
     """
     View of analysis result in json format
 
@@ -372,33 +198,18 @@ def result2json(token, path='', file='result.json', save=False, gzip=False, chun
     :param chunk_size: Python generator iter_content() chunk size - default set to 128
     :return: File or json object containing data on pathway, entities, statistics, etc. found in analysis overlap
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
+    ext = "json.gz" if gzip else "json"
     if save or gzip:
-        url = 'https://reactome.org/AnalysisService/download/%s/result.json.gzip' % token
+        return util.download(
+            path, file, ext,
+            f'{_SERVICE}/download/{token}/result.{ext}',
+            headers={"accept": "*/*"}, chunk_size=chunk_size
+        )
     else:
-        url = 'https://reactome.org/AnalysisService/download/%s/result.json' % token
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        if save or gzip:
-            with open("".join([path, file]), 'wb') as f:
-                for chunk in response.iter_content(chunk_size=chunk_size):
-                    f.write(chunk)
-        else:
-            return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+        return util.get_json(f'{_SERVICE}/download/{token}/result.json')
 
 
-def pathway2df(token, path='', resource='TOTAL', file='result.csv', save=False, chunk_size=128):
+def pathway2df(token, path='', resource='TOTAL', file='result', save=False, chunk_size=128) -> pandas.DataFrame:
     """
     Create a Data frame of the analysis result for all the pathway hits - save to csv file (comma separated)
 
@@ -412,34 +223,13 @@ def pathway2df(token, path='', resource='TOTAL', file='result.csv', save=False, 
     :return: Saves the result as csv file or returns a pandas data frame
     """
 
-    headers = {
-        'accept': 'text/csv',
-    }
-
-    try:
-        response = requests.get(
-            'https://reactome.org/AnalysisService/download/%s/pathways/%s/%s' % (token, resource, file),
-            headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        if save:
-            with open("".join([path, file]), 'wb') as f:
-                for chunk in response.iter_content(chunk_size=chunk_size):
-                    f.write(chunk)
-        else:
-            lines = csv.reader(response.text.splitlines(), delimiter=',')
-            row_list = list(lines)
-            df = pandas.DataFrame(row_list)
-            df.columns = df.iloc[0]
-            df = df.iloc[1:]
-            return df
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    df = pandas.read_csv(f'{_SERVICE}/download/{token}/pathways/{resource}/{file}.csv')
+    if save:
+        df.to_csv(f'{path}{file}.csv', chunksize=chunk_size, index=False)
+    return df
 
 
-def found_entities(token, path='', resource='TOTAL', file='result.csv', save=False, chunk_size=128):
+def found_entities(token, path='', resource='TOTAL', file='result', save=False, chunk_size=128):
     """
     list of found entities in reactome database
 
@@ -453,33 +243,13 @@ def found_entities(token, path='', resource='TOTAL', file='result.csv', save=Fal
     :return: Pandas data frame with genes or entities found in pathway enrichment analysis overlap
     """
 
-    headers = {
-        'accept': 'text/csv',
-    }
-
-    try:
-        response = requests.get(
-            'https://reactome.org/AnalysisService/download/%s/entities/found/%s/%s' % (token, resource, file),
-            headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        if save:
-            with open("".join([path, file]), 'wb') as f:
-                for chunk in response.iter_content(chunk_size=chunk_size):
-                    f.write(chunk)
-        else:
-            gene_list = response.text.split('\n')
-            df_list = [row.split(",") for row in gene_list[:-1]]
-            df = pandas.DataFrame(df_list)
-            df = df.iloc[1:]
-            return df
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    df = pandas.read_csv(f'{_SERVICE}/download/{token}/entities/found/{resource}/{file}.csv')
+    if save:
+        df.to_csv(f'{path}{file}.csv', chunksize=chunk_size, index=False)
+    return df
 
 
-def unfound_entities(token, path='', file='result.csv', save=False, chunk_size=128):
+def unfound_entities(token, path='', file='result', save=False, chunk_size=128):
     """
     list of unfound entities in reactome database
 
@@ -492,30 +262,10 @@ def unfound_entities(token, path='', file='result.csv', save=False, chunk_size=1
     :return: Pandas data frame with genes or entities not found in pathway enrichment analysis overlap
     """
 
-    headers = {
-        'accept': 'text/csv',
-    }
-
-    try:
-        response = requests.get(
-            'https://reactome.org/AnalysisService/download/%s/entities/notfound/%s' % (token, file),
-            headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        if save:
-            with open("".join([path, file]), 'wb') as f:
-                for chunk in response.iter_content(chunk_size=chunk_size):
-                    f.write(chunk)
-        else:
-            gene_list = response.text.split('\n')
-            df_list = [row.split(",") for row in gene_list[:-1]]
-            df = pandas.DataFrame(df_list)
-            df = df.iloc[1:]
-            return df
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    df = pandas.read_csv(f'{_SERVICE}/download/{token}/entities/notfound/{file}.csv')
+    if save:
+        df.to_csv(f'{path}{file}.csv', chunksize=chunk_size, index=False)
+    return df
 
 
 def db_name():
@@ -524,20 +274,7 @@ def db_name():
 
     :return: String of the name of current database.
     """
-
-    headers = {
-        'accept': 'text/plain',
-    }
-
-    try:
-        response = requests.get('https://reactome.org/AnalysisService/database/name', headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.text
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get(f'{_SERVICE}/database/name').text
 
 
 def db_version():
@@ -546,24 +283,12 @@ def db_version():
 
     :return: String of the version number of current database.
     """
-
-    headers = {
-        'accept': 'text/plain',
-    }
-
-    try:
-        response = requests.get('https://reactome.org/AnalysisService/database/version', headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.text
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get(f'{_SERVICE}/database/version').text
 
 
-def report(token, path, file='report.pdf', number='25', resource='TOTAL', diagram_profile='Modern', analysis_profile='Standard',
-                fireworks_profile='Barium Lithium', species='Homo sapiens', chunk_size=128):
+def report(token, path, file='report', number='25', resource='TOTAL', diagram_profile='Modern',
+           analysis_profile='Standard',
+           fireworks_profile='Barium Lithium', species='Homo sapiens', chunk_size=128):
     """
     Downloads a report for a given pathway analysis result
 
@@ -575,39 +300,24 @@ def report(token, path, file='report.pdf', number='25', resource='TOTAL', diagra
     :param resource: The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :param diagram_profile: Diagram Color Profile - as string
     :param analysis_profile: Analysis Color Profile - as string
-    :param fireworks_profile: Diagram Color Profile - as string
+    :param fireworks_profile: Fireworks Color Profile - as string
     :param species: The species for which results will be reported
     :param chunk_size: Python generator iter_content() chunk size - default set to 128
     :return: Saves a reactome analysis pdf report to the indicated path and file name
     """
 
-    if isinstance(number, NumberTypes):
-        number = str(number)
-
-    headers = {
-        'accept': 'application/pdf',
-    }
-
-    params = (
-        ('number', number),
-        ('resource', resource),
-        ('diagramProfile', diagram_profile),
-        ('analysisProfile', analysis_profile),
-        ('fireworksProfile', fireworks_profile),
+    return util.download(
+        path, file, "pdf",
+        f'{_SERVICE}/report/{token}/{species}/{file}.pdf',
+        headers={'accept': 'application/pdf'},
+        params={
+            'number': number,
+            'resource': resource,
+            'diagramProfile': diagram_profile,
+            'analysisProfile': analysis_profile,
+            'fireworksProfile': fireworks_profile,
+        }
     )
-
-    try:
-        response = requests.get('https://reactome.org/AnalysisService/report/%s/%s/%s' % (token, species, file),
-                                headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        with open("".join([path, file]), 'wb') as f:
-            for chunk in response.iter_content(chunk_size=chunk_size):
-                f.write(chunk)
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def compare_species(species='48892', page_size='1', page='1', sort_by='ENTITIES_FDR', order='ASC',
@@ -627,41 +337,18 @@ def compare_species(species='48892', page_size='1', page='1', sort_by='ENTITIES_
     :param p_value: Defines the pValue threshold. Only hit pathway with pValue equals or below the threshold will be returned
     :return: Json dictionary object
     """
-
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('pageSize', page_size),
-        ('page', page),
-        ('sortBy', sort_by),
-        ('order', order),
-        ('species',  species),
-        ('resource', resource),
-        ('pValue', p_value),
+    return util.get_json(
+        f'{_SERVICE}/species/homoSapiens/{species}',
+        params={
+            'pageSize': page_size,
+            'page': page,
+            'sortBy': sort_by,
+            'order': order,
+            'species': species,
+            'resource': resource,
+            'pValue': p_value,
+        }
     )
-
-    url = 'https://reactome.org/AnalysisService/species/homoSapiens/%s' % species
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def identifiers_mapping(ids='EGF,EGFR', interactors=False, projection=False):
@@ -676,37 +363,11 @@ def identifiers_mapping(ids='EGF,EGFR', interactors=False, projection=False):
     :param projection: If true, projects the identifiers to human and only shows the result in this species
     :return: Json list object
     """
-
-    if interactors:
-        interactors = 'true'
-    else:
-        interactors = 'false'
-
-    if projection:
-        url = 'https://reactome.org/AnalysisService/mapping/projection'
-    else:
-        url = 'https://reactome.org/AnalysisService/mapping/'
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    params = (
-        ('interactors', interactors),
+    return util.post_json(
+        f'{_SERVICE}/mapping/{"projection" if projection else ""}',
+        data=ids,
+        params={'interactors': interactors},
     )
-
-    data = ids
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def identifiers_mapping_form(path, interactors=False, projection=False):
@@ -722,36 +383,11 @@ def identifiers_mapping_form(path, interactors=False, projection=False):
     :param projection: If true, projects the identifiers to human and only shows the result in this species
     :return:
     """
-
-    if interactors:
-        interactors = 'true'
-    else:
-        interactors = 'false'
-
-    if projection:
-        url = 'https://reactome.org/AnalysisService/mapping/form/projection'
-    else:
-        url = 'https://reactome.org/AnalysisService/mapping/form'
-
-    headers = {
-        'Content-Type': 'text/plain',
-    }
-
-    params = (
-        ('interactors', interactors),
+    return util.post_json(
+        f'{_SERVICE}/mapping/form/{"projection" if projection else ""}',
+        data=open(path, 'rb').read(),
+        params={'interactors': interactors},
     )
-
-    data = open(path, 'rb').read()
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
 
 
 def identifiers_mapping_url(external_url, interactors=False, projection=False):
@@ -766,36 +402,10 @@ def identifiers_mapping_url(external_url, interactors=False, projection=False):
     :param projection: If true, projects the identifiers to human and only shows the result in this species
     :return:
     """
-
-    if interactors:
-        interactors = 'true'
-    else:
-        interactors = 'false'
-
-    if projection:
-        url = 'https://reactome.org/AnalysisService/mapping/url/projection'
-    else:
-        url = 'https://reactome.org/AnalysisService/mapping/url/'
-
-    headers = {
-        'Content-Type': 'text/plain',
-    }
-
-    params = (
-        ('interactors', interactors),
+    return util.post_json(
+        f'{_SERVICE}/mapping/url/{"projection" if projection else ""}',
+        data=external_url, params={'interactors': interactors}
     )
-
-    data = external_url
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def token(token, species='Homo sapiens', page_size='1', page='1', sort_by='ENTITIES_FDR', order='ASC', resource='TOTAL',
@@ -820,55 +430,21 @@ def token(token, species='Homo sapiens', page_size='1', page='1', sort_by='ENTIT
     :param max_entities: Maximum number of contained entities per pathway (takes into account the resource)
     :return: Json dictionary object
     """
-
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    if isinstance(min_entities, NumberTypes):
-        min_entities = str(min_entities)
-
-    if isinstance(max_entities, NumberTypes):
-        max_entities = str(max_entities)
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('pageSize', page_size),
-        ('page', page),
-        ('sortBy', sort_by),
-        ('order', order),
-        ('species',  species),
-        ('resource', resource),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
-        ('min', min_entities),
-        ('max', max_entities),
+    return util.get_json(
+        f'{_SERVICE}/token/{token}',
+        params={
+            'pageSize': page_size,
+            'page': page,
+            'sortBy': sort_by,
+            'order': order,
+            'species': species,
+            'resource': resource,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+            'min': min_entities,
+            'max': max_entities,
+        }
     )
-
-    url = 'https://reactome.org/AnalysisService/token/%s' % token
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def token_pathways_result(token, pathways, species='Homo sapiens', resource='TOTAL', p_value='1', include_disease=True,
@@ -888,47 +464,19 @@ def token_pathways_result(token, pathways, species='Homo sapiens', resource='TOT
     :param max_entities: Maximum number of contained entities per pathway (takes into account the resource)
     :return: Json list object
     """
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
 
-    if isinstance(min_entities, NumberTypes):
-        min_entities = str(min_entities)
-
-    if isinstance(max_entities, NumberTypes):
-        max_entities = str(max_entities)
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    params = (
-        ('species',  species),
-        ('resource', resource),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
-        ('min', min_entities),
-        ('max', max_entities),
+    return util.post_json(
+        f'{_SERVICE}/token/{token}/filter/pathways',
+        data=pathways,
+        params={
+            'species': species,
+            'resource': resource,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+            'min': min_entities,
+            'max': max_entities,
+        }
     )
-
-    url = 'https://reactome.org/AnalysisService/token/%s/filter/pathways' % token
-
-    data = pathways
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def token_filter_species(token, species='Homo sapiens', sort_by='ENTITIES_FDR', order='ASC', resource='TOTAL'):
@@ -944,28 +492,14 @@ def token_filter_species(token, species='Homo sapiens', sort_by='ENTITIES_FDR', 
     :param resource: The resource to sort TOTAL, UNIPORT, ENSEMBLE, CHEMBI, IUPHAR, MIRBASE, NCBI_PROTEIN, EMBL, COMPOUND, PUBCEM_COMPOUND
     :return: Json dictionary object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('sortBy', sort_by),
-        ('order', order),
-        ('resource', resource),
+    return util.get_json(
+        f'{_SERVICE}/token/{token}/filter/species/{species}',
+        params={
+            'sortBy': sort_by,
+            'order': order,
+            'resource': resource,
+        }
     )
-
-    url = 'https://reactome.org/AnalysisService/token/%s/filter/species/%s' % (token, species)
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
 
 
 def token_pathways_summary(token, pathways, resource='TOTAL'):
@@ -979,27 +513,7 @@ def token_pathways_summary(token, pathways, resource='TOTAL'):
     :return: Json list object
     """
 
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    params = (
-        ('resource', resource),
-    )
-
-    data = pathways
-    url = 'https://reactome.org/AnalysisService/token/%s/found/all' % token
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
+    return util.post_json(f'{_SERVICE}/token/{token}/found/all', data=pathways, params={'resource': resource})
 
 
 def token_pathway_summary(token, pathway, resource='TOTAL', page='1', page_size='1', by='all'):
@@ -1020,51 +534,16 @@ def token_pathway_summary(token, pathway, resource='TOTAL', page='1', page_size=
     :param by: Filter found cases by: all, entities, interactors
     :return: Json dictionary object
     """
+    assert by in ("all", "entities", "interactors")
 
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    if by.lower() in 'all':
-        params = (
-            ('resource', resource),
-        )
-
-        url = 'https://reactome.org/AnalysisService/token/%s/found/all/%s' % (token, pathway)
-
-    elif by.lower() in 'entities':
-        params = (
-            ('resource', resource),
-            ('page', page),
-            ('pageSize', page_size),
-        )
-
-        url = 'https://reactome.org/AnalysisService/token/%s/found/entities/%s' % (token, pathway)
-
-    elif by.lower() in 'interactors':
-        params = (
-            ('resource', resource),
-            ('page', page),
-            ('pageSize', page_size),
-        )
-
-        url = 'https://reactome.org/AnalysisService/token/%s/found/interactors/%s' % (token, pathway)
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(
+        f"{_SERVICE}/token/{token}/found/{by}/{pathway}",
+        params={
+            'resource': resource,
+            'page': page,
+            'pageSize': page_size,
+        }
+    )
 
 
 def token_unfound_identifiers(token, page_size='1', page='1'):
@@ -1077,36 +556,18 @@ def token_unfound_identifiers(token, page_size='1', page='1'):
     :param page: Number of pages
     :return: list
     """
-
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(page, NumberTypes):
-        page = str(page)
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('pageSize', page_size),
-        ('page', page),
+    return util.get_json(
+        f'{_SERVICE}/token/{token}/notFound',
+        params={
+            'pageSize': page_size,
+            'page': page,
+        }
     )
-    url = 'https://reactome.org/AnalysisService/token/%s/notFound' % token
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
-def token_pathway_page(token, pathway, page_size='1', sort_by='ENTITIES_FDR', order='ASC', resource='TOTAL', p_value='1',
-                       include_disease=True, min_entities=None, max_entities=None):
+def token_pathway_page(token, pathway, page_size='1', sort_by='ENTITIES_FDR', order='ASC', resource='TOTAL',
+                       p_value: float = 1, include_disease=True, min_entities: int = None,
+                       max_entities: int = None):
     """
     Returns the page where the corresponding pathway is taking into account the passed parameters
 
@@ -1125,49 +586,19 @@ def token_pathway_page(token, pathway, page_size='1', sort_by='ENTITIES_FDR', or
     :return: int
     """
 
-    if isinstance(page_size, NumberTypes):
-        page_size = str(page_size)
-
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    if isinstance(min_entities, NumberTypes):
-        min_entities = str(min_entities)
-
-    if isinstance(max_entities, NumberTypes):
-        max_entities = str(max_entities)
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('pageSize', page_size),
-        ('sortBy', sort_by),
-        ('order', order),
-        ('resource', resource),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
-        ('min', min_entities),
-        ('max', max_entities),
+    return util.get_json(
+        f'{_SERVICE}/token/{token}/page/{pathway}',
+        params={
+            'pageSize': page_size,
+            'sortBy': sort_by,
+            'order': order,
+            'resource': resource,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+            'min': min_entities,
+            'max': max_entities,
+        }
     )
-
-    url = 'https://reactome.org/AnalysisService/token/%s/page/%s' % (token, pathway)
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def token_pathways_binned(token, resource='TOTAL', bin_size='100', p_value='1', include_disease=True):
@@ -1182,43 +613,19 @@ def token_pathways_binned(token, resource='TOTAL', bin_size='100', p_value='1', 
     :param include_disease: Set to ‘false’ to exclude the disease pathways from the result (it does not alter the statistics)
     :return: Json list object
     """
-
-    if isinstance(bin_size, NumberTypes):
-        bin_size = str(bin_size)
-
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('resource', resource),
-        ('binSize', bin_size),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
+    return util.get_json(
+        f'{_SERVICE}/token/{token}/pathways/binned',
+        params={
+            'resource': resource,
+            'binSize': bin_size,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+        }
     )
 
-    url = 'https://reactome.org/AnalysisService/token/%s/pathways/binned' % token
 
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
-
-
-def token_pathways_reactions(token, pathways, resource='TOTAL', p_value='1', include_disease=True, min_entities=None,
+def token_pathways_reactions(token, pathways, resource='TOTAL', p_value='1', include_disease=True,
+                             min_entities=None,
                              max_entities=None):
     """
     Returns the reaction ids of all the pathway stable identifiers (stIds) that are present in the original result
@@ -1233,51 +640,21 @@ def token_pathways_reactions(token, pathways, resource='TOTAL', p_value='1', inc
     :param max_entities: Maximum number of contained entities per pathway (takes into account the resource)
     :return: list
     """
-
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    if isinstance(min_entities, NumberTypes):
-        min_entities = str(min_entities)
-
-    if isinstance(max_entities, NumberTypes):
-        max_entities = str(max_entities)
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'text/plain',
-    }
-
-    params = (
-        ('resource', resource),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
-        ('min', min_entities),
-        ('max', max_entities),
+    return util.post_json(
+        f'{_SERVICE}/token/{token}/reactions/pathways',
+        data=pathways,
+        params={
+            'resource': resource,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+            'min': min_entities,
+            'max': max_entities,
+        }
     )
-
-    data = pathways
-
-    url = 'https://reactome.org/AnalysisService/token/%s/reactions/pathways' % token
-
-    try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
 
 
 def token_pathway_reactions(token, pathway, resource='TOTAL', p_value='1', include_disease=True, min_entities=None,
-                             max_entities=None):
+                            max_entities=None):
     """
     Returns the reaction ids a or one pathway's stable identifiers (stId) that is present in the original result
 
@@ -1292,43 +669,16 @@ def token_pathway_reactions(token, pathway, resource='TOTAL', p_value='1', inclu
     :return: list
     """
 
-    if isinstance(p_value, NumberTypes):
-        p_value = str(p_value)
-
-    if isinstance(min_entities, NumberTypes):
-        min_entities = str(min_entities)
-
-    if isinstance(max_entities, NumberTypes):
-        max_entities = str(max_entities)
-
-    if include_disease:
-        include_disease = 'true'
-    else:
-        include_disease = 'false'
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    params = (
-        ('resource', resource),
-        ('pValue', p_value),
-        ('includeDisease', include_disease),
-        ('min', min_entities),
-        ('max', max_entities),
+    return util.get_json(
+        f'{_SERVICE}/token/{token}/reactions/{pathway}',
+        params={
+            'resource': resource,
+            'pValue': p_value,
+            'includeDisease': include_disease,
+            'min': min_entities,
+            'max': max_entities,
+        }
     )
-
-    url = 'https://reactome.org/AnalysisService/token/%s/reactions/%s' % (token, pathway)
-
-    try:
-        response = requests.get(url=url, headers=headers, params=params)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
 
 
 def token_resources(token):
@@ -1339,22 +689,7 @@ def token_resources(token):
         request a TOKEN is associated to the result
     :return: Json list object
     """
-
-    headers = {
-        'accept': 'application/json',
-    }
-
-    url = 'https://reactome.org/AnalysisService/token/%s/resources' % token
-
-    try:
-        response = requests.get(url=url, headers=headers)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print('Status code returned a value of %s' % response.status_code)
+    return util.get_json(f'{_SERVICE}/token/{token}/resources')
 
 
 def import_json(input_json):
@@ -1365,25 +700,7 @@ def import_json(input_json):
     :param input_json: Identifiers to analyse followed by their expression (when applies) in json format in string
     :return:
     """
-
-    headers = {
-        'accept': 'application/json',
-        'content-type': 'application/json',
-    }
-
-    data = input_json
-
-    url = 'https://reactome.org/AnalysisService/import/'
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
+    return util.post_json(f'{_SERVICE}/import/', data=input_json, headers={'content-type': 'application/json'})
 
 
 def import_form(input_file):
@@ -1394,24 +711,8 @@ def import_form(input_file):
     :param input_file: A json file with the data to be analysed
     :return:
     """
-
-    headers = {
-        'content-type': 'application/json',
-    }
-
-    data = input_file
-
-    url = 'https://reactome.org/AnalysisService/import/form'
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
+    return util.post_json(f'{_SERVICE}/import/form', data=input_file, headers={'content-type': 'application/json'}
+                          )
 
 
 def import_url(input_url):
@@ -1422,22 +723,4 @@ def import_url(input_url):
     :param input_url: A URL pointing to the json data to be analysed
     :return:
     """
-
-    headers = {
-        'content-type': 'application/json',
-    }
-
-    data = input_url
-
-    url = 'https://reactome.org/AnalysisService/import/url'
-
-    try:
-        response = requests.post(url=url, headers=headers, data=data)
-    except ConnectionError as e:
-        print(e)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Status code returned a value of %s" % response.status_code)
-
+    return util.post_json(f'{_SERVICE}/import/url', data=input_url, headers={'content-type': 'application/json'})
