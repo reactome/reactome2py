@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from dataclasses import dataclass
 from dataclasses_json import dataclass_json
 from typing import List, Optional
@@ -19,4 +17,4 @@ class EventHierarchyNode:
     url: Optional[str] = None
     entities: Optional[EntityStatistics] = None
     reactions: Optional[ReactionStatistics] = None
-    children: Optional[List[EventHierarchyNode]] = None
+    children: Optional[List['EventHierarchyNode']] = None
