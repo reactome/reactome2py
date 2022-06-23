@@ -38,7 +38,18 @@ def test_event_ancestors():
 
 
 def test_event_species():
-    assert type(content.event_species()) == list
+    pathways = content.event_species(9606, True)
+    assert type(pathways) == list
+
+    def test(p):
+        assert p.species == 'Homo sapiens'
+        assert p.type in ['TopLevelPathway', 'Pathway']
+        if p.children is not None:
+            for child in p.children:
+                test(child)
+
+    for pathway in pathways:
+        test(pathway)
 
 # export methods tested on local env
 

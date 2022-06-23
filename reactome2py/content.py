@@ -4,10 +4,12 @@ API calls are avaialble @ https://reactome.org/ContentService/#/   \n
 Data model key classes for id query are available @ https://reactome.org/documentation/data-model
 """
 from typing import *
+import json
 
 from . import util
+from .models import EventHierarchyNode
 
-_SERVICE = "https://reactome.org/ContentService/"
+_SERVICE = "https://dev.reactome.org/ContentService/"
 
 
 def discover(id='R-HSA-446203'):
@@ -103,7 +105,8 @@ def event_ancestors(id='R-HSA-5673001'):
     return util.get_json(f'{_SERVICE}/data/event/{id}/ancestors')
 
 
-def event_species(species='9606'):
+def event_species(species='9606', pathways_only=False, token=None, resource='Total', include_interactors=False) \
+        -> List[EventHierarchyNode]:
     """
     Events (pathways and reactions) in Reactome are organised in a hierarchical structure for every species.
     By following all ‘hasEvent’ relationships, this method retrieves the full event hierarchy for any given species.
@@ -112,10 +115,22 @@ def event_species(species='9606'):
     the diagram of the particular event.
 
     :param species: Species name (ex: Homo sapiens) or species taxId (ex: 9606)
+    :param pathways_only: Filter hierarchy to only fetch pathways, and exclude reactions
+    :param token: The analysis token to include analysis results inside the hierarchy
+    :param resource: The analysis resource for which the results will be included in the hierarchy
+    :param include_interactors: Whether to take into account interactors in the analysis results
     :return: Json list object of the full event hierarchy for a given species
     """
-
-    return util.get_json(f'{_SERVICE}/data/eventsHierarchy/{species}')
+    return [EventHierarchyNode.from_json(json.dumps(e)) for e in
+            util.get_json(
+                f'{_SERVICE}/data/eventsHierarchy/{species}',
+                params={
+                    'pathwaysOnly': pathways_only,
+                    'token': token,
+                    'resource': resource,
+                    'interactors': include_interactors
+                })
+            ]
 
 
 def export_diagram(id='R-HSA-177929', ext='png', quality='5', flag_interactors=False, title=True, margin='15',

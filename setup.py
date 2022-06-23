@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-__version__ = '4.0.0'
+__version__ = '4.0.1'
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -24,6 +24,7 @@ setup(
         'requests',
         'pandas>=0.24.2',
         'json5>=0.8.4',
+        'dataclasses-json>=0.5.7',
     ],
     tests_require=['pytest'],
     classifiers=[
