@@ -9,7 +9,7 @@ import json
 from . import util
 from .models import EventHierarchyNode
 
-_SERVICE = "https://dev.reactome.org/ContentService/"
+_SERVICE = "https://reactome.org/ContentService/"
 
 
 def discover(id='R-HSA-446203'):
