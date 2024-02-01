@@ -105,7 +105,7 @@ def event_ancestors(id='R-HSA-5673001'):
     return util.get_json(f'{_SERVICE}/data/event/{id}/ancestors')
 
 
-def event_species(species='9606', pathways_only=False, token=None, resource='Total', include_interactors=False) \
+def event_species(species='9606', pathways_only=False, token=None, resource='TOTAL', include_interactors=False) \
         -> List[EventHierarchyNode]:
     """
     Events (pathways and reactions) in Reactome are organised in a hierarchical structure for every species.
@@ -134,7 +134,7 @@ def event_species(species='9606', pathways_only=False, token=None, resource='Tot
 
 
 def export_diagram(id='R-HSA-177929', ext='png', quality='5', flag_interactors=False, title=True, margin='15',
-                   ehld=True, diagram_profile='Modern', resource='Total', analysis_profile='Standard',
+                   ehld=True, diagram_profile='Modern', resource='TOTAL', analysis_profile='Standard',
                    token: str = None,
                    flag: str = None, sel: List[str] = None, exp_column: str = None, file='report', path=''):
     """
@@ -183,7 +183,7 @@ def export_diagram(id='R-HSA-177929', ext='png', quality='5', flag_interactors=F
     )
 
 
-def export_document(id='R-HSA-177929', level='1', diagram_profile='Modern', resource='Total',
+def export_document(id='R-HSA-177929', level='1', diagram_profile='Modern', resource='TOTAL',
                     analysis_profile='Standard', token: str = None, exp_column: str = None, file='report', path=''):
     """
     This method accepts identifiers for Event class instances.
@@ -247,7 +247,7 @@ def export_event(id='R-HSA-177929', format='sbgn', file='report', path=''):
 
 def export_fireworks(species='9606', ext='png', file='report', path='', quality='5', flag: str = None,
                      flag_interactors=False,
-                     sel: List[str] = None, title=True, margin='15', resource='Total', diagram_profile='',
+                     sel: List[str] = None, title=True, margin='15', resource='TOTAL', diagram_profile='',
                      coverage=False,
                      token=None,
                      exp_column=None):
@@ -296,7 +296,7 @@ def export_fireworks(species='9606', ext='png', file='report', path='', quality=
 
 def export_reaction(id='R-HSA-6787403', ext='png', file='report', path='', quality='5', flag=None,
                     flag_interactors=False,
-                    sel: List[str] = None, title=True, margin='15', resource='Total', diagram_profile='',
+                    sel: List[str] = None, title=True, margin='15', resource='TOTAL', diagram_profile='',
                     coverage=False, token=None,
                     exp_column=None):
     """
