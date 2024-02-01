@@ -44,17 +44,23 @@ def post(url: str, data: Any, headers: Dict[str, str] = None, params: Dict[str, 
     """
     :return: Json dictionary object of The schema.org for an Event in Reactome knowledgebase
     """
-    if headers is None:
-        headers = {}
 
-    headers = {
-        'accept': '*/*',
-        'content-type': 'text/plain',
-        **headers
-    }
+    if isinstance(data, bytes):
+        headers = {}
+        files = {'file': data}
+        data = None
+    else:
+        if headers is None:
+            headers = {}
+        headers = {
+            'accept': '*/*',
+            'content-type': 'text/plain',
+            **headers
+        }
+        files = None
 
     try:
-        response = requests.post(url=url, headers=headers, params=params, data=data)
+        response = requests.post(url=url, headers=headers, params=params, data=data, files=files)
         if response.status_code == 200:
             return response
         else:
